@@ -1,10 +1,157 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Атлас - Путешествия</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static "deps/css/style.css" %}">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+            url({% static "deps/images/фон.jpg" %}) center/cover no-repeat;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Main Page!</h1>
+<!-- Header with Logo -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <a class="navbar-brand text-primary fw-bold" href="#">ATLAS</a>
+        <div class="d-flex align-items-center">
+            <a href="#" class="header-icons mx-2">
+                <i class="bi bi-person"></i> АККАУНТ
+            </a>
+            <a href="#" class="header-icons mx-2">
+                <i class="bi bi-suitcase"></i> ЧЕМОДАН
+            </a>
+            <a href="#" class="header-icons mx-2">
+                <i class="bi bi-geo-alt"></i> МОСКВА
+            </a>
+            <a href="#" class="header-icons mx-2">
+                <i class="bi bi-question-circle"></i> ПОМОЩЬ
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-text">
+        <h1 class="display-4">Здесь рождаются самые крутые путешествия</h1>
+    </div>
+</section>
+
+<!-- Search Panel -->
+<section class="search-panel">
+    <div class="container">
+        <h5 class="mb-4 text-white">Детали поездки</h5>
+        <div class="row g-3">
+            <!-- Destination -->
+            <div class="col-md-4">
+                <div class="bg-white rounded p-2">
+                    <label class="form-label">Куда?</label>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary">Москва</button>
+                        <button class="btn btn-sm btn-outline-primary">Рязань</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travelers -->
+            <div class="col-md-4">
+                <div class="bg-white rounded p-3">
+                    <h5 class="text-dark mb-3">Количество персон</h5>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-primary">2 человека</button>
+                        <button class="btn btn-primary active">2 взрослых + 1 ребёнок</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget -->
+            <div class="col-md-4">
+                <div class="bg-white rounded p-2">
+                    <label class="form-label">Бюджет</label>
+                    <button class="btn btn-sm btn-outline-primary">Не указывать</button>
+                </div>
+            </div>
+
+            <!-- Dates -->
+            <div class="col-12">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="bg-white rounded p-2">
+                            <label class="form-label">Когда?</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bg-white rounded p-2">
+                            <label class="form-label">Обратно</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Button -->
+            <div class="col-12 text-end">
+                <button class="btn btn-primary btn-lg px-5">ПОЕХАЛИ!</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Destinations Section -->
+<section class="container my-5">
+    <h3 class="mb-4">Подборки мест</h3>
+    <h5 class="text-primary mb-4">Хочу на север</h5>
+
+    <div class="row g-4">
+        <!-- Saint Petersburg -->
+        <div class="col-md-4">
+            <div class="card destination-card h-100">
+                <img src={% static "deps/images/питер.jpg" %} class="card-img-top" alt="Санкт-Петербург">
+                <div class="card-body">
+                    <h5 class="card-title">Санкт-Петербург</h5>
+                    <p class="card-text">Белая ночь спустилась как облако...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arkhangelsk -->
+        <div class="col-md-4">
+            <div class="card destination-card h-100">
+                <img src={% static "deps/images/архангельск.jpg" %} class="card-img-top" alt="Архангельск">
+                <div class="card-body">
+                    <h5 class="card-title">Архангельск</h5>
+                    <p class="card-text">Здесь Ломоносов бродил</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Murmansk -->
+        <div class="col-md-4">
+            <div class="card destination-card h-100">
+                <img src={% static "deps/images/мурманск.jpg" %} class="card-img-top" alt="Мурманск">
+                <div class="card-body">
+                    <h5 class="card-title">Мурманск</h5>
+                    <p class="card-text">Едем кушать рыбу!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
