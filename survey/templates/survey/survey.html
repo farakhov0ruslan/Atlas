@@ -3,40 +3,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Опрос</title>
-	<link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
+    <meta charset="UTF-8">
+    <title>Опрос</title>
+    <link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
 </head>
 <body>
-	<div class="container">
-		<h1>Выберите наиболее интересные категории мест или активностей, которые вы хотите включить
-			в план поездки</h1>
-		<div class="row">
-			<button class="btn-primary col-md-4">Бары</button>
-			<button class="btn-primary col-md-4">Музыка</button>
-			<button class="btn-primary col-md-4">Шоппинг</button>
-			<button class="btn-primary col-md-4">Экстрим</button>
-			<button class="btn-primary col-md-4">Достопримечательности</button>
-			<button class="btn-primary col-md-4">Искусство</button>
-			<button class="btn-primary col-md-4">Музеи</button>
-			<button class="btn-primary col-md-4">Гулять</button>
-			<button class="btn-primary col-md-4">Инстаграмные места</button>
-			<button class="btn-primary col-md-4">Экскурсии</button>
-			<button class="btn-primary col-md-4">Вкусно поесть</button>
-			<button class="next-btn col-md-4">Далее ➤</button>
-		</div>
-	</div>
+<div class="container">
+    <h1>Выберите наиболее интересные категории мест или активностей, которые вы хотите включить в план поездки</h1>
+    <div class="row">
+        <button class="btn-primary col-md-4">Бары</button>
+        <button class="btn-primary col-md-4">Музыка</button>
+        <button class="btn-primary col-md-4">Шоппинг</button>
+        <button class="btn-primary col-md-4">Экстрим</button>
+        <button class="btn-primary col-md-4">Достопримечательности</button>
+        <button class="btn-primary col-md-4">Искусство</button>
+        <button class="btn-primary col-md-4">Музеи</button>
+        <button class="btn-primary col-md-4">Гулять</button>
+        <button class="btn-primary col-md-4">Инстаграмные места</button>
+        <button class="btn-primary col-md-4">Экскурсии</button>
+        <button class="btn-primary col-md-4">Вкусно поесть</button>
+        <button class="next-btn col-md-4">Далее ➤</button>
+    </div>
+</div>
 </body>
-<script>
-    // Находим все кнопки с классом btn-primary
-    const buttons = document.querySelectorAll('.btn-primary');
-
-    // Проходимся по каждой кнопке и добавляем обработчик событий
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Переключаем класс "selected" при клике
-            button.classList.toggle('selected');
-        });
-    });
-</script>
 </html>
