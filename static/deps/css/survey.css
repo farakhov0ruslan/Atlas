@@ -31,7 +31,26 @@ h1 {
     font-weight: bold;
 }
 
-/* Кнопки */
+/* Стили для сетки */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Отступы между элементами */
+    justify-content: center;
+}
+
+.col-md-4 {
+    flex: 1 0 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Стили для кнопок */
 button {
     border: 3px solid transparent; /* Добавляем рамку для выделения */
     padding: 15px 20px; /* Увеличиваем отступы */
@@ -43,7 +62,6 @@ button {
     color: #fff;
 }
 
-/* Основной цвет кнопок */
 .btn-primary {
     background-color: #6A0DAD; /* Фиолетовый цвет */
     color: #fff;
@@ -54,7 +72,6 @@ button {
     transform: scale(1.1); /* Увеличение при наведении */
 }
 
-/* Стили для выделенных кнопок */
 .btn-primary.selected {
     border: 3px solid #00D1FF; /* Голубая рамка */
     box-shadow: 0 0 10px #00D1FF;
@@ -76,21 +93,24 @@ button.next-btn:hover {
     transform: scale(1.1);
 }
 
-/* Стили для сетки */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Увеличиваем отступы */
-    justify-content: center;
-}
-
-.col-md-4 {
-    flex: 1 0 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.w-100 {
+/* Стили для изображений */
+.selectable-img {
     width: 100%;
+    max-width: 350px; /* Увеличенный размер изображений */
+    border: 3px solid transparent;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.selectable-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.selectable-img.selected {
+    border: 3px solid #00D1FF;
+    box-shadow: 0 0 10px #00D1FF;
+    transform: scale(1.1);
 }
