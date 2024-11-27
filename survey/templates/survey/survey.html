@@ -26,4 +26,16 @@
     </div>
 </div>
 </body>
+<script>
+    // Находим все кнопки с классом btn-primary
+    const buttons = document.querySelectorAll('.btn-primary');
+
+    // Проходимся по каждой кнопке и добавляем обработчик событий
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Переключаем класс "selected" при клике
+            button.classList.toggle('selected');
+        });
+    });
+</script>
 </html>
