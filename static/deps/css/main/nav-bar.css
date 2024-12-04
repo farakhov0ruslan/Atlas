@@ -1,0 +1,84 @@
+/* Общие стили для панели */
+.search-panel {
+    background-color: #8BC34A;
+}
+
+.search-block {
+    display: flex;
+    background: white;
+    border: 2px solid #6200ea; /* Фиолетовая рамка */
+    border-radius: 15px;
+    padding: 15px;
+    gap: 15px;
+    position: relative; /* Для управления линиями */
+}
+
+/* Каждый элемент внутри блока */
+.search-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em;
+    position: relative; /* Для позиционирования линий */
+}
+
+/* Вертикальные линии между элементами */
+.search-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: -1em; /* Линия касается верхнего края */
+    right: 0; /* Расположение линии справа */
+    bottom: -1em; /* Линия касается нижнего края */
+    width: 2px; /* Толщина линии */
+    background-color: #6200ea; /* Цвет линии */
+    z-index: 1; /* Убедиться, что линия поверх содержимого */
+}
+
+
+/* Стили для кнопок и полей */
+
+.search-item button,
+.search-item input {
+    border: 1px solid #6200ea;
+    border-radius: 25px;
+    padding: 10px 5px;
+}
+.search-item label{
+  padding: 10px 5px;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .search-block {
+        flex-direction: column;
+    }
+
+    .search-item {
+        width: 100%;
+    }
+
+    /* Горизонтальные линии для малых экранов */
+    .search-item:not(:last-child)::after {
+        height: 0px;
+    }
+
+    /* Горизонтальные линии */
+    .search-item + .search-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1em;
+        right: -1em;
+        height: 2px;
+        background-color: #6200ea;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-item {
+        width: 100%;
+    }
+}

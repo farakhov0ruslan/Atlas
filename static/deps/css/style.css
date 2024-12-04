@@ -8,6 +8,13 @@
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.navbar-brand {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler:focus + .navbar-collapse .navbar-brand {
+    transform: translateX(-50px);
+}
 
 body {
     padding-top: 56px;

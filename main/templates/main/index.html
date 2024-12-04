@@ -14,6 +14,7 @@
 	      rel="stylesheet">
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="{% static "deps/css/style.css" %}">
+	<link rel="stylesheet" href="{% static "deps/css/main/nav-bar.css" %}">
 	<style>
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -23,34 +24,35 @@
 </head>
 <body>
 	<!-- Header with Logo -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container">
-        <!-- Логотип -->
-        <a class="navbar-brand text-primary fw-bold" href="#">ATLAS</a>
-        <!-- Кнопка-гамбургер -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
-                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Основное меню -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
-            <div class="navbar-nav ms-auto">
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-person"></i> АККАУНТ
-                </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-suitcase"></i> ЧЕМОДАН
-                </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-geo-alt"></i> МОСКВА
-                </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
+	<nav class="navbar navbar-expand-md navbar-light bg-white">
+		<div class="container">
+			<!-- Логотип -->
+			<a class="navbar-brand text-primary fw-bold" href="#">ATLAS</a>
+			<!-- Кнопка-гамбургер -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			        data-bs-target="#navbarMenu"
+			        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- Основное меню -->
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<div class="navbar-nav ms-auto">
+					<a href="#" class="nav-item nav-link">
+						<i class="bi bi-person"></i> АККАУНТ
+					</a>
+					<a href="#" class="nav-item nav-link">
+						<i class="bi bi-suitcase"></i> ЧЕМОДАН
+					</a>
+					<a href="#" class="nav-item nav-link">
+						<i class="bi bi-geo-alt"></i> МОСКВА
+					</a>
+					<a href="#" class="nav-item nav-link">
+						<i class="bi bi-question-circle"></i> ПОМОЩЬ
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
 
 
 	<!-- Hero Section -->
@@ -61,90 +63,147 @@
 	</section>
 
 	<!-- Search Panel -->
-	<section class="search-panel">
+	{#	<section class="search-panel">#}
+	{#		<div class="container">#}
+	{#			<h5 class="mb-4 text-white">Детали поездки</h5>#}
+	{#			<div class="row g-3">#}
+	{#				<!-- Destination -->#}
+	{#				<div class="col-md-4">#}
+	{#					<div class="bg-white rounded p-2">#}
+	{#						<label class="form-label">Куда?</label>#}
+	{#						<div class="d-flex gap-2">#}
+	{#							<button class="btn btn-sm btn-outline-primary">Москва</button>#}
+	{#							<button class="btn btn-sm btn-outline-primary">Рязань</button>#}
+	{#						</div>#}
+	{#					</div>#}
+	{#				</div>#}
+	{##}
+	{#				<!-- Travelers -->#}
+	{#				<div class="col-md-4">#}
+	{#					<div class="bg-white rounded p-3">#}
+	{#						<h5 class="text-dark mb-3">Количество персон</h5>#}
+	{#						<div class="d-flex gap-3">#}
+	{#							<button class="btn btn-outline-primary">2 человека</button>#}
+	{#						</div>#}
+	{#					</div>#}
+	{#				</div>#}
+	{##}
+	{#				<!-- Budget -->#}
+	{#				<div class="col-md-4">#}
+	{#					<div class="bg-white rounded p-2">#}
+	{#						<label class="form-label">Бюджет</label>#}
+	{#						<button class="btn btn-sm btn-outline-primary">Не указывать</button>#}
+	{#					</div>#}
+	{#				</div>#}
+	{##}
+	{#				<!-- Dates -->#}
+	{#				<div class="col-12">#}
+	{#					<div class="row g-3">#}
+	{#						<div class="col-md-6">#}
+	{#							<div class="bg-white rounded p-2">#}
+	{#								<label class="form-label">Когда?</label>#}
+	{#								<input type="date" class="form-control">#}
+	{#							</div>#}
+	{#						</div>#}
+	{#						<div class="col-md-6">#}
+	{#							<div class="bg-white rounded p-2">#}
+	{#								<label class="form-label">Обратно</label>#}
+	{#								<input type="date" class="form-control">#}
+	{#							</div>#}
+	{#						</div>#}
+	{#					</div>#}
+	{#				</div>#}
+	{##}
+	{#				<!-- Кнопка "ПОЕХАЛИ!" -->#}
+	{#				<div class="col-12 text-end">#}
+	{#					<button class="btn btn-primary btn-lg px-5" data-bs-toggle="modal"#}
+	{#					        data-bs-target="#surveyModal">ПОЕХАЛИ!#}
+	{#					</button>#}
+	{#				</div>#}
+	{##}
+	{#				<!-- Модальное окно -->#}
+	{#				<div class="modal fade" id="surveyModal" tabindex="-1"#}
+	{#				     aria-labelledby="surveyModalLabel" aria-hidden="true">#}
+	{#					<div class="modal-dialog modal-dialog-centered">#}
+	{#						<div class="modal-content">#}
+	{#							<div class="modal-header">#}
+	{#								<h5 class="modal-title" id="surveyModalLabel">Пройдите короткий#}
+	{#									опрос</h5>#}
+	{#								<button type="button" class="btn-close" data-bs-dismiss="modal"#}
+	{#								        aria-label="Close"></button>#}
+	{#							</div>#}
+	{#							<div class="modal-body text-center">#}
+	{#								<p>Прежде чем вы увидите варианты путешествий - пройдите короткий#}
+	{#									опрос 🙏</p>#}
+	{#								<p>Так наша система сможет подобрать более подходящие варианты.</p>#}
+	{#							</div>#}
+	{#							<div class="modal-footer justify-content-center">#}
+	{#								<button type="button" class="btn btn-outline-secondary"#}
+	{#								        data-bs-dismiss="modal">Не сейчас#}
+	{#								</button>#}
+	{#                                <a href="{% url 'survey:survey_index' %}" class="btn btn-primary">Пройти#}
+	{# опрос</a>#}
+	{#							</div>#}
+	{#						</div>#}
+	{#					</div>#}
+	{#				</div>#}
+	{#			</div>#}
+	{#		</div>#}
+	{#	</section>#}
+	<section class="search-panel py-4">
 		<div class="container">
-			<h5 class="mb-4 text-white">Детали поездки</h5>
-			<div class="row g-3">
-				<!-- Destination -->
-				<div class="col-md-4">
-					<div class="bg-white rounded p-2">
-						<label class="form-label">Куда?</label>
-						<div class="d-flex gap-2">
-							<button class="btn btn-sm btn-outline-primary">Москва</button>
-							<button class="btn btn-sm btn-outline-primary">Рязань</button>
-						</div>
+			<!-- Первый блок -->
+			<div class="search-block d-flex flex-wrap align-items-center mb-4">
+				<!-- Куда -->
+				<div class="search-item">
+					<label class="form-label">Куда?</label>
+					<div class="d-flex gap-2">
+						<button class="btn btn-sm btn-outline-primary">Москва</button>
+						<button class="btn btn-sm btn-outline-primary">Рязань</button>
 					</div>
 				</div>
 
-				<!-- Travelers -->
-				<div class="col-md-4">
-					<div class="bg-white rounded p-3">
-						<h5 class="text-dark mb-3">Количество персон</h5>
-						<div class="d-flex gap-3">
-							<button class="btn btn-outline-primary">2 человека</button>
-						</div>
-					</div>
+				<!-- Количество персон -->
+				<div class="search-item">
+					<label class="form-label">Количество персон</label>
+					<button class="btn btn-outline-primary">2 человека</button>
 				</div>
 
-				<!-- Budget -->
-				<div class="col-md-4">
-					<div class="bg-white rounded p-2">
-						<label class="form-label">Бюджет</label>
-						<button class="btn btn-sm btn-outline-primary">Не указывать</button>
+				<!-- Бюджет -->
+				<div class="search-item ">
+					<div class="d-flex align-items-center mb-3">
+						<input
+								type="number"
+								class="form-control form-control-sm me-2"
+								id="budgetInput"
+								placeholder="Бюджет"
+								min="0"
+						/>
 					</div>
+					<button class="btn btn-sm btn-outline-primary ">Не указывать</button>
+				</div>
+			</div>
+
+			<!-- Второй блок -->
+			<div class="search-block d-flex flex-wrap">
+				<!-- Когда -->
+				<div class="search-item">
+					<label class="form-label">Когда?</label>
+					<input type="date" class="form-control">
 				</div>
 
-				<!-- Dates -->
-				<div class="col-12">
-					<div class="row g-3">
-						<div class="col-md-4">
-							<div class="bg-white rounded p-2">
-								<label class="form-label">Когда?</label>
-								<input type="date" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="bg-white rounded p-2">
-								<label class="form-label">Обратно</label>
-								<input type="date" class="form-control">
-							</div>
-						</div>
-					</div>
+				<!-- Обратно -->
+				<div class="search-item">
+					<label class="form-label">Обратно</label>
+					<input type="date" class="form-control">
 				</div>
+			</div>
 
-				<!-- Кнопка "ПОЕХАЛИ!" -->
-				<div class="col-12 text-end">
-					<button class="btn btn-primary btn-lg px-5" data-bs-toggle="modal"
-					        data-bs-target="#surveyModal">ПОЕХАЛИ!
-					</button>
-				</div>
-
-				<!-- Модальное окно -->
-				<div class="modal fade" id="surveyModal" tabindex="-1"
-				     aria-labelledby="surveyModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="surveyModalLabel">Пройдите короткий
-									опрос</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-								        aria-label="Close"></button>
-							</div>
-							<div class="modal-body text-center">
-								<p>Прежде чем вы увидите варианты путешествий - пройдите короткий
-									опрос 🙏</p>
-								<p>Так наша система сможет подобрать более подходящие варианты.</p>
-							</div>
-							<div class="modal-footer justify-content-center">
-								<button type="button" class="btn btn-outline-secondary"
-								        data-bs-dismiss="modal">Не сейчас
-								</button>
-                                <a href="{% url 'survey:survey_index' %}" class="btn btn-primary">Пройти
- опрос</a>
-							</div>
-						</div>
-					</div>
-				</div>
+			<!-- Кнопка ПОЕХАЛИ -->
+			<div class="text-center mt-4">
+				<button class="btn btn-primary btn-lg px-5" data-bs-toggle="modal"
+				        data-bs-target="#surveyModal">ПОЕХАЛИ!
+				</button>
 			</div>
 		</div>
 	</section>
