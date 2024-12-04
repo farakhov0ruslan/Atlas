@@ -45,8 +45,26 @@
     border-radius: 25px;
     padding: 10px 5px;
 }
-.search-item label{
-  padding: 10px 5px;
+
+.search-item label {
+    padding: 10px 5px;
+}
+
+input::placeholder {
+    text-align: center; /* Центрирование текста в placeholder */
+    font-weight: bold;
+}
+
+/* Убираем стрелочки для числовых полей ввода */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Для Firefox */
+  appearance: none; /* Для других браузеров */
 }
 
 /* Адаптивность */
