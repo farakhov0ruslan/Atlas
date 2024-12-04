@@ -24,24 +24,34 @@
 <body>
 	<!-- Header with Logo -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-		<div class="container">
-			<a class="navbar-brand text-primary fw-bold" href="#">ATLAS</a>
-			<div class="d-flex align-items-center">
-				<a href="#" class="header-icons mx-2">
-					<i class="bi bi-person"></i> АККАУНТ
-				</a>
-				<a href="#" class="header-icons mx-2">
-					<i class="bi bi-suitcase"></i> ЧЕМОДАН
-				</a>
-				<a href="#" class="header-icons mx-2">
-					<i class="bi bi-geo-alt"></i> МОСКВА
-				</a>
-				<a href="#" class="header-icons mx-2">
-					<i class="bi bi-question-circle"></i> ПОМОЩЬ
-				</a>
-			</div>
-		</div>
-	</nav>
+    <div class="container">
+        <!-- Логотип -->
+        <a class="navbar-brand text-primary fw-bold" href="#">ATLAS</a>
+        <!-- Кнопка-гамбургер -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Основное меню -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <div class="navbar-nav ms-auto">
+                <a href="#" class="nav-item nav-link">
+                    <i class="bi bi-person"></i> АККАУНТ
+                </a>
+                <a href="#" class="nav-item nav-link">
+                    <i class="bi bi-suitcase"></i> ЧЕМОДАН
+                </a>
+                <a href="#" class="nav-item nav-link">
+                    <i class="bi bi-geo-alt"></i> МОСКВА
+                </a>
+                <a href="#" class="nav-item nav-link">
+                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
 
 	<!-- Hero Section -->
 	<section class="hero-section">
@@ -72,7 +82,6 @@
 						<h5 class="text-dark mb-3">Количество персон</h5>
 						<div class="d-flex gap-3">
 							<button class="btn btn-outline-primary">2 человека</button>
-							<button class="btn btn-primary">2 взрослых + 1 ребёнок</button>
 						</div>
 					</div>
 				</div>
@@ -88,13 +97,13 @@
 				<!-- Dates -->
 				<div class="col-12">
 					<div class="row g-3">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="bg-white rounded p-2">
 								<label class="form-label">Когда?</label>
 								<input type="date" class="form-control">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="bg-white rounded p-2">
 								<label class="form-label">Обратно</label>
 								<input type="date" class="form-control">
