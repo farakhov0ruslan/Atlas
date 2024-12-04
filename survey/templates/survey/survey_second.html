@@ -3,48 +3,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Опрос</title>
-	<link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
+    <meta charset="UTF-8">
+    <title>Опрос</title>
+    <link rel="stylesheet" href="{% static 'deps/css/survey_second.css' %}">
 </head>
 <body>
-	<div class="container">
-		<!-- Заголовок для изображений -->
-		<h1 style="margin-top: 40px;">Как вы видите вашу поездку? (выберите картинки)</h1>
-		<div class="row">
-			<div class="col-md-4">
-				<img src="{% static 'deps/images/survey/бары опросник.jpg' %}"
-				     class="selectable-img" alt="Бары">
-			</div>
-			<div class="col-md-4">
-				<img src="{% static 'deps/images/survey/вкусно поесть опросник.jpg' %}"
-				     class="selectable-img" alt="Вкусно поесть">
-			</div>
-			<div class="col-md-4">
-				<img src="{% static 'deps/images/survey/достопримечательности опросник.jpg' %}"
-				     class="selectable-img" alt="Достопримечательности">
-			</div>
-			<div class="col-md-4">
-				<img src="{% static 'deps/images/survey/музеи опросник.jpg' %}"
-				     class="selectable-img" alt="Музеи">
-			</div>
-			<div class="col-md-4">
-				<img src="{% static 'deps/images/survey/музыка опросник.jpeg' %}"
-				     class="selectable-img" alt="Музыка">
-			</div>
-			<div class="col-md-4">
-				<img src="{% static 'deps/images/survey/экстрим опросник.jpg' %}"
-				     class="selectable-img" alt="Экстрим">
-			</div>
-		</div>
+    <div class="container">
+       <!-- Заголовок для изображений -->
+       <h1 style="margin-top: 40px;">Как вы видите вашу поездку? (выберите картинки)</h1>
+       <div class="row">
+          <div class="col-md-4">
+             <img src="{% static 'deps/images/survey/бары опросник.jpg' %}"
+                  class="selectable-img" alt="Бары">
+          </div>
+          <div class="col-md-4">
+             <img src="{% static 'deps/images/survey/вкусно поесть опросник.jpg' %}"
+                  class="selectable-img" alt="Вкусно поесть">
+          </div>
+          <div class="col-md-4">
+             <img src="{% static 'deps/images/survey/достопримечательности опросник.jpg' %}"
+                  class="selectable-img" alt="Достопримечательности">
+          </div>
+          <div class="col-md-4">
+             <img src="{% static 'deps/images/survey/музеи опросник.jpg' %}"
+                  class="selectable-img" alt="Музеи">
+          </div>
+          <div class="col-md-4">
+             <img src="{% static 'deps/images/survey/музыка опросник.jpeg' %}"
+                  class="selectable-img" alt="Музыка">
+          </div>
+          <div class="col-md-4">
+             <img src="{% static 'deps/images/survey/экстрим опросник.jpg' %}"
+                  class="selectable-img" alt="Экстрим">
+          </div>
+       </div>
 
-		<!-- Кнопка "Далее" -->
-		<div style="text-align: center; margin-top: 40px;">
-			<button class="next-btn col-md-4" onclick="location.href='{% url 'main:index' %}'">Далее ➤</button>
-		</div>
-	</div>
+       <!-- Кнопка "Далее" -->
+       <div class="flex justify-end mt-8">
+           <button class="next-btn" onclick="location.href='{% url 'main:index' %}'">Далее ➤</button>
+       </div>
+    </div>
 
-	<script>
+    <script>
         // Выделение изображений
         const images = document.querySelectorAll('.selectable-img');
         images.forEach(image => {
@@ -52,6 +52,6 @@
                 image.classList.toggle('selected');
             });
         });
-	</script>
+    </script>
 </body>
 </html>
