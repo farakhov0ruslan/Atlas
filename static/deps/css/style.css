@@ -8,6 +8,22 @@
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.navbar-brand {
+    transition: all 0.3s ease-in-out;
+}
+/* Изменение фона и цвета текста при наведении */
+.navbar-nav .nav-link:hover {
+  background-color: #6200ea;  /* Цвет фона */
+  color: #fff;  /* Цвет текста */
+  border-radius: 5px;  /* Добавление скругления углов (не обязательно) */
+}
+.navbar-toggler:focus + .navbar-collapse .navbar-brand {
+    transform: translateX(-50px);
+}
+
+.nav-link:hover{
+    color: #8000FF;
+}
 
 body {
     padding-top: 56px;
@@ -125,14 +141,7 @@ body {
     transform: translateY(-5px);
 }
 
-/* Navigation */
-.nav-pills .nav-link.active {
-    background-color: #8000FF;
-}
 
-.nav-pills .nav-link {
-    color: #8000FF;
-}
 
 /* Header Icons */
 .header-icons {
@@ -202,12 +211,12 @@ body {
 
 /* Стили рамки кнопок */
 .modal-footer .btn-outline-secondary {
-    background-color: transparent;
-    border: 2px solid #8000FF; /* Фиолетовая рамка */
+    background-color: #56009e;
+    border: 2px solid #8BC34A;
     color: #FFFFFF; /* Белый текст */
 }
 
 .modal-footer .btn-outline-secondary:hover {
-    background-color: #8000FF; /* Фиолетовый при наведении */
+    background-color: #38007c; /* Фиолетовый при наведении */
     color: #FFFFFF; /* Белый текст */
 }

@@ -1,0 +1,123 @@
+/* Общие стили для панели */
+.search-panel {
+    background-color: #8BC34A;
+}
+
+.search-block {
+    display: flex;
+    background: white;
+    border: 2px solid #6200ea; /* Фиолетовая рамка */
+    border-radius: 15px;
+    padding: 15px;
+    gap: 15px;
+    position: relative; /* Для управления линиями */
+}
+
+/* Каждый элемент внутри блока */
+.search-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em;
+    position: relative; /* Для позиционирования линий */
+}
+
+/* Вертикальные линии между элементами */
+.search-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: -1em; /* Линия касается верхнего края */
+    right: 0; /* Расположение линии справа */
+    bottom: -1em; /* Линия касается нижнего края */
+    width: 2px; /* Толщина линии */
+    background-color: #6200ea; /* Цвет линии */
+    z-index: 1; /* Убедиться, что линия поверх содержимого */
+}
+
+
+/* Стили для кнопок и полей */
+
+.search-item button,
+.search-item input {
+    border: 2px solid #6200ea;
+    border-radius: 25px;
+    padding: 10px 5px;
+    font-weight: bold;
+}
+
+
+.search-item label {
+    padding: 10px 5px;
+}
+
+input::placeholder {
+    text-align: center; /* Центрирование текста в placeholder */
+    font-weight: bold;
+}
+
+#cityInput {
+    border: 2px solid #6200ea;
+    border-radius: 25px;
+    padding: 10px 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input {
+    text-align: center; /* Центрируем текст внутри поля */
+}
+
+#budgetInput {
+    /*width: ;*/
+    /*width: 120%;*/
+    margin-right: 10px;
+    text-align: center;
+}
+
+/* Убираем стрелочки для числовых полей ввода */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Для Firefox */
+    appearance: none; /* Для других браузеров */
+}
+
+/* Адаптивность */
+@media (max-width: 800px) {
+    .search-block {
+        flex-direction: column;
+    }
+
+    .search-item {
+        width: 100%;
+    }
+
+    /* Горизонтальные линии для малых экранов */
+    .search-item:not(:last-child)::after {
+        height: 0px;
+    }
+
+    /* Горизонтальные линии */
+    .search-item + .search-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1em;
+        right: -1em;
+        height: 2px;
+        background-color: #6200ea;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-item {
+        width: 100%;
+    }
+}
