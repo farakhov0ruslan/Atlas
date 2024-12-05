@@ -16,6 +16,9 @@
     transform: translateX(-50px);
 }
 
+.nav-link:hover{
+    color: #8000FF;
+}
 
 body {
     padding-top: 56px;
