@@ -21,6 +21,10 @@
     transform: translateX(-50px);
 }
 
+.nav-link:hover{
+    color: #8000FF;
+}
+
 body {
     padding-top: 56px;
 }
@@ -207,12 +211,12 @@ body {
 
 /* Стили рамки кнопок */
 .modal-footer .btn-outline-secondary {
-    background-color: transparent;
-    border: 2px solid #8000FF; /* Фиолетовая рамка */
+    background-color: #56009e;
+    border: 2px solid #8BC34A;
     color: #FFFFFF; /* Белый текст */
 }
 
 .modal-footer .btn-outline-secondary:hover {
-    background-color: #8000FF; /* Фиолетовый при наведении */
+    background-color: #38007c; /* Фиолетовый при наведении */
     color: #FFFFFF; /* Белый текст */
 }
