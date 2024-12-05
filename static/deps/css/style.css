@@ -60,9 +60,10 @@ body {
 }
 
 .search-panel .form-label {
-    color: #666;
+    color: rgba(0, 0, 0, 0.7);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 /* White Background Containers */
