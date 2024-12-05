@@ -11,12 +11,7 @@
 .navbar-brand {
     transition: all 0.3s ease-in-out;
 }
-/* Изменение фона и цвета текста при наведении */
-/*.navbar-nav .nav-link:hover {*/
-/*  background-color: #6200ea;  !* Цвет фона *!*/
-/*  color: #fff;  !* Цвет текста *!*/
-/*  border-radius: 5px;  !* Добавление скругления углов (не обязательно) *!*/
-/*}*/
+
 .navbar-toggler:focus + .navbar-collapse .navbar-brand {
     transform: translateX(-50px);
 }
