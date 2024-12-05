@@ -41,10 +41,12 @@
 
 .search-item button,
 .search-item input {
-    border: 1px solid #6200ea;
+    border: 2px solid #6200ea;
     border-radius: 25px;
     padding: 10px 5px;
+    font-weight: bold;
 }
+
 
 .search-item label {
     padding: 10px 5px;
@@ -55,20 +57,39 @@ input::placeholder {
     font-weight: bold;
 }
 
+#cityInput {
+    border: 2px solid #6200ea;
+    border-radius: 25px;
+    padding: 10px 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input {
+    text-align: center; /* Центрируем текст внутри поля */
+}
+
+#budgetInput {
+    /*width: ;*/
+    /*width: 120%;*/
+    margin-right: 10px;
+    text-align: center;
+}
+
 /* Убираем стрелочки для числовых полей ввода */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Для Firefox */
-  appearance: none; /* Для других браузеров */
+    -moz-appearance: textfield; /* Для Firefox */
+    appearance: none; /* Для других браузеров */
 }
 
 /* Адаптивность */
-@media (max-width: 992px) {
+@media (max-width: 800px) {
     .search-block {
         flex-direction: column;
     }
