@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'survey',
+    "places.apps.PlacesConfig"
 ]
 
 MIDDLEWARE = [
