@@ -1,5 +1,6 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from Atlas import settings
 
 class Category(models.Model):
     name = models.CharField(max_length=150)
@@ -19,21 +20,19 @@ class Place(models.Model):
     updated_at = models.DateTimeField()
     contacts = models.JSONField()
 
-class Working_Hours(models.Model):
+class WorkingHours(models.Model):
     place_id = models.ForeignKey(Place, on_delete=models.CASCADE)
     day_of_week = models.IntegerField()
     open_time = models.TimeField()
     close_time = models.TimeField()
     is_close = models.BooleanField()
 
-# class User(AbstractUser):
-#     avatar_image = models.ImageField(upload_to='users_avatars/')
-#     category = models.ManyToManyField(Category)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField()
+class CustomUser(AbstractUser):
+    avatar_image = models.ImageField(upload_to='users_avatars/')
+    category = models.ManyToManyField(Category)
 
 class Route(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField()
@@ -44,7 +43,7 @@ class Day(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
 
-class Route_Cell(models.Model):
+class RouteCell(models.Model):
     day_id = models.ForeignKey(Day, on_delete=models.CASCADE)
     place_id = models.ForeignKey(Place, on_delete=models.CASCADE)
     start_time = models.TimeField()
