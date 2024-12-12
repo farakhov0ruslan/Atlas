@@ -1,60 +1,19 @@
+{% extends "main/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Атлас - Путешествия</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-          rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
-          rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static "deps/css/style.css" %}">
-    <link rel="stylesheet" href="{% static "deps/css/main/nav-bar.css" %}">
-    <style>
+{% block css %}
+	{# Здесь надо добавлять css стили#}
+	<style>
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
             url({% static "deps/images/фон.jpg" %}) center/cover no-repeat;
         }
-    </style>
-</head>
-<body>
+	</style>
+{% endblock %}
 
-<!-- Header with Logo -->
-<nav class="navbar navbar-expand-md navbar-light bg-white">
-    <div class="container">
-        <!-- Логотип -->
-        <a class="navbar-brand text-primary fw-bold" href="#">ATLAS</a>
-        <!-- Кнопка-гамбургер -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu"
-                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Основное меню -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
-            <div class="navbar-nav ms-auto">
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-person"></i> АККАУНТ
-                </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-suitcase"></i> ЧЕМОДАН
-                </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-geo-alt"></i> МОСКВА
-                </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
 
+
+{% block content %}
 
 	<!-- Hero Section -->
 	<section class="hero-section">
@@ -102,6 +61,7 @@
 					<button class="btn btn-outline-primary" id="personInputBtn">2 человека</button>
 				</div>
 
+
 				<!-- Бюджет -->
 				<div class="search-item ">
 					<div class="d-flex align-items-center mb-3">
@@ -118,107 +78,110 @@
 							      style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);">₽</span>
 						</div>
 					</div>
-					<button class="btn btn-sm btn-outline-primary " id="budgetInputBtn">Не указывать</button>
+					<button class="btn btn-sm btn-outline-primary " id="budgetInputBtn">Не
+						указывать
+					</button>
 				</div>
 			</div>
 
-        <!-- Второй блок -->
-        <div class="search-block d-flex flex-wrap">
-            <!-- Когда -->
-            <div class="search-item">
-                <label class="form-label">Когда?</label>
-                <input type="date" class="form-control">
-            </div>
+			<!-- Второй блок -->
+			<div class="search-block d-flex flex-wrap">
+				<!-- Когда -->
+				<div class="search-item">
+					<label class="form-label">Туда</label>
+					<input type="date" class="form-control">
+				</div>
 
-            <!-- Обратно -->
-            <div class="search-item">
-                <label class="form-label">Обратно</label>
-                <input type="date" class="form-control">
-            </div>
-        </div>
+				<!-- Обратно -->
+				<div class="search-item">
+					<label class="form-label">Обратно</label>
+					<input type="date" class="form-control">
+				</div>
+			</div>
 
-        <!-- Кнопка ПОЕХАЛИ -->
-        <div class="text-center mt-4">
-            <button class="btn btn-primary btn-lg px-5" data-bs-toggle="modal"
-                    data-bs-target="#surveyModal">ПОЕХАЛИ!
-            </button>
-        </div>
+			<!-- Кнопка ПОЕХАЛИ -->
+			<div class="text-center mt-4">
+				<button class="btn btn-primary btn-lg px-5" data-bs-toggle="modal"
+				        data-bs-target="#surveyModal">ПОЕХАЛИ!
+				</button>
+			</div>
 
-        <!-- Модальное окно -->
-        <div class="modal fade" id="surveyModal" tabindex="-1"
-             aria-labelledby="surveyModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="surveyModalLabel">Пройдите короткий
-                            опрос</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>Прежде чем вы увидите варианты путешествий - пройдите короткий
-                            опрос 🙏</p>
-                        <p>Так наша система сможет подобрать более подходящие варианты.</p>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-outline-secondary"
-                                data-bs-dismiss="modal">Не сейчас
-                        </button>
-                        <a href="{% url 'survey:survey_index' %}" class="btn btn-primary">Пройти
-                            опрос</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+			<!-- Модальное окно -->
+			<div class="modal fade" id="surveyModal" tabindex="-1"
+			     aria-labelledby="surveyModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="surveyModalLabel">Пройдите короткий
+								опрос</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+							        aria-label="Close"></button>
+						</div>
+						<div class="modal-body text-center">
+							<p>Прежде чем вы увидите варианты путешествий - пройдите короткий
+								опрос 🙏</p>
+							<p>Так наша система сможет подобрать более подходящие варианты.</p>
+						</div>
+						<div class="modal-footer justify-content-center">
+							<button type="button" class="btn btn-outline-secondary"
+							        data-bs-dismiss="modal">Не сейчас
+							</button>
+							<a href="{% url 'survey:survey_index' %}" class="btn btn-primary">Пройти
+								опрос</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<!-- Destinations Section -->
-<section class="container my-5">
-    <h3 class="mb-4">Подборки мест</h3>
-    <h5 class="text-primary mb-4">Хочу на север</h5>
+	<!-- Destinations Section -->
+	<section class="container my-5">
+		<h3 class="mb-4">Подборки мест</h3>
+		<h5 class="text-primary mb-4">Хочу на север</h5>
 
-    <div class="row g-4">
-        <!-- Saint Petersburg -->
-        <div class="col-md-4">
-            <div class="card destination-card h-100">
-                <img src={% static "deps/images/питер.jpg" %} class="card-img-top"
-                     alt="Санкт-Петербург">
-                <div class="card-body">
-                    <h5 class="card-title">Санкт-Петербург</h5>
-                    <p class="card-text">Белая ночь спустилась как облако...</p>
-                </div>
-            </div>
-        </div>
+		<div class="row g-4">
+			<!-- Saint Petersburg -->
+			<div class="col-md-4">
+				<div class="card destination-card h-100">
+					<img src={% static "deps/images/питер.jpg" %} class="card-img-top"
+					     alt="Санкт-Петербург">
+					<div class="card-body">
+						<h5 class="card-title">Санкт-Петербург</h5>
+						<p class="card-text">Белая ночь спустилась как облако...</p>
+					</div>
+				</div>
+			</div>
 
-        <!-- Arkhangelsk -->
-        <div class="col-md-4">
-            <div class="card destination-card h-100">
-                <img src={% static "deps/images/архангельск.jpg" %} class="card-img-top"
-                     alt="Архангельск">
-                <div class="card-body">
-                    <h5 class="card-title">Архангельск</h5>
-                    <p class="card-text">Здесь Ломоносов бродил</p>
-                </div>
-            </div>
-        </div>
+			<!-- Arkhangelsk -->
+			<div class="col-md-4">
+				<div class="card destination-card h-100">
+					<img src={% static "deps/images/архангельск.jpg" %} class="card-img-top"
+					     alt="Архангельск">
+					<div class="card-body">
+						<h5 class="card-title">Архангельск</h5>
+						<p class="card-text">Здесь Ломоносов бродил</p>
+					</div>
+				</div>
+			</div>
 
-        <!-- Murmansk -->
-        <div class="col-md-4">
-            <div class="card destination-card h-100">
-                <img src={% static "deps/images/мурманск.jpg" %} class="card-img-top"
-                     alt="Мурманск">
-                <div class="card-body">
-                    <h5 class="card-title">Мурманск</h5>
-                    <p class="card-text">Едем кушать рыбу!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+			<!-- Murmansk -->
+			<div class="col-md-4">
+				<div class="card destination-card h-100">
+					<img src={% static "deps/images/мурманск.jpg" %} class="card-img-top"
+					     alt="Мурманск">
+					<div class="card-body">
+						<h5 class="card-title">Мурманск</h5>
+						<p class="card-text">Едем кушать рыбу!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<!-- Bootstrap Bundle with Popper -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+	<!--Скрипт для корректного изменения поля количества человек -->
 	<script>
         // Функция для очистки текста при фокусе на поле
         function clearInput() {
@@ -255,6 +218,7 @@
             }
         }
 	</script>
+	<!--Скрипт для автозаполнения кнопок -->
 	<script>
         document.getElementById('cityInputBtn').addEventListener('click', function () {
             document.getElementById('cityInput').value = document.getElementById('cityInputBtn').innerText;  // Обновляем поле ввода
@@ -270,7 +234,12 @@
             document.getElementById('personInput').value = document.getElementById('personInputBtn').innerText;  // Обновляем поле ввода
         });
 	</script>
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}
+
+
+

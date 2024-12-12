@@ -8,20 +8,16 @@
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .navbar-brand {
     transition: all 0.3s ease-in-out;
 }
-/* Изменение фона и цвета текста при наведении */
-.navbar-nav .nav-link:hover {
-  background-color: #6200ea;  /* Цвет фона */
-  color: #fff;  /* Цвет текста */
-  border-radius: 5px;  /* Добавление скругления углов (не обязательно) */
-}
+
 .navbar-toggler:focus + .navbar-collapse .navbar-brand {
     transform: translateX(-50px);
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: #8000FF;
 }
 
@@ -47,7 +43,8 @@ body {
 .search-panel {
     background-color: #8BC34A;
     padding: 2rem;
-    border-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
     margin-top: -24px;
@@ -60,9 +57,10 @@ body {
 }
 
 .search-panel .form-label {
-    color: #666;
+    color: rgba(0, 0, 0, 0.7);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 /* White Background Containers */
@@ -142,7 +140,6 @@ body {
 }
 
 
-
 /* Header Icons */
 .header-icons {
     color: #333;
@@ -193,7 +190,7 @@ body {
 }
 
 
-.modal-title{
+.modal-title {
     text-align: center;
 }
 

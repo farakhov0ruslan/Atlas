@@ -45,6 +45,7 @@
     border-radius: 25px;
     padding: 10px 5px;
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 
@@ -63,6 +64,7 @@ input::placeholder {
     padding: 10px 5px;
     font-weight: bold;
     text-align: center;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 input {
@@ -70,10 +72,13 @@ input {
 }
 
 #budgetInput {
-    /*width: ;*/
-    /*width: 120%;*/
+    color: rgba(0, 0, 0, 0.7);
     margin-right: 10px;
     text-align: center;
+}
+
+#budgetInput::placeholder {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* Убираем стрелочки для числовых полей ввода */
