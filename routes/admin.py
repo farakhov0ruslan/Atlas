@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django import forms
-from routes.models import Category, Place, Working_Hours, Route, Day, Route_Cell
+from routes.models import Category, Place, WorkingHours, Route, Day, Route_Cell, CustomUser
 
-admin.site.register(Working_Hours)
+admin.site.register(WorkingHours)
 admin.site.register(Route)
 admin.site.register(Day)
 admin.site.register(Route_Cell)
+admin.site.register(CustomUser)
 
 
 @admin.register(Category)
