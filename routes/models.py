@@ -59,7 +59,7 @@ class Day(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
 
-class Route_Cell(models.Model):
+class RouteCell(models.Model):
     day_id = models.ForeignKey(Day, on_delete=models.CASCADE)
     place_id = models.ForeignKey(Place, on_delete=models.CASCADE)
     start_time = models.TimeField()
