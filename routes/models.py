@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from Atlas import settings
 
+
 class Category(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name="Название")
     slug = models.SlugField(unique=True, verbose_name="URL")
@@ -14,6 +15,38 @@ class Category(models.Model):
         return self.name
 
 
+class WorkingHours(models.Model):
+    place = models.ForeignKey(
+        'Place',
+        on_delete=models.CASCADE,
+        related_name='working_hours',
+        verbose_name="Заведение"
+    )
+    day_of_week = models.IntegerField(
+        choices=[
+            (0, 'Понедельник'),
+            (1, 'Вторник'),
+            (2, 'Среда'),
+            (3, 'Четверг'),
+            (4, 'Пятница'),
+            (5, 'Суббота'),
+            (6, 'Воскресенье')
+        ],
+        verbose_name="День недели"
+    )
+    open_time = models.TimeField(verbose_name="Время открытия")
+    close_time = models.TimeField(verbose_name="Время закрытия")
+    is_closed = models.BooleanField(default=False, verbose_name="Закрыт в этот день")
+
+    class Meta:
+        verbose_name = "Рабочее время"
+        verbose_name_plural = "Рабочие часы"
+        unique_together = ('place', 'day_of_week')  # Уникальность записи для заведения и дня недели
+
+    def __str__(self):
+        day = dict(self._meta.get_field('day_of_week').choices).get(self.day_of_week)
+        return f"{self.place.name}: {day} - {'Закрыто' if self.is_closed else f'{self.open_time} - {self.close_time}'}"
+
 
 class Place(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name="Название")
@@ -21,7 +54,10 @@ class Place(models.Model):
     full_description = models.TextField(verbose_name="Полное описание")
     address = models.CharField(max_length=150, verbose_name="Адрес")
     location = models.JSONField(verbose_name="Локация", blank=True, null=True)
-    image = models.ImageField(upload_to='places_images/', blank=True, null=True, verbose_name="Фото")
+    image = models.ImageField(upload_to='places_images/', blank=True, null=True,
+                              verbose_name="Фото")
+    # working_hours = models.ForeignKey(WorkingHours, on_delete=models.CASCADE,
+    #                                   verbose_name="Рабочие часы", blank=True, null=True)
     reviews = models.TextField(verbose_name="Отзывы(пока что пустое)", blank=True, null=True)
     category = models.ManyToManyField(Category, verbose_name="Категория")
     slug = models.SlugField(unique=True, verbose_name="URL")
@@ -36,16 +72,11 @@ class Place(models.Model):
     def __str__(self):
         return self.name
 
-class WorkingHours(models.Model):
-    place_id = models.ForeignKey(Place, on_delete=models.CASCADE)
-    day_of_week = models.IntegerField()
-    open_time = models.TimeField()
-    close_time = models.TimeField()
-    is_close = models.BooleanField()
 
 class CustomUser(AbstractUser):
     avatar_image = models.ImageField(upload_to='users_avatars/')
     category = models.ManyToManyField(Category)
+
 
 class Route(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -54,10 +85,20 @@ class Route(models.Model):
     updated_at = models.DateTimeField()
     days_count = models.BigIntegerField()
 
+    class Meta:
+        verbose_name = "Маршрут"
+        verbose_name_plural = "Маршруты"
+
+
 class Day(models.Model):
     route_id = models.ForeignKey(Route, on_delete=models.CASCADE)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+    class Meta:
+        verbose_name = "День маршрута"
+        verbose_name_plural = "Дни маршрутов"
+
 
 class RouteCell(models.Model):
     day_id = models.ForeignKey(Day, on_delete=models.CASCADE)
@@ -65,3 +106,7 @@ class RouteCell(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
     notes = models.TextField()
+
+    class Meta:
+        verbose_name = "Ячейка маршрута"
+        verbose_name_plural = "Ячейки маршрутов"
