@@ -23,7 +23,8 @@ from Atlas import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace="main")),
-    path('survey/', include('survey.urls', namespace='survey'))
+    path('survey/', include('survey.urls', namespace='survey')),
+    path('routes/', include('routes.urls', namespace='routes')),
 ]
 
 if settings.DEBUG:

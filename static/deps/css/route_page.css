@@ -1,0 +1,155 @@
+/* Основные стили */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #333;
+}
+
+/* Общий фон */
+.bg-lime {
+    background-color: #bdf31f !important; /* Ярко-зеленый фон */
+}
+
+/* Стили кнопок маршрута и дня */
+.route-day-btn {
+    width: 100%; /* Растягиваем кнопки маршрута на всю ширину */
+    max-width: 400px; /* Ограничиваем максимальную ширину для гармонии */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 0 auto; /* Центрируем кнопки */
+    text-align: center;
+}
+
+/* Текст внутри кнопок */
+.route-day-btn span {
+    flex: 1;
+    text-align: center;
+}
+
+/* Стили для мест */
+.place-list .card {
+    width: 100%; /* Растягиваем карточки на всю ширину контейнера */
+    margin-bottom: 20px; /* Отступ между карточками */
+    padding: 15px; /* Увеличиваем внутренние отступы для гармоничности */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #bdf31f; /* Зеленый фон карточек */
+}
+
+/* Изображения в карточках */
+.place-list .card img {
+    width: 200px; /* Увеличиваем ширину изображений */
+    height: auto; /* Сохраняем пропорции */
+    object-fit: cover; /* Избегаем искажений */
+    border-radius: 8px; /* Радиус для округления краев */
+}
+
+/* Тело карточки */
+.place-list .card-body {
+    padding: 20px; /* Увеличиваем внутренние отступы текста */
+}
+
+/* Контейнер для карточек */
+.place-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Задаем расстояние между карточками */
+}
+
+/* Логотип */
+.logo-link {
+    margin-right: 20px; /* Сдвиг логотипа правее */
+}
+
+.logo {
+    width: 120px; /* Ширина логотипа */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+/* Эффект при наведении на логотип */
+.logo:hover {
+    transform: scale(1.1); /* Увеличение логотипа при наведении */
+}
+
+/* Кнопки */
+.btn-purple {
+    background-color: #8000FF !important; /* Фиолетовый цвет */
+    color: #fff; /* Белый текст */
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    transition: all 0.3s ease; /* Плавная анимация */
+    white-space: nowrap; /* Предотвращает перенос текста */
+    margin-right: 10px; /* Отступ между кнопками */
+}
+
+/* Hover эффект для кнопок */
+.btn-purple:hover {
+    background-color: #5a078e !important; /* Темно-фиолетовый при наведении */
+    transform: scale(1.05); /* Легкое увеличение кнопки */
+}
+
+/* Последняя кнопка без отступа */
+.btn-purple:last-child {
+    margin-right: 0; /* Убирает отступ у последней кнопки */
+}
+
+/* Контейнер для кнопок */
+.d-flex.gap-3 {
+    gap: 20px; /* Задает фиксированный отступ между кнопками */
+}
+
+/* Контейнер для логотипа и кнопок */
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Распределяет логотип и кнопки */
+}
+
+/* Центрирование кнопок */
+header .d-flex.justify-content-center {
+    flex-grow: 1; /* Заполняет оставшееся пространство для центрирования */
+}
+
+/* Отступы между кнопками (для симметрии) */
+header .btn-purple.mx-2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column; /* На малых экранах элементы располагаются вертикально */
+        align-items: center;
+    }
+    .btn-purple {
+        margin-right: 0;
+        margin-bottom: 10px; /* Вертикальный отступ между кнопками */
+    }
+    .btn-purple:last-child {
+        margin-bottom: 0; /* Убирает отступ у последней кнопки */
+    }
+    .route-day-btn {
+        width: 100%; /* Кнопки маршрута растягиваются на всю ширину */
+    }
+    .place-list .card img {
+        width: 150px; /* Уменьшаем изображения на малых экранах */
+    }
+    .place-list .card-body {
+        padding: 15px; /* Уменьшаем внутренние отступы на малых экранах */
+    }
+}
