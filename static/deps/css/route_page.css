@@ -11,51 +11,79 @@ body {
 .bg-lime {
     background-color: #bdf31f !important; /* Ярко-зеленый фон */
 }
-
-/* Стили блоков маршрута и дня */
-.route-day-btn {
-    display: flex;
-    justify-content: space-between; /* Текст слева, кнопка справа */
-    align-items: center; /* Вертикальное центрирование содержимого */
-    width: 100%; /* Полная ширина */
-    max-width: 500px; /* Ограничиваем максимальную ширину */
-    padding: 10px 20px; /* Внутренние отступы */
-    background-color: #bdf31f; /* Зеленый фон */
-    border-radius: 30px; /* Скруглённые углы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для объема */
-    font-size: 18px; /* Размер шрифта */
-    font-weight: bold; /* Жирный шрифт */
-    color: #333; /* Цвет текста */
+.py-3{
+    background-color: #FFFFFF !important;
 }
 
-/* Стили кнопок со стрелками */
-.route-day-btn button {
-    width: 40px;
-    height: 40px;
+.bg-lime.py-3{
+    padding-bottom: 0 !important;
+    padding-top: 1.6rem !important;
+}
+
+/* Уменьшение отступа сверху */
+.container-fluid.my-4 {
+    margin-top: 0 !important; /* Уменьшили отступ сверху */
+}
+
+
+/* Контейнер для центрирования блоков */
+.route-day-container {
+    display: flex; /* Flexbox для горизонтального выравнивания */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    gap: 10px; /* Отступ между блоком и кнопкой */
+    margin: 20px auto; /* Автоматическое центрирование по горизонтали */
+    width: 100%; /* Полная ширина контейнера */
+    box-sizing: border-box;
+}
+
+/* Блоки маршрута и дня */
+.route-day-btn {
+    display: flex;
+    align-items: center; /* Вертикальное центрирование содержимого */
+    justify-content: center; /* Текст по центру */
+    width: 170px; /* Ширина блока */
+    background-color: #bdf31f; /* Ярко-зеленый фон */
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 40px; /* Скруглённые углы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Тень */
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    text-align: center;
+}
+
+/* Кнопка стрелки */
+.route-day-btn-arrow {
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота кнопки */
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #bdf31f; /* Граница кнопки в цвет фона */
     background-color: white; /* Белый фон кнопки */
-    color: #bdf31f; /* Цвет иконки стрелки */
+    color: #bdf31f; /* Цвет стрелки */
+    border: 3px solid #bdf31f; /* Граница кнопки */
     border-radius: 50%; /* Делаем кнопку круглой */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Легкая тень */
-    transition: transform 0.2s ease-in-out; /* Плавный эффект при наведении */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень */
+    transition: transform 0.3s ease-in-out; /* Плавная анимация */
 }
 
-/* Анимация кнопки при наведении */
-.route-day-btn button:hover {
-    transform: scale(1.1); /* Небольшое увеличение */
-    background-color: #e0e0e0; /* Серый фон при наведении */
-    color: #333; /* Цвет иконки меняется на тёмный */
+/* Эффект при наведении */
+.route-day-btn-arrow:hover {
+    background-color: #bdf31f; /* Зеленый фон при наведении */
+    color: white; /* Белая стрелка */
+    transform: scale(1.1); /* Увеличение кнопки */
 }
+
 
 /* Текст внутри блоков */
 .route-day-btn span {
     flex: 1; /* Текст занимает оставшееся пространство */
     text-align: left; /* Текст выравнивается слева */
     color: #333; /* Цвет текста */
-    font-size: 18px; /* Размер шрифта */
+    font-size: 20px; /* Размер шрифта */
+    text-transform: uppercase; /* Верхний регистр */
 }
 
 /* Контейнер для карточек */
@@ -85,7 +113,6 @@ body {
     box-sizing: border-box;
     overflow: hidden; /* Избегаем переполнения */
 }
-
 /* Изображения в карточках */
 .place-list .card img {
     width: 150px; /* Ширина изображения */
@@ -127,23 +154,6 @@ main.container {
     margin: 0;
     max-width: 100%;
     box-sizing: border-box;
-}
-
-/* Логотип */
-.logo-link {
-    margin-right: 20px; /* Отступ логотипа справа */
-}
-
-.logo {
-    width: 120px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-/* Анимация для логотипа */
-.logo:hover {
-    transform: scale(1.1); /* Увеличение при наведении */
 }
 
 /* Стили для кнопок */
