@@ -4,6 +4,7 @@ body {
     font-family: Arial, sans-serif;
     background: #fff;
     color: #333;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
 }
 
 /* Общий фон */
@@ -11,145 +12,200 @@ body {
     background-color: #bdf31f !important; /* Ярко-зеленый фон */
 }
 
-/* Стили кнопок маршрута и дня */
+/* Стили блоков маршрута и дня */
 .route-day-btn {
-    width: 100%; /* Растягиваем кнопки маршрута на всю ширину */
-    max-width: 400px; /* Ограничиваем максимальную ширину для гармонии */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Текст слева, кнопка справа */
+    align-items: center; /* Вертикальное центрирование содержимого */
+    width: 100%; /* Полная ширина */
+    max-width: 500px; /* Ограничиваем максимальную ширину */
+    padding: 10px 20px; /* Внутренние отступы */
+    background-color: #bdf31f; /* Зеленый фон */
+    border-radius: 30px; /* Скруглённые углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для объема */
+    font-size: 18px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    color: #333; /* Цвет текста */
+}
+
+/* Стили кнопок со стрелками */
+.route-day-btn button {
+    width: 40px;
+    height: 40px;
+    display: flex;
     align-items: center;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin: 0 auto; /* Центрируем кнопки */
-    text-align: center;
+    justify-content: center;
+    border: 2px solid #bdf31f; /* Граница кнопки в цвет фона */
+    background-color: white; /* Белый фон кнопки */
+    color: #bdf31f; /* Цвет иконки стрелки */
+    border-radius: 50%; /* Делаем кнопку круглой */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    transition: transform 0.2s ease-in-out; /* Плавный эффект при наведении */
 }
 
-/* Текст внутри кнопок */
+/* Анимация кнопки при наведении */
+.route-day-btn button:hover {
+    transform: scale(1.1); /* Небольшое увеличение */
+    background-color: #e0e0e0; /* Серый фон при наведении */
+    color: #333; /* Цвет иконки меняется на тёмный */
+}
+
+/* Текст внутри блоков */
 .route-day-btn span {
-    flex: 1;
-    text-align: center;
-}
-
-/* Стили для мест */
-.place-list .card {
-    width: 100%; /* Растягиваем карточки на всю ширину контейнера */
-    margin-bottom: 20px; /* Отступ между карточками */
-    padding: 15px; /* Увеличиваем внутренние отступы для гармоничности */
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    background-color: #bdf31f; /* Зеленый фон карточек */
-}
-
-/* Изображения в карточках */
-.place-list .card img {
-    width: 200px; /* Увеличиваем ширину изображений */
-    height: auto; /* Сохраняем пропорции */
-    object-fit: cover; /* Избегаем искажений */
-    border-radius: 8px; /* Радиус для округления краев */
-}
-
-/* Тело карточки */
-.place-list .card-body {
-    padding: 20px; /* Увеличиваем внутренние отступы текста */
+    flex: 1; /* Текст занимает оставшееся пространство */
+    text-align: left; /* Текст выравнивается слева */
+    color: #333; /* Цвет текста */
+    font-size: 18px; /* Размер шрифта */
 }
 
 /* Контейнер для карточек */
 .place-list {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Задаем расстояние между карточками */
+    gap: 20px; /* Отступ между карточками */
+    width: 100%; /* Полная ширина */
+    margin: 0 auto; /* Центрируем по горизонтали */
+    padding: 0 15px; /* Добавляем отступы по бокам */
+    box-sizing: border-box; /* Учитываем padding */
+}
+
+/* Стили для карточек */
+.place-list .card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    justify-content: flex-start; /* Выравнивание по левому краю */
+    gap: 20px; /* Отступ между изображением и текстом */
+    width: 100%; /* Полная ширина карточек */
+    min-height: 250px; /* Фиксированная высота карточек */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #bdf31f; /* Зеленый фон карточек */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+    box-sizing: border-box;
+    overflow: hidden; /* Избегаем переполнения */
+}
+
+/* Изображения в карточках */
+.place-list .card img {
+    width: 150px; /* Ширина изображения */
+    height: 150px; /* Высота изображения */
+    object-fit: cover; /* Обрезка изображения с сохранением пропорций */
+    border-radius: 10px; /* Скругление углов изображения */
+    margin: 0;
+}
+
+/* Текстовый блок карточки */
+.place-list .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Текст располагается сверху */
+    align-items: flex-start; /* Выравнивание текста слева */
+    gap: 10px; /* Отступы между текстовыми элементами */
+    padding: 0;
+    flex: 1; /* Текстовый блок занимает оставшееся пространство */
+}
+
+/* Заголовок карточки */
+.place-list .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+}
+
+/* Текст карточки */
+.place-list .card-text {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Убираем отступы у основного контейнера */
+main.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Логотип */
 .logo-link {
-    margin-right: 20px; /* Сдвиг логотипа правее */
+    margin-right: 20px; /* Отступ логотипа справа */
 }
 
 .logo {
-    width: 120px; /* Ширина логотипа */
+    width: 120px;
     height: auto;
     cursor: pointer;
-    transition: transform 0.3s ease; /* Анимация при наведении */
+    transition: transform 0.3s ease;
 }
 
-/* Эффект при наведении на логотип */
+/* Анимация для логотипа */
 .logo:hover {
-    transform: scale(1.1); /* Увеличение логотипа при наведении */
+    transform: scale(1.1); /* Увеличение при наведении */
 }
 
-/* Кнопки */
+/* Стили для кнопок */
 .btn-purple {
-    background-color: #8000FF !important; /* Фиолетовый цвет */
-    color: #fff; /* Белый текст */
+    background-color: #8000FF !important;
+    color: #fff;
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Легкая тень */
-    transition: all 0.3s ease; /* Плавная анимация */
-    white-space: nowrap; /* Предотвращает перенос текста */
-    margin-right: 10px; /* Отступ между кнопками */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
-/* Hover эффект для кнопок */
+/* Эффект при наведении на кнопки */
 .btn-purple:hover {
-    background-color: #5a078e !important; /* Темно-фиолетовый при наведении */
-    transform: scale(1.05); /* Легкое увеличение кнопки */
+    background-color: #5a078e !important;
+    transform: scale(1.05);
 }
 
 /* Последняя кнопка без отступа */
 .btn-purple:last-child {
-    margin-right: 0; /* Убирает отступ у последней кнопки */
-}
-
-/* Контейнер для кнопок */
-.d-flex.gap-3 {
-    gap: 20px; /* Задает фиксированный отступ между кнопками */
+    margin-right: 0;
 }
 
 /* Контейнер для логотипа и кнопок */
 header .container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Распределяет логотип и кнопки */
+    justify-content: space-between;
 }
 
-/* Центрирование кнопок */
-header .d-flex.justify-content-center {
-    flex-grow: 1; /* Заполняет оставшееся пространство для центрирования */
-}
-
-/* Отступы между кнопками (для симметрии) */
-header .btn-purple.mx-2 {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-/* Адаптивность */
+/* Адаптивность для маленьких экранов */
 @media (max-width: 768px) {
     header .container {
-        flex-direction: column; /* На малых экранах элементы располагаются вертикально */
+        flex-direction: column; /* Элементы располагаются вертикально */
         align-items: center;
     }
+
     .btn-purple {
         margin-right: 0;
-        margin-bottom: 10px; /* Вертикальный отступ между кнопками */
+        margin-bottom: 10px;
     }
+
     .btn-purple:last-child {
-        margin-bottom: 0; /* Убирает отступ у последней кнопки */
+        margin-bottom: 0;
     }
-    .route-day-btn {
-        width: 100%; /* Кнопки маршрута растягиваются на всю ширину */
+
+    .place-list .card {
+        flex-direction: column; /* Изображение и текст располагаются вертикально */
+        align-items: flex-start;
     }
+
     .place-list .card img {
-        width: 150px; /* Уменьшаем изображения на малых экранах */
+        width: 100%; /* Изображение на всю ширину */
+        height: auto;
     }
+
     .place-list .card-body {
-        padding: 15px; /* Уменьшаем внутренние отступы на малых экранах */
+        padding: 10px 0;
     }
 }

@@ -1,7 +1,3 @@
-/* Общие стили для панели */
-.search-panel {
-    background-color: #8BC34A;
-}
 
 .search-block {
     display: flex;
@@ -36,6 +32,14 @@
     z-index: 1; /* Убедиться, что линия поверх содержимого */
 }
 
+.nav-link {
+    color: #000000;
+    font-weight: bold;
+}
+
+.bi {
+    font-size: 1.25rem;
+}
 
 /* Стили для кнопок и полей */
 
@@ -127,4 +131,29 @@ input[type="number"] {
     }
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #bdf31f; /* Новый цвет фона */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+/* Логотип */
+.logo-link {
+    margin-right: 20px; /* Сдвиг логотипа правее */
+}
+
+.logo {
+    width: 120px; /* Ширина логотипа */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+/* Эффект при наведении на логотип */
+.logo:hover {
+    transform: scale(1.1); /* Увеличение логотипа при наведении */
+}

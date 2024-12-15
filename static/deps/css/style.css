@@ -33,15 +33,16 @@ body {
 }
 
 .hero-text {
-    color: white;
+    color: #FFFFFF;
     position: absolute;
-    bottom: 20%;
+    bottom: 10%;
     left: 5%;
+    font-family: voga;
 }
 
 /* Search Panel */
 .search-panel {
-    background-color: #8BC34A;
+    background-color: #bdf31f;
     padding: 2rem;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
@@ -216,4 +217,8 @@ body {
 .modal-footer .btn-outline-secondary:hover {
     background-color: #38007c; /* Фиолетовый при наведении */
     color: #FFFFFF; /* Белый текст */
+}
+
+.text-primary {
+    color: #6200ea !important;
 }
