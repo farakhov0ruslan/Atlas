@@ -74,8 +74,10 @@
 					<div class="row">
 						<!-- Фото -->
 						<div class="col-md-4 mb-3">
-							<img src="{{ place.image.url }}" class="img-fluid rounded"
+                            {% if place.image %}
+                            	<img src="{{ place.image.url }}" class="img-fluid rounded"
 							     alt="Ginger Restaurant">
+                            {% endif %}
 						</div>
 						<!-- Описание и детали -->
 						<div class="col-md-8 d-flex flex-column justify-content-between">
