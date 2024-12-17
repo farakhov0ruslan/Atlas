@@ -4,144 +4,241 @@
 {% block css %}
 	{# Здесь надо добавлять css стили#}
 	<title>Маршрут</title>
-    <link rel="stylesheet" href="{% static 'deps/css/route_page.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+	<link rel="stylesheet" href="{% static 'deps/css/route_page.css' %}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet"
+	      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 {% endblock %}
 {% block content %}
 
-<header class="bg-lime py-3">
-    <div class="container d-flex align-items-center justify-content-between">
-        <!-- Навигация -->
-        <div class="d-flex justify-content-center flex-grow-1">
-            <a class="btn btn-purple text-white fw-bold" href="#">
-                <i class="fas fa-bus"></i> Трансфер
-            </a>
-            <a class="btn btn-purple text-white fw-bold" href="#">
-                <i class="fas fa-bed"></i> Проживание
-            </a>
-            <a class="btn btn-purple text-white fw-bold" href="#">
-                <i class="fas fa-landmark"></i> Места
-            </a>
-            <a class="btn btn-purple text-white fw-bold" href="#">
-                <i class="fas fa-route"></i> Мой маршрут
-            </a>
-        </div>
-    </div>
-</header>
+	<header class="bg-lime py-3">
+		<div class="container d-flex align-items-center justify-content-between">
+			<!-- Навигация -->
+			<div class="d-flex justify-content-center flex-grow-1 gap-3">
+				<a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+					<i class="fas fa-bus"></i> Трансфер
+				</a>
+				<a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+					<i class="fas fa-bed"></i> Проживание
+				</a>
+				<a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+					<i class="fas fa-landmark"></i> Места
+				</a>
+				<a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+					<i class="fas fa-route"></i> Мой маршрут
+				</a>
+			</div>
+		</div>
+	</header>
 
-<div class="container-fluid my-4">
-    <!-- Контейнер для Маршрут 1 -->
-    <div class="route-day-container">
-        <div class="route-day-btn">Маршрут 1</div>
-        <button class="route-day-btn-arrow">
-            <i class="fas fa-arrow-right"></i>
-        </button>
-    </div>
+	<div class="container-fluid my-4">
+		<!-- Контейнер для Маршрут 1 -->
+		<div class="route-day-container">
+			<div class="route-day-btn">Маршрут 1</div>
+			<button class="route-day-btn-arrow">
+				<i class="fas fa-arrow-right"></i>
+			</button>
+		</div>
 
-    <!-- Контейнер для День 1 -->
-    <div class="route-day-container">
-        <div class="route-day-btn">День 1</div>
-        <button class="route-day-btn-arrow">
-            <i class="fas fa-arrow-right"></i>
-        </button>
-    </div>
-</div>
-
-
+		<!-- Контейнер для День 1 -->
+		<div class="route-day-container">
+			<div class="route-day-btn">День 1</div>
+			<button class="route-day-btn-arrow">
+				<i class="fas fa-arrow-right"></i>
+			</button>
+		</div>
+	</div>
 
 
 
-<main class="mb-5">
-    <div class="place-list">
-        <!-- Карточка 1 -->
-        <div class="card bg-lime text-dark mb-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-auto">
-                    <img src="https://via.placeholder.com/150x100" class="img-fluid rounded-start" alt="Завтрак">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Завтрак в кафе Breakfast&Dinners</h5>
-                        <p class="card-text mb-1">Время: 9:00 - 11:00</p>
-                        <p class="card-text mb-1">Средний чек: 500 - 1000 рублей</p>
-                        <p class="card-text mb-0">Адрес: Невский проспект 12</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Карточка 2 -->
-        <div class="card bg-lime text-dark mb-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-auto">
-                    <img src="https://via.placeholder.com/150x100" class="img-fluid rounded-start" alt="Новая Голландия">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Парк "Новая Голландия"</h5>
-                        <p class="card-text mb-1">Время: 10:00 - 14:00</p>
-                        <p class="card-text mb-1">Средний чек: -</p>
-                        <p class="card-text mb-0">Адрес: Наб. Адмиралтейского канала, 2</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Карточка 3 -->
-        <div class="card bg-lime text-dark mb-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-auto">
-                    <img src="https://via.placeholder.com/150x100" class="img-fluid rounded-start" alt="Место 3">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Название места 3</h5>
-                        <p class="card-text mb-1">Время: 12:00 - 13:00</p>
-                        <p class="card-text mb-1">Средний чек: 300 - 700 рублей</p>
-                        <p class="card-text mb-0">Адрес: Улица Примерная 3</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Карточка 4 -->
-        <div class="card bg-lime text-dark mb-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-auto">
-                    <img src="https://via.placeholder.com/150x100" class="img-fluid rounded-start" alt="Место 4">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Название места 4</h5>
-                        <p class="card-text mb-1">Время: 14:00 - 15:30</p>
-                        <p class="card-text mb-1">Средний чек: -</p>
-                        <p class="card-text mb-0">Адрес: Улица Примерная 4</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Карточка 5 -->
-        <div class="card bg-lime text-dark mb-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-auto">
-                    <img src="https://via.placeholder.com/150x100" class="img-fluid rounded-start" alt="Место 5">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Название места 5</h5>
-                        <p class="card-text mb-1">Время: 16:00 - 18:00</p>
-                        <p class="card-text mb-1">Средний чек: 600 - 1200 рублей</p>
-                        <p class="card-text mb-0">Адрес: Улица Примерная 5</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+	<main class="mb-5">
+		<div class="place-list container my-4">
+			<div class="card border-0 shadow p-3 position-relative">
+				<!-- Плашка "В избранное" -->
+				<button class="favorite-btn position-absolute top-0 end-0 mt-4 me-4">
+					<i class="fas fa-heart"></i> В избранное
+				</button>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+				<!-- Заголовок -->
+				<div class="row place-name">
+					<div class="col-12 mb-2">
+						<h2 class="fw-bold">Завтра в кафе Breakfest&Diners</h2>
+					</div>
+				</div>
+				<!-- Основное содержимое -->
+				<div class="row">
+					<!-- Фото -->
+					<div class="col-md-4 mb-3">
+						<img src="https://via.placeholder.com/300x300" class="img-fluid rounded"
+						     alt="Ginger Restaurant">
+					</div>
+					<!-- Описание и детали -->
+					<div class="col-md-8 d-flex flex-column justify-content-between">
+						<div class="card-body p-0">
+							<h4 class="card-text mb-0">
+								<strong>Время: </strong> 9:00 - 11:00
+							</h4>
+							<p class="card-location mb-0">
+								<i class="bi bi-geo-alt" style="color: #6A0DAD"></i>
+								Остров Родос, Греция
+							</p>
+							<!-- Рейтинг со звёздочками -->
+							<div class="rating d-flex align-items-center">
+                    <span class="rating-icon text-warning fs-4">
+                        <i class="fas fa-star" style="color: #6A0DAD"></i>
+                    </span>
+								<span class="rating-text ms-2">
+                        <span class="rating-value">4.8</span>
+                        <span class="rating-label"> (1029 OТЗЫВОВ)</span>
+                    </span>
+							</div>
+							<!-- Краткое описание -->
+							<p class="card-discription">
+								Aldus Corporation, которая впоследствии объединилась с Adobe
+								Systems, помогли принести Lorem Ipsum в информационную эпоху с ее
+								1985 флагманского программного обеспечения Aldus PageMaker.
+								Программа входит в комплект с Lorem Ipsum манекен текст, чтобы
+								помочь с выложив содержимое страницы и другие текстовые процессоры,
+								такие как Microsoft Word последовали его примеру. В последнее время
+								рост веб-дизайна помогла пролиферируют Lorem Ipsum через Интернет в
+								качестве заполнителя для выкладки веб-сайтов и blogs-, а в некоторых
+								случаях окончательное содержание (не пусть это будет вам!).
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
+
+			<div class="card border-0 shadow p-3">
+				<!-- Заголовок -->
+				<div class="row place-name">
+					<div class="col-12 mb-2">
+						<h2 class="fw-bold">Ginger A La Carte Restaurant</h2>
+					</div>
+				</div>
+				<!-- Основное содержимое -->
+				<div class="row">
+					<!-- Фото -->
+					<div class="col-md-4">
+						<img src="https://via.placeholder.com/400x250" class="img-fluid rounded"
+						     alt="Ginger Restaurant">
+					</div>
+					<!-- Описание и детали -->
+					{#					<div class="col-md-8 d-flex flex-column justify-content-between">#}
+					{#						<div class="card-body p-0">#}
+					{#							<div class="mb-3">#}
+					{#								<!-- Рейтинг -->#}
+					{#								<span class="text-success fs-4">&#9679; &#9679; &#9679; &#9679; &#9679; </span>#}
+					{#								<span class="ms-2 fw-bold">1 029 отзывов</span>#}
+					{#							</div>#}
+					{#							<!-- Краткое описание -->#}
+					{#							<p class="card-text">#}
+					{#								В ресторане <strong>Ginger A La Carte</strong> подают свежие#}
+					{#								морепродукты и вкусные коктейли.#}
+					{#								Каждое блюдо идеально дополняется щедрыми порциями. Опытный#}
+					{#								персонал — отличный бонус.#}
+					{#							</p>#}
+					{#							<!-- Краткие факты -->#}
+					{#							<div class="d-flex align-items-center">#}
+					{#								<span class="me-2"><i class="bi bi-knife"></i> Вид кухни: Международная, Суши, Европейская</span>#}
+					{#								<span class="ms-3 fw-bold">$$$</span>#}
+					{#							</div>#}
+					{##}
+					{#							<p class="text-muted"><i class="bi bi-geo-alt"></i> Остров Родос,#}
+					{#								Греция</p>#}
+					{#						</div>#}
+					{#					</div>#}
+				</div>
+			</div>
+
+			<!-- Карточка 2 -->
+			<div class="card bg-lime text-dark mb-3">
+				<div class="row g-0 align-items-center">
+					<div class="col-auto">
+						<img src="https://via.placeholder.com/150x100"
+						     class="img-fluid rounded-start" alt="Новая Голландия">
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h5 class="card-title fw-bold">Парк "Новая Голландия"</h5>
+							<p class="card-text mb-1">Время: 10:00 - 14:00</p>
+							<p class="card-text mb-1">Средний чек: -</p>
+							<p class="card-text mb-0">Адрес: Наб. Адмиралтейского канала, 2</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Карточка 3 -->
+			<div class="card bg-lime text-dark mb-3">
+				<div class="row g-0 align-items-center">
+					<div class="col-auto">
+						<img src="https://via.placeholder.com/150x100"
+						     class="img-fluid rounded-start" alt="Место 3">
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h5 class="card-title fw-bold">Название места 3</h5>
+							<p class="card-text mb-1">Время: 12:00 - 13:00</p>
+							<p class="card-text mb-1">Средний чек: 300 - 700 рублей</p>
+							<p class="card-text mb-0">Адрес: Улица Примерная 3</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Карточка 4 -->
+			<div class="card bg-lime text-dark mb-3">
+				<div class="row g-0 align-items-center">
+					<div class="col-auto">
+						<img src="https://via.placeholder.com/150x100"
+						     class="img-fluid rounded-start" alt="Место 4">
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h5 class="card-title fw-bold">Название места 4</h5>
+							<p class="card-text mb-1">Время: 14:00 - 15:30</p>
+							<p class="card-text mb-1">Средний чек: -</p>
+							<p class="card-text mb-0">Адрес: Улица Примерная 4</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Карточка 5 -->
+			<div class="card bg-lime text-dark mb-3">
+				<div class="row g-0 align-items-center">
+					<div class="col-auto">
+						<img src="https://via.placeholder.com/150x100"
+						     class="img-fluid rounded-start" alt="Место 5">
+					</div>
+					<div class="col">
+						<div class="card-body">
+							<h5 class="card-title fw-bold">Название места 5</h5>
+							<p class="card-text mb-1">Время: 16:00 - 18:00</p>
+							<p class="card-text mb-1">Средний чек: 600 - 1200 рублей</p>
+							<p class="card-text mb-0">Адрес: Улица Примерная 5</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- Bootstrap JS -->
+	<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+        // Находим все кнопки с классом "nav-btn"
+        const navButtons = document.querySelectorAll('.nav-btn.btn-purple');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Убираем класс "selected" у всех кнопок
+                navButtons.forEach(btn => btn.classList.remove('selected'));
+                // Добавляем класс "selected" к нажатой кнопке
+                button.classList.toggle('selected');
+            });
+        });
+	</script>
 {% endblock %}
 
 

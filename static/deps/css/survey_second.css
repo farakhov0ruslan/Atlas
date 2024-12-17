@@ -98,7 +98,6 @@ button {
 .selectable-img.selected {
     border: 3px solid #00D1FF;
     box-shadow: 0 0 10px #00D1FF;
-    transform: scale(1.1);
 }
 
 .text-center {

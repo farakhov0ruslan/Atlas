@@ -51,9 +51,20 @@ class PlaceForm(forms.ModelForm):
         }
 
 
+
+
 class WorkingHoursInline(admin.TabularInline):
     model = WorkingHours
     extra = 7  # Показываем 7 строк для каждого дня недели
+
+    def get_extra(self, request, obj=None, **kwargs):
+        """
+        Устанавливаем extra = 7, если создаётся новое заведение,
+        и extra = 0, если заведение редактируется.
+        """
+        if obj:  # Если объект уже существует
+            return 0
+        return 7  # Если создаётся новое заведение
 
 
 
@@ -63,15 +74,3 @@ class PlaceAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     inlines = [WorkingHoursInline]
 
-
-# @receiver(post_save, sender=Place)
-# def create_working_hours(sender, instance, created, **kwargs):
-#     if created:
-#         # Создаем рабочие часы для каждого дня недели
-#         for day in range(7):
-#             WorkingHours.objects.create(
-#                 place=instance,
-#                 day_of_week=day,
-#                 open_time="09:00",  # Значение по умолчанию
-#                 close_time="18:00"  # Значение по умолчанию
-#             )
