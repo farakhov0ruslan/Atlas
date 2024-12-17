@@ -19,10 +19,14 @@ from django.urls import path, include
 
 from django.conf.urls.static import static
 from Atlas import settings
+from django.urls import path
+from survey.views import survey_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace="main")),
+    path('survey/', survey_view, name='survey_combined'),
     path('survey/', include('survey.urls', namespace='survey')),
     path('routes/', include('routes.urls', namespace='routes')),
 ]
