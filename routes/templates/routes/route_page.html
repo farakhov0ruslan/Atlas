@@ -112,6 +112,37 @@
 		</div>
 
 	</main>
+    <h1>Ваш выбранный маршрут</h1>
+
+    <!-- Даты поездки и количество персон -->
+    <h3>Информация о поездке:</h3>
+    <ul>
+        <li><strong>Город назначения:</strong> {{ city }}</li>
+        <li><strong>Дата отправления:</strong> {{ departure_date }}</li>
+        <li><strong>Дата возвращения:</strong> {{ return_date }}</li>
+        <li><strong>Количество персон:</strong> {{ person_count }}</li>
+        <li><strong>Бюджет:</strong> {{ budget|default:"Не указан" }}</li>
+    </ul>
+
+    <!-- Выбранные категории -->
+    <h3>Выбранные категории:</h3>
+    <ul>
+        {% for button in selected_buttons %}
+            <li>{{ button }}</li>
+        {% empty %}
+            <li>Категории не выбраны.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Выбранные изображения -->
+    <h3>Выбранные изображения:</h3>
+    <ul>
+        {% for image in selected_images %}
+            <li>{{ image }}</li>
+        {% empty %}
+            <li>Изображения не выбраны.</li>
+        {% endfor %}
+    </ul>
 
 	<!-- Bootstrap JS -->
 	<script
