@@ -51,13 +51,14 @@ def route_page(request):
                        {'time': '09:00-12:00', 'activity': 'Прогулки', 'place': places.filter(id=9)[0]},
                        {'time': '12:00-14:00', 'activity': 'Обед', 'place': places.filter(id=10)[0]},
                        {'time': '14:00-16:00', 'activity': 'Шоппинг', 'place': places.filter(id=11)[0]},
-                       {'time': '16:00-18:00', 'activity': 'Искусство', 'place': places.filter(id=12)[0]},
-                       {'time': '18:00-20:00', 'activity': 'Вкусно поесть', 'place': places.filter(id=13)[0]}],
-            '2 день': [{'time': '08:00-09:00', 'activity': 'Завтрак', 'tags': ['Еда']},
-                       {'time': '09:00-13:00', 'activity': 'Экскурсии', 'tags': ['Экскурсии']},
-                       {'time': '13:00-15:00', 'activity': 'Обед', 'tags': ['Еда']},
-                       {'time': '15:00-17:00', 'activity': 'Музеи', 'tags': ['Музеи']},
-                       {'time': '17:00-20:00', 'activity': 'Бар', 'tags': ['Бары']}]
+                       {'time': '16:00-18:00', 'activity': 'Искусство', 'place': places.filter(id=11)[0]},
+                       {'time': '18:00-20:00', 'activity': 'Вкусно поесть', 'place': places.filter(id=11)[0]}],
+            '2 день': [{'time': '08:00-09:00', 'activity': 'Завтрак', 'place': places.filter(id=8)[0]},
+                       {'time': '09:00-12:00', 'activity': 'Прогулки', 'place': places.filter(id=9)[0]},
+                       {'time': '12:00-14:00', 'activity': 'Обед', 'place': places.filter(id=10)[0]},
+                       {'time': '14:00-16:00', 'activity': 'Шоппинг', 'place': places.filter(id=11)[0]},
+                       {'time': '16:00-18:00', 'activity': 'Искусство', 'place': places.filter(id=11)[0]},
+                       {'time': '18:00-20:00', 'activity': 'Вкусно поесть', 'place': places.filter(id=11)[0]}]
         },
     }
 
