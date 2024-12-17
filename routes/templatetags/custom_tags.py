@@ -13,4 +13,6 @@ def random_number(min_value=100, max_value=1000):
 def random_float(min_value=40, max_value=50):
     return random.randint(min_value, max_value)/10
 
-
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(f"{key} день", None)

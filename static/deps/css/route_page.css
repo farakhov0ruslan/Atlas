@@ -27,27 +27,38 @@ body {
 }
 
 
-/* Контейнер для центрирования блоков */
+/* Контейнер для дней и маршрутов */
 .route-day-container {
-    display: flex; /* Flexbox для горизонтального выравнивания */
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center; /* Центрирование по вертикали */
-    gap: 10px; /* Отступ между блоком и кнопкой */
-    margin: 20px auto; /* Автоматическое центрирование по горизонтали */
-    width: 100%; /* Полная ширина контейнера */
+    position: relative; /* Родительский контейнер для позиционирования */
+    display: flex;
+    justify-content: center; /* Центрирование основного блока */
+    align-items: center;
+    width: 100%;
+    margin: 20px auto; /* Центрирование */
     box-sizing: border-box;
 }
 
-/* Блоки маршрута и дня */
+/* Контейнер для дней и маршрутов */
+.route-day-container {
+    display: flex;
+    justify-content: center; /* Центрирование основного блока */
+    align-items: center;
+    gap: 20px; /* Отступы между стрелками и центральным блоком */
+    margin: 20px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Центральный блок (День или Маршрут) */
 .route-day-btn {
     display: flex;
-    align-items: center; /* Вертикальное центрирование содержимого */
-    justify-content: center; /* Текст по центру */
-    width: 170px; /* Ширина блока */
-    background-color: #bdf31f; /* Ярко-зеленый фон */
-    padding: 10px 20px; /* Внутренние отступы */
-    border-radius: 40px; /* Скруглённые углы */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Тень */
+    align-items: center;
+    justify-content: center;
+    min-width: 200px; /* Минимальная ширина */
+    padding: 10px 20px;
+    background-color: #bdf31f; /* Зеленый фон */
+    border-radius: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
@@ -55,28 +66,28 @@ body {
     text-align: center;
 }
 
-/* Кнопка стрелки */
+/* Кнопка-стрелка слева и справа */
 .route-day-btn-arrow {
-    width: 50px; /* Ширина кнопки */
-    height: 50px; /* Высота кнопки */
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white; /* Белый фон кнопки */
-    color: #bdf31f; /* Цвет стрелки */
-    border: 3px solid #bdf31f; /* Граница кнопки */
-    border-radius: 50%; /* Делаем кнопку круглой */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень */
-    transition: transform 0.3s ease-in-out; /* Плавная анимация */
+    background-color: white;
+    color: #bdf31f;
+    border: 3px solid #bdf31f;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    flex-shrink: 0; /* Предотвращаем сжатие стрелок */
 }
 
 /* Эффект при наведении */
 .route-day-btn-arrow:hover {
-    background-color: #bdf31f; /* Зеленый фон при наведении */
-    color: white; /* Белая стрелка */
-    transform: scale(1.1); /* Увеличение кнопки */
+    background-color: #bdf31f;
+    color: white;
+    transform: scale(1.1);
 }
-
 
 /* Текст внутри блоков */
 .route-day-btn span {
