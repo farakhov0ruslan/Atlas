@@ -25,13 +25,13 @@
     <section class="search-panel py-4">
         <div class="container">
             <!-- Первый блок -->
-            <form method="post" id="travelForm" action="{% url 'survey:survey_index' %}">
+            <form method="post" id="travelForm" action="{% url 'survey:survey' %}">
                 {% csrf_token %}
                 <div class="search-block d-flex flex-wrap align-items-center mb-4">
                     <!-- Куда -->
                     <div class="search-item">
                         <div class="d-flex align-items-center mb-3">
-                            <select class="form-control" id="cityInput">
+                            <select class="form-control" id="cityInput" name="city">
                                 <option value="Санкт-Петербург">Санкт-Петербург</option>
                                 <option value="Москва">Москва(В разработке)</option>
                                 <option value="Рязань">Рязань(В разработке)</option>
@@ -58,6 +58,7 @@
                                     oninput="updatePersonCount()"
                                     onblur="addPersonText()"
                                     style="width: 150px; text-align: center;"
+                                    name="person_count"
                             />
                         </div>
                         <button type="button" class="btn btn-outline-primary" id="personInputBtn">2 человека</button>
@@ -75,6 +76,7 @@
                                         placeholder="Бюджет"
                                         min="0"
                                         max="9999999999999"
+                                        name="budget"
                                 />
                                 <span class="currency-symbol"
                                       style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);">₽</span>
@@ -102,8 +104,7 @@
 
                 <!-- Кнопка ПОЕХАЛИ для открытия модального окна -->
                 <div class="text-center mt-4">
-                    <button type="button" class="btn btn-primary btn-lg px-5" data-bs-toggle="modal"
-                            data-bs-target="#surveyModal">
+                    <button type="button" class="btn btn-primary btn-lg px-5" onclick="validateForm()">
                         ПОЕХАЛИ!
                     </button>
                 </div>
@@ -179,11 +180,45 @@
             </div>
         </div>
     </section>
-
+ <!-- Кастомное модальное уведомление -->
+<div id="customAlert" class="custom-alert">
+    <div class="custom-alert-content">
+        <p id="customAlertMessage">Текст уведомления</p>
+        <button class="btn btn-primary" onclick="closeCustomAlert()">Закрыть</button>
+    </div>
+</div>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <!--Скрипт для корректного изменения поля количества человек -->
     <script>
+        // Проверка всех полей перед отправкой формы
+    function validateForm() {
+        const city = document.getElementById("cityInput").value;
+        const personCount = document.getElementById("personInput").value;
+        const budget = document.getElementById("budgetInput").value;
+        const departureDate = document.querySelector("input[name='departure_date']").value;
+        const returnDate = document.querySelector("input[name='return_date']").value;
+
+        // Проверка на пустые поля
+        if (!city || !personCount || !departureDate || !returnDate) {
+            showCustomAlert("Пожалуйста, заполните все обязательные поля: Куда, Количество человек, Даты 'Туда' и 'Обратно'.");
+            return; // Прерываем выполнение
+        }
+
+        // Проверка на корректность дат
+        const departureDateObj = new Date(departureDate);
+        const returnDateObj = new Date(returnDate);
+
+        if (returnDateObj < departureDateObj) {
+            showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
+            return; // Прерываем выполнение
+        }
+
+        // Если все поля корректны, открываем модальное окно
+        let surveyModal = new bootstrap.Modal(document.getElementById('surveyModal'));
+        surveyModal.show();
+    }
+
         // Функция для очистки текста при фокусе на поле
         function clearInput() {
             let personInput = document.getElementById("personInput");
@@ -234,7 +269,44 @@
         document.getElementById('personInputBtn').addEventListener('click', function () {
             document.getElementById('personInput').value = document.getElementById('personInputBtn').innerText;  // Обновляем поле ввода
         });
+        document.addEventListener("DOMContentLoaded", function () {
+        const departureDateInput = document.querySelector("input[name='departure_date']");
+        const returnDateInput = document.querySelector("input[name='return_date']");
+
+
+    });
     </script>
+    <script>
+    // Функция для показа кастомного уведомления
+    function showCustomAlert(message) {
+        document.getElementById("customAlertMessage").innerText = message;
+        document.getElementById("customAlert").style.display = "flex";
+    }
+
+    // Функция для закрытия уведомления
+    function closeCustomAlert() {
+        document.getElementById("customAlert").style.display = "none";
+    }
+
+    // Проверка дат с кастомным уведомлением
+    document.addEventListener("DOMContentLoaded", function () {
+        const departureDateInput = document.querySelector("input[name='departure_date']");
+        const returnDateInput = document.querySelector("input[name='return_date']");
+
+        departureDateInput.addEventListener("change", validateDates);
+        returnDateInput.addEventListener("change", validateDates);
+
+        function validateDates() {
+            const departureDate = new Date(departureDateInput.value);
+            const returnDate = new Date(returnDateInput.value);
+
+            if (returnDate < departureDate) {
+                showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
+                returnDateInput.value = ""; // Очищаем поле
+            }
+        }
+    });
+</script>
 {% endblock %}
 
 
