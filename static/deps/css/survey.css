@@ -1,102 +1,107 @@
-/* survey.css */
-
-/* Общие стили для body */
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
-    background-color: #bdf31f; /* Зеленый фон */
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #bdf31f; /* Цвет фона */
 }
 
-/* Контейнер */
 .container {
     width: 100%;
     max-width: 900px;
     padding: 20px;
     background-color: #fff;
-    border-radius: 20px; /* Более округленные углы */
+    border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Заголовок */
 h1 {
-    color: #000000; /* Яркий зеленый */
     font-size: 26px;
     text-align: center;
     margin-bottom: 20px;
     font-weight: bold;
 }
 
-/* Стили для сетки */
+/* Сетка для кнопок */
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Отступы между элементами */
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три колонки */
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 40px; /* Увеличенный отступ для кнопок пагинации */
 }
 
-.col-md-4 {
-    flex: 1 0 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.w-100 {
-    width: 100%;
-}
-
-/* Стили для кнопок */
+/* Кнопки */
 button {
-    border: 3px solid transparent; /* Добавляем рамку для выделения */
-    padding: 15px 20px; /* Увеличиваем отступы */
-    font-size: 18px; /* Увеличиваем размер текста */
+    border: none;
+    padding: 15px 40px; /* Увеличиваем ширину кнопок */
+    font-size: 18px;
     font-weight: bold;
-    border-radius: 25px; /* Сильно закругляем углы */
+    border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
     color: #fff;
+    text-align: center;
+    width: 100%;
+    max-width: 300px; /* Делаем кнопки шире */
 }
 
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Фиолетовые кнопки */
 .btn-primary {
-    background-color: #6A0DAD; /* Фиолетовый цвет */
-    color: #fff;
+    background-color: #6A0DAD;
 }
 
 .btn-primary:hover {
-    background-color: #8c30d4; /* Темно-фиолетовый при наведении */
-    transform: scale(1.1); /* Увеличение при наведении */
+    background-color: #8c30d4;
+    box-shadow: 0 4px 6px rgba(106, 13, 173, 0.5);
 }
 
 .btn-primary.selected {
-    border: 3px solid #00D1FF; /* Голубая рамка */
-    box-shadow: 0 0 10px #00D1FF;
+     outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
+    box-shadow: 0 0 10px #00D1FF; /* Дополнительный эффект свечения */
 }
 
-/* Кнопка "Далее" */
-button.next-btn {
-    background-color: #00D1FF; /* Ярко-голубой */
-    color: #fff;
-    font-size: 20px; /* Увеличенный текст */
+/* Кнопки пагинации */
+.pagination {
     display: flex;
+    justify-content: space-between; /* Распределить кнопки по краям */
     align-items: center;
-    justify-content: center;
-    gap: 10px; /* Отступ между текстом и иконкой */
+    margin-top: 20px;
 }
 
-button.next-btn:hover {
-    background-color: #00A1CC; /* Темно-голубой при наведении */
-    transform: scale(1.1);
+.pagination .next-btn {
+    background-color: #00D1FF;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 40px; /* Ширина и высота кнопки */
+    text-align: center;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    max-width: 280px; /* Ограничиваем ширину кнопок */
 }
 
-/* Стили для изображений */
+.pagination .next-btn:hover {
+    background-color: #00A1CC;
+    box-shadow: 0 4px 6px rgba(0, 209, 255, 0.5);
+}
+
+
+/* Изображения на второй странице */
 .selectable-img {
     width: 100%;
-    max-width: 350px; /* Увеличенный размер изображений */
+    max-width: 350px;
     border: 3px solid transparent;
     border-radius: 25px;
     cursor: pointer;
@@ -112,5 +117,4 @@ button.next-btn:hover {
 .selectable-img.selected {
     border: 3px solid #00D1FF;
     box-shadow: 0 0 10px #00D1FF;
-    transform: scale(1.1);
 }

@@ -7,22 +7,57 @@
     <title>Опрос</title>
     <link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
 </head>
-<body>
+<body class="page-{{ page_content.number }}">
 <div class="container">
-    <h1>Выберите наиболее интересные категории мест или активностей, которые вы хотите включить в план поездки</h1>
-    <div class="row">
-        <button class="btn-primary col-md-4">Бары</button>
-        <button class="btn-primary col-md-4">Музыка</button>
-        <button class="btn-primary col-md-4">Шоппинг</button>
-        <button class="btn-primary col-md-4">Экстрим</button>
-        <button class="btn-primary col-md-4">Достопримечательности</button>
-        <button class="btn-primary col-md-4">Искусство</button>
-        <button class="btn-primary col-md-4">Музеи</button>
-        <button class="btn-primary col-md-4">Гулять</button>
-        <button class="btn-primary col-md-4">Инстаграмные места</button>
-        <button class="btn-primary col-md-4">Экскурсии</button>
-        <button class="btn-primary col-md-4">Вкусно поесть</button>
-        <button class="next-btn col-md-4" onclick="location.href='{% url 'survey:survey_second' %}'">Далее ➤</button>
+    <h1>{{ page_content.object_list.0.title }}</h1>
+
+    {% if page_content.object_list.0.type == 'buttons' %}
+        <div class="row">
+            <button class="btn-primary">Бары</button>
+            <button class="btn-primary">Музыка</button>
+            <button class="btn-primary">Шоппинг</button>
+            <button class="btn-primary">Экстрим</button>
+            <button class="btn-primary">Достопримечательности</button>
+            <button class="btn-primary">Искусство</button>
+            <button class="btn-primary">Музеи</button>
+            <button class="btn-primary">Гулять</button>
+            <button class="btn-primary">Инстаграмные места</button>
+            <button class="btn-primary">Экскурсии</button>
+            <button class="btn-primary">Выставки</button>
+            <button class="btn-primary">Вкусно поесть</button>
+        </div>
+    {% endif %}
+
+    {% if page_content.object_list.0.type == 'images' %}
+        <div class="row">
+            {% for img in page_content.object_list.0.data %}
+                <img src="{{ img.src }}" alt="{{ img.alt }}" class="selectable-img">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="pagination">
+        <!-- Условие для кнопки "Назад" на первой странице -->
+        {% if page_content.number == 1 %}
+            <button class="next-btn" onclick="location.href='{% url 'main:index' %}'">
+                ◄ Назад
+            </button>
+        {% elif page_content.has_previous %}
+            <button class="next-btn" onclick="location.href='?page={{ page_content.previous_page_number }}'">
+                ◄ Назад
+            </button>
+        {% endif %}
+
+        <!-- Кнопка "Далее" с условием для второй страницы -->
+        {% if page_content.number == 2 %}
+            <button class="next-btn" onclick="location.href='{% url 'routes:route_page' %}'">
+                Далее ►
+            </button>
+        {% elif page_content.has_next %}
+            <button class="next-btn" onclick="location.href='?page={{ page_content.next_page_number }}'">
+                Далее ►
+            </button>
+        {% endif %}
     </div>
 </div>
 </body>
@@ -37,5 +72,12 @@
             button.classList.toggle('selected');
         });
     });
+    // Выделение изображений
+        const images = document.querySelectorAll('.selectable-img');
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                image.classList.toggle('selected');
+            });
+        });
 </script>
 </html>
