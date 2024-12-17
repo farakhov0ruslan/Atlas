@@ -1,0 +1,130 @@
+/* Контейнер для карточек */
+.place-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступ между карточками */
+    width: 100%; /* Полная ширина */
+    margin: 0 auto; /* Центрируем по горизонтали */
+    padding: 0 15px; /* Добавляем отступы по бокам */
+    box-sizing: border-box; /* Учитываем padding */
+}
+
+/* Стили для карточек */
+.place-list .card {
+    gap: 15px; /* Отступ между изображением и текстом */
+    min-height: 250px; /* Фиксированная высота карточек */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #bdf31f; /* Зеленый фон карточек */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+
+}
+
+/* Изображения в карточках */
+.place-list .card img {
+    width: 300px; /* Ширина изображения */
+    height: 300px; /* Высота изображения */
+    object-fit: cover; /* Обрезка изображения с сохранением пропорций */
+    border-radius: 10px; /* Скругление углов изображения */
+    margin: 0;
+}
+
+/* Текстовый блок карточки */
+.place-list .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Текст располагается сверху */
+    align-items: flex-start; /* Выравнивание текста слева */
+    gap: 5px; /* Отступы между текстовыми элементами */
+    padding: 0;
+    flex: 1; /* Текстовый блок занимает оставшееся пространство */
+}
+
+/* Заголовок карточки */
+.place-list .card-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+}
+
+/* Текст карточки */
+.place-list .card-text {
+    font-size: 25px;
+    line-height: 1.6;
+    text-align: left;
+    /*margin-bottom: 0;*/
+}
+
+.card-discription {
+    font-size: 20px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Максимальное количество строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Обрезает переполнение */
+    text-overflow: ellipsis; /* Добавляет многоточие */
+}
+
+
+.rating-value {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rating-label {
+    font-size: 20px;
+}
+
+.card-location {
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.favorite-btn {
+    background-color: #6A0DAD; /* Фиолетовый фон */
+    color: #fff; /* Белый текст */
+    border: none; /* Убираем границы */
+    border-radius: 20px; /* Скруглённые углы */
+    padding: 8px 16px; /* Внутренние отступы для текста */
+    font-size: 1.2rem; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Отступ между иконкой и текстом */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 20px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+}
+
+.favorite-btn i {
+    color: #fff; /* Белая иконка сердечка */
+}
+
+.favorite-btn:hover {
+    background-color: #8c30d4; /* Темно-фиолетовый при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличенная тень */
+    transform: scale(1.1);
+}
+
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 768px) {
+
+    .place-list .card {
+        flex-direction: column; /* Изображение и текст располагаются вертикально */
+        align-items: flex-start;
+    }
+
+    .place-list .card img {
+        width: 100%; /* Изображение на всю ширину */
+        height: auto;
+    }
+
+    .place-list .card-body {
+        padding: 10px 0;
+    }
+}
