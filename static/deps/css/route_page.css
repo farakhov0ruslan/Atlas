@@ -11,11 +11,12 @@ body {
 .bg-lime {
     background-color: #bdf31f !important; /* Ярко-зеленый фон */
 }
-.py-3{
+
+.py-3 {
     background-color: #FFFFFF !important;
 }
 
-.bg-lime.py-3{
+.bg-lime.py-3 {
     padding-bottom: 0 !important;
     padding-top: 1.6rem !important;
 }
@@ -99,24 +100,19 @@ body {
 
 /* Стили для карточек */
 .place-list .card {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start; /* Выравнивание по верхнему краю */
-    justify-content: flex-start; /* Выравнивание по левому краю */
-    gap: 20px; /* Отступ между изображением и текстом */
-    width: 100%; /* Полная ширина карточек */
+    gap: 15px; /* Отступ между изображением и текстом */
     min-height: 250px; /* Фиксированная высота карточек */
     padding: 20px;
     border-radius: 10px;
     background-color: #bdf31f; /* Зеленый фон карточек */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень */
-    box-sizing: border-box;
-    overflow: hidden; /* Избегаем переполнения */
+
 }
+
 /* Изображения в карточках */
 .place-list .card img {
-    width: 150px; /* Ширина изображения */
-    height: 150px; /* Высота изображения */
+    width: 300px; /* Ширина изображения */
+    height: 300px; /* Высота изображения */
     object-fit: cover; /* Обрезка изображения с сохранением пропорций */
     border-radius: 10px; /* Скругление углов изображения */
     margin: 0;
@@ -128,14 +124,14 @@ body {
     flex-direction: column;
     justify-content: flex-start; /* Текст располагается сверху */
     align-items: flex-start; /* Выравнивание текста слева */
-    gap: 10px; /* Отступы между текстовыми элементами */
+    gap: 5px; /* Отступы между текстовыми элементами */
     padding: 0;
     flex: 1; /* Текстовый блок занимает оставшееся пространство */
 }
 
 /* Заголовок карточки */
 .place-list .card-title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     margin: 0;
     text-align: left;
@@ -143,10 +139,66 @@ body {
 
 /* Текст карточки */
 .place-list .card-text {
-    font-size: 18px;
+    font-size: 25px;
     line-height: 1.6;
     text-align: left;
+    /*margin-bottom: 0;*/
 }
+
+.card-discription {
+    font-size: 20px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Максимальное количество строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Обрезает переполнение */
+    text-overflow: ellipsis; /* Добавляет многоточие */
+}
+
+
+.rating-value {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rating-label {
+    font-size: 20px;
+}
+
+.card-location {
+    text-decoration:underline;
+    font-size: 18px;
+}
+
+.favorite-btn {
+    background-color: #6A0DAD; /* Фиолетовый фон */
+    color: #fff; /* Белый текст */
+    border: none; /* Убираем границы */
+    border-radius: 20px; /* Скруглённые углы */
+    padding: 8px 16px; /* Внутренние отступы для текста */
+    font-size: 1.2rem; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Отступ между иконкой и текстом */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 20px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+}
+
+.favorite-btn i {
+    color: #fff; /* Белая иконка сердечка */
+}
+
+.favorite-btn:hover {
+    background-color: #8c30d4; /* Темно-фиолетовый при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличенная тень */
+    transform: scale(1.1);
+}
+
 
 /* Убираем отступы у основного контейнера */
 main.container {
@@ -156,26 +208,36 @@ main.container {
     box-sizing: border-box;
 }
 
-/* Стили для кнопок */
+/* Стили для обычных кнопок */
 .btn-purple {
-    background-color: #8000FF !important;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
+    background-color: #6A0DAD; /* Фиолетовый фон */
+    color: #fff; /* Белый текст */
+    font-size: 18px;
+    border-radius: 25px;
     padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    white-space: nowrap;
-    margin-right: 10px;
 }
 
-/* Эффект при наведении на кнопки */
+/* Состояние при наведении */
 .btn-purple:hover {
-    background-color: #5a078e !important;
-    transform: scale(1.05);
+    background-color: #8c30d4; /* Более темный фиолетовый */
+    transform: scale(1.1);
 }
+
+/* Состояние при выборе */
+.btn-purple.selected {
+    /*border: 3px solid #00D1FF;*/
+    outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
+    box-shadow: 0 0 10px #00D1FF;
+    /*transform: scale(1.1);*/
+}
+
+/* Убираем эффект белого фона при клике */
+.btn-purple:active,
+.btn-purple:focus {
+    background-color: #6A0DAD !important; /* Цвет фона остаётся таким же */
+}
+
 
 /* Последняя кнопка без отступа */
 .btn-purple:last-child {
@@ -219,3 +281,4 @@ header .container {
         padding: 10px 0;
     }
 }
+
