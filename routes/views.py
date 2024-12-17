@@ -1,5 +1,18 @@
+import random
+
 from django.shortcuts import render
+
+from routes.models import Place
+
 
 # Create your views here.
 def route_page(request):
-    return render(request, 'routes/route_page.html')
+    places = Place.objects.all()
+
+    context = {
+        "title": "Route Page",
+        "places": places,
+        # "random": random.Random(),
+    }
+
+    return render(request, 'routes/route_page.html', context)
