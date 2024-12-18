@@ -1,7 +1,6 @@
-import random
-
+from datetime import datetime
 from django.shortcuts import render
-
+from routes.utils.route_generator import generate_route
 from routes.models import Place
 
 
@@ -32,11 +31,14 @@ def route_page(request):
         current_day = "Не указано"
 
     # Получаем места в зависимости от выбранных категорий
-    places = Place.objects.all()
+    user_preferences = f"""
+    Я хочу завтрак каждый день. Поездка на {days_count} дней
+    """
+    route = generate_route(user_preferences)
+
 
     context = {
         "title": "Ваш маршрут",
-        "places": places,
         "city": city,
         "days_count": days_count,
         "current_day_index": current_day_index,
@@ -46,19 +48,7 @@ def route_page(request):
         "return_date": return_date.strftime('%Y-%m-%d') if days_count else "Не указано",
         "person_count": person_count,
         "budget": budget,
-        "route": {
-            '1 день': [{'time': '08:00-09:00', 'activity': 'Завтрак', 'place': places.filter(id=8)[0]},
-                       {'time': '09:00-12:00', 'activity': 'Прогулки', 'place': places.filter(id=9)[0]},
-                       {'time': '12:00-14:00', 'activity': 'Обед', 'place': places.filter(id=10)[0]},
-                       {'time': '14:00-16:00', 'activity': 'Шоппинг', 'place': places.filter(id=11)[0]},
-                       {'time': '16:00-18:00', 'activity': 'Искусство', 'place': places.filter(id=12)[0]},
-                       {'time': '18:00-20:00', 'activity': 'Вкусно поесть', 'place': places.filter(id=13)[0]}],
-            '2 день': [{'time': '08:00-09:00', 'activity': 'Завтрак', 'tags': ['Еда']},
-                       {'time': '09:00-13:00', 'activity': 'Экскурсии', 'tags': ['Экскурсии']},
-                       {'time': '13:00-15:00', 'activity': 'Обед', 'tags': ['Еда']},
-                       {'time': '15:00-17:00', 'activity': 'Музеи', 'tags': ['Музеи']},
-                       {'time': '17:00-20:00', 'activity': 'Бар', 'tags': ['Бары']}]
-        },
+        "route": route
     }
 
     return render(request, 'routes/route_page.html', context)

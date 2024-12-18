@@ -122,11 +122,18 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = 'media/'
-
 MEDIA_ROOT = BASE_DIR / "media"
 
+YANDEX_OAUTH_TOKEN = "y0_AgAAAAAsA27kAATuwQAAAAEcoGZNAAAZ2bVqhehPe67on8fEWv3T9Av5hw"
+FOLDER_ID = "b1gspfv2o3g5um6ak5n5"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
