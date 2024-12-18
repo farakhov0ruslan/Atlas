@@ -67,11 +67,14 @@
                         {% for activity in day_activities %}
                             <div class="card border-0 shadow p-3 position-relative mb-4">
                                 <!-- Кнопка "В избранное" -->
-                                <button class="favorite-btn position-absolute top-0 end-0 mt-4 me-4">
-                                    <i class="fas fa-heart"></i> В избранное
+                                <button class="favorite-btn">
+                                    <i class="fas fa-heart"></i>
+                                    <span>В избранное</span>
                                 </button>
                                 <div class="row">
-                                    <h4 class="card-title">{{ activity.activity }} | {{ activity.place.name }}</h4>
+                                    <h4 class="card-title">{{ activity.activity }}
+                                        | {{ activity.place.name }}</h4>
+
                                 </div>
                                 <div class="row">
                                     <!-- Фото места -->
@@ -92,8 +95,9 @@
                                                 <h5 class="card-text"><strong>{{ activity.time }}</strong></h5>
                                             </div>
                                             {% if activity.place %}
-                                                <p class="card-location" >
-                                                    <i class="bi bi-geo-alt" style="color: #6A0DAD"></i> {{ activity.place.address }}
+                                                <p class="card-location">
+                                                    <i class="bi bi-geo-alt"
+                                                       style="color: #6A0DAD"></i> {{ activity.place.address }}
                                                 </p>
                                                 <div class="rating d-flex align-items-center mb-2">
                                                     <span class="text-warning"><i class="fas fa-star"
