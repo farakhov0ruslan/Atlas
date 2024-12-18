@@ -21,7 +21,7 @@ def survey_view(request):
         ]},
         {'title': 'Как вы видите вашу поездку? (выберите картинки)', 'type': 'images', 'data': [
             {'src': static('deps/images/survey/бары опросник.jpg'), 'alt': 'Бары'},
-            {'src': static('deps/images/survey/музеи опросник.jpg'), 'alt': 'Вкусно поесть'},
+            {'src': static('deps/images/survey/вкусно поесть опросник.jpg'), 'alt': 'Вкусно поесть'},
             {'src': static('deps/images/survey/достопримечательности опросник.jpg'), 'alt': 'Достопримечательности'},
             {'src': static('deps/images/survey/музеи опросник.jpg'), 'alt': 'Музеи'},
             {'src': static('deps/images/survey/музыка опросник.jpeg'), 'alt': 'Музыка'},
