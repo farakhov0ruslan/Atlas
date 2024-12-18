@@ -4,7 +4,6 @@ from routes.utils.route_generator import generate_route
 from routes.models import Place
 
 
-# Create your views here.
 def route_page(request):
     # Получаем данные из сессии
     city = request.session.get('city', 'Не указано')
