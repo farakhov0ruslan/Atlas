@@ -26,9 +26,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'routes.CustomUser'
+# Настройки сессий
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Сессии сохраняются в базе данных
+SESSION_COOKIE_NAME = 'sessionid'  # Имя cookie сессии
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Сессия не будет удаляться при закрытии браузера
 
+AUTH_USER_MODEL = 'routes.CustomUser'
 # Application definition
+
+CSRF_COOKIE_NAME = "csrftoken"  # Убедитесь, что это название соответствует тому, что вы используете
+CSRF_COOKIE_HTTPONLY = False    # Чтобы токен был доступен для JavaScript
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,6 +49,9 @@ INSTALLED_APPS = [
     'routes',
 ]
 
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,6 +62,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+LOGOUT_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'Atlas.urls'
 

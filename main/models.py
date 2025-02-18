@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Travel(models.Model):
     destination = models.CharField(max_length=100)
     start_date = models.DateField()
