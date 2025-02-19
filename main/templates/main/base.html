@@ -39,7 +39,8 @@
             <div class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                     <!-- Отображение имени пользователя и кнопки выхода -->
-                    <a href="{% url 'main:profile' %}" class="nav-item nav-link">
+                    <!-- <a href="{% url 'main:profile' %}" class="nav-item nav-link"> -->
+                    <a href="#" class="nav-item nav-link">
                         <i class="bi bi-person"></i> {{ user.username }}
                     </a>
                     <form method="post" action="{% url 'main:logout' %}" style="display: inline;">
@@ -52,18 +53,22 @@
                 {% else %}
                     <!-- Если пользователь не авторизован, отображаем кнопку "Аккаунт" -->
                     <a href="#" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#accountModal">
-                        <i class="bi bi-person"></i> АККАУНТ
+                        <i class="bi bi-person"></i> Аккаунт
                     </a>
                 {% endif %}
                 <!-- Прочие элементы меню -->
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-suitcase"></i> ЧЕМОДАН
+                <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
+                    <i class="bi bi-suitcase"></i> Чемодан
                 </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-geo-alt"></i> МОСКВА
+
+                <!-- Кнопка для выбора города -->
+                <a href="#" class="nav-item nav-link" aria-expanded="false">
+                    <i class="bi bi-geo-alt"></i>
+                    <span id="cityButtonText">Город</span> <!-- Место для отображения города -->
                 </a>
+
                 <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
+                    <i class="bi bi-question-circle"></i> Помощь
                 </a>
             </div>
         </div>
@@ -224,59 +229,123 @@
     });
 </script>
 <script>
-$(document).ready(function () {
-    $("#loginForm").on("submit", function (event) {
-        event.preventDefault();  // Отменяем стандартную отправку формы
+    $(document).ready(function () {
+        $("#loginForm").on("submit", function (event) {
+            event.preventDefault();  // Отменяем стандартную отправку формы
 
-        // Очищаем предыдущие ошибки
-        $("#emailError").html("");
-        $("#passwordError").html("");
-        $("#formErrors").html("");  // Очищаем сообщения о глобальных ошибках
+            // Очищаем предыдущие ошибки
+            $("#emailError").html("");
+            $("#passwordError").html("");
+            $("#formErrors").html("");  // Очищаем сообщения о глобальных ошибках
 
-        // Отправляем форму через AJAX
-        $.ajax({
-            url: $(this).attr('action'),  // URL для отправки
-            type: 'POST',
-            data: $(this).serialize(),  // Сериализуем форму
-            beforeSend: function (xhr, settings) {
-                xhr.setRequestHeader("X-CSRFToken", getCSRFToken());  // Добавляем CSRF токен
-            },
-            success: function (response) {
-                if (response.success) {
-                    window.location.href = response.redirect_url;  // Редирект на главную страницу
-                } else {
-                    // Показать ошибки, если есть
-                    if (response.errors) {
-                        for (const [field, message] of Object.entries(response.errors)) {
-                            $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
+            // Отправляем форму через AJAX
+            $.ajax({
+                url: $(this).attr('action'),  // URL для отправки
+                type: 'POST',
+                data: $(this).serialize(),  // Сериализуем форму
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", getCSRFToken());  // Добавляем CSRF токен
+                },
+                success: function (response) {
+                    if (response.success) {
+                        window.location.href = response.redirect_url;  // Редирект на главную страницу
+                    } else {
+                        // Показать ошибки, если есть
+                        if (response.errors) {
+                            for (const [field, message] of Object.entries(response.errors)) {
+                                $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
+                            }
                         }
                     }
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                    $("#formErrors").html("Произошла ошибка. Попробуйте снова.").show();  // Общая ошибка
                 }
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-                $("#formErrors").html("Произошла ошибка. Попробуйте снова.").show();  // Общая ошибка
+            });
+        });
+
+        // Получаем CSRF токен из cookie
+        function getCSRFToken() {
+            var name = 'csrftoken';
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
             }
+            return cookieValue;
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cityButtonText = document.getElementById("cityButtonText");
+
+        // Функция для обновления текста кнопки с городом
+        function updateCityText(cityName) {
+            cityButtonText.textContent = cityName;
+        }
+
+        // Проверяем, поддерживает ли браузер геолокацию
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    console.log("Геопозиция получена:", lat, lon); // Логирование координат
+
+                    // Используем сторонний сервис для получения города по координатам (например, OpenWeatherMap API)
+                    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`)
+                    // b1381f10950e14157c697db0fe47ba5e&lang=ru`)
+                        .then(response => {
+                            // Логируем ответ API, чтобы проверить, что именно мы получаем
+                            console.log("Ответ от API:", response);
+                            if (!response.ok) {
+                                throw new Error("Ошибка с запросом к API. Статус: " + response.status);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Данные из API:", data); // Логируем полученные данные
+                            if (data && data.name) {
+                                updateCityText(data.name); // Обновляем название города в кнопке
+                            } else {
+                                console.error("Не удалось извлечь название города.");
+                                updateCityText("Город"); // Если не удалось получить город, показываем "Город"
+                            }
+                        })
+                        .catch(err => {
+                            // Логируем более подробные ошибки
+                            console.error("Ошибка получения данных из API:", err);
+                            updateCityText("Город"); // Если ошибка API, показываем "Город"
+                        });
+                },
+                function (error) {
+                    console.error("Ошибка геолокации:", error);
+                    updateCityText("Город"); // Если ошибка геолокации, показываем "Город"
+                }
+            );
+        } else {
+            console.log("Геолокация не поддерживается этим браузером.");
+            updateCityText("Город"); // Если геолокация не поддерживается, показываем "Город"
+        }
+
+        // Обработчик для выбора города из выпадающего списка
+        const cityItems = document.querySelectorAll(".dropdown-item");
+        cityItems.forEach(item => {
+            item.addEventListener("click", function () {
+                const cityName = this.getAttribute("data-city");
+                updateCityText(cityName); // Обновляем город на кнопке
+            });
         });
     });
-
-    // Получаем CSRF токен из cookie
-    function getCSRFToken() {
-        var name = 'csrftoken';
-        var cookieValue = null;
-        if (document.cookie && document.cookie != '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-});
 </script>
 </body>
 

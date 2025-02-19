@@ -1,0 +1,46 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+{% block css %}
+    <title>Места</title>
+    <link rel="stylesheet" href="{% static 'deps/css/place_page.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/card_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+    <header class="bg-lime py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex justify-content-center flex-grow-1 gap-3">
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+                    <i class="fas fa-bus"></i> Трансфер
+                </a>
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+                    <i class="fas fa-bed"></i> Проживание
+                </a>
+                <a class="btn btn-purple text-white fw-bold nav-btn selected" href="">
+                    <i class="fas fa-landmark"></i> Места
+                </a>
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="{% url 'routes:route_page' %}">
+                    <i class="fas fa-route"></i> Маршрут
+                </a>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block footer %}
+    <script>
+
+        // Находим все кнопки с классом "nav-btn"
+        const navButtons = document.querySelectorAll('.nav-btn.btn-purple');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Убираем класс "selected" у всех кнопок
+                navButtons.forEach(btn => btn.classList.remove('selected'));
+                // Добавляем класс "selected" к нажатой кнопке
+                button.classList.toggle('selected');
+            });
+        });
+    </script>
+{% endblock %}
