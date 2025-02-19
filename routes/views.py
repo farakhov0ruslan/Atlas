@@ -2,6 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from routes.utils.route_generator import generate_route
 from routes.models import Place
+import json
 
 
 def route_page(request):
@@ -17,7 +18,8 @@ def route_page(request):
         departure_date = datetime.strptime(departure_date, '%Y-%m-%d')
         return_date = datetime.strptime(return_date, '%Y-%m-%d')
         days_count = (return_date - departure_date).days + 1  # Количество дней
-        days = [f"День {i + 1}" for i in range(days_count)]  # Формируем список "День 1", "День 2" и т.д.
+        days = [f"День {i + 1}" for i in
+                range(days_count)]  # Формируем список "День 1", "День 2" и т.д.
     except ValueError:
         days_count = 0
         days = []
@@ -30,12 +32,34 @@ def route_page(request):
         current_day = "Не указано"
 
     # Получаем места в зависимости от выбранных категорий
-    user_preferences = f"""
-    Я хочу завтрак каждый день. Поездка на {days_count} дней
-    """
-    route = generate_route(user_preferences)
 
+    # Проверяем, есть ли уже маршрут в сессии
+    route_json = request.session.get('route')
+    if route_json:
+        # Загружаем маршрут из сессии
+        try:
+            route = json.loads(route_json)
+        except json.JSONDecodeError:
+            route = None
+    else:
+        route = None
 
+    if not route:
+        user_preferences = f"""
+            Я хочу завтрак каждый день. Поездка на {days_count} дней
+            """
+        route = generate_route(user_preferences)
+        # Сохраняем маршрут в сессии как JSON
+        request.session['route'] = json.dumps(route)
+
+    for route_day in route:
+        for activity in route[route_day]:
+            if activity["place_id"]:
+                activity["place"] = Place.objects.get(id=activity["place_id"])
+            else:
+                activity["place"] = None
+    print(request.session)
+    print(route)
     context = {
         "title": "Ваш маршрут",
         "city": city,
