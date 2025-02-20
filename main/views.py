@@ -75,3 +75,61 @@ def login_view(request):
             return JsonResponse({"success": False, "errors": {"email": "Неверные данные для входа.", "password": "Неверные данные для входа."}})
 
     return render(request, 'main/index.html')
+
+
+def save_location_to_session(request):
+    """
+    Сохраняет геопозицию в сессии Django.
+    """
+    if request.method == "POST":
+        lat = request.POST.get("lat")
+        lon = request.POST.get("lon")
+
+        if lat and lon:
+            request.session["latitude"] = lat
+            request.session["longitude"] = lon
+            return JsonResponse({"success": True, "message": "Геопозиция сохранена в сессии."})
+
+    return JsonResponse({"success": False, "message": "Ошибка сохранения геопозиции."})
+
+
+@login_required
+def save_location_to_db(request):
+    """
+    Сохраняет геопозицию в БД для авторизованных пользователей.
+    """
+    if request.method == "POST":
+        lat = request.POST.get("lat")
+        lon = request.POST.get("lon")
+
+        if lat and lon:
+            request.user.latitude = lat
+            request.user.longitude = lon
+            request.user.save()
+            return JsonResponse({"success": True, "message": "Геопозиция обновлена в базе данных."})
+
+    return JsonResponse({"success": False, "message": "Ошибка обновления геопозиции."})
+
+
+def get_user_location(request):
+    """
+    Возвращает геолокацию пользователя (из БД, если авторизован, или из сессии).
+    """
+    if request.user.is_authenticated:
+        latitude = getattr(request.user, "latitude", None)
+        longitude = getattr(request.user, "longitude", None)
+
+        if latitude is not None and longitude is not None:
+            return JsonResponse({
+                "latitude": latitude,
+                "longitude": longitude
+            })
+
+    # Если пользователь не авторизован, пробуем взять из сессии
+    latitude = request.session.get("latitude")
+    longitude = request.session.get("longitude")
+
+    if latitude and longitude:
+        return JsonResponse({"latitude": latitude, "longitude": longitude})
+
+    return JsonResponse({"latitude": None, "longitude": None})

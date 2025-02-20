@@ -21,6 +21,9 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'  # Указываем, что для аутентификации будет использоваться email
     REQUIRED_FIELDS = ['username']  # username по-прежнему нужен, но его не будем использовать для входа
 
+    latitude = models.FloatField(null=True, blank=True, verbose_name="Широта")  # Добавляем поле широты
+    longitude = models.FloatField(null=True, blank=True, verbose_name="Долгота")
+
     def __str__(self):
         return self.email
 

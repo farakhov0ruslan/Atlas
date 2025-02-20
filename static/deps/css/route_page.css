@@ -259,3 +259,8 @@ header .container {
     }
 }
 
+/* Изменение цвета только иконки сердечка при добавлении в избранное */
+.favorite-btn i.favorited {
+    color: red !important; /* Делаем только иконку красной */
+    transition: color 0.3s ease-in-out;
+}

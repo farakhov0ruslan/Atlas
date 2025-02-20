@@ -287,66 +287,133 @@
     document.addEventListener("DOMContentLoaded", function () {
         const cityButtonText = document.getElementById("cityButtonText");
 
-        // Функция для обновления текста кнопки с городом
         function updateCityText(cityName) {
             cityButtonText.textContent = cityName;
         }
 
-        // Проверяем, поддерживает ли браузер геолокацию
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
+        function saveLocationToSession(lat, lon) {
+            if (sessionStorage.getItem("locationSaved") === "true") {
+                console.log("Геопозиция уже сохранена в сессии, пропускаем.");
+                return;
+            }
 
-                    console.log("Геопозиция получена:", lat, lon); // Логирование координат
-
-                    // Используем сторонний сервис для получения города по координатам (например, OpenWeatherMap API)
-                    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`)
-                    // b1381f10950e14157c697db0fe47ba5e&lang=ru`)
-                        .then(response => {
-                            // Логируем ответ API, чтобы проверить, что именно мы получаем
-                            console.log("Ответ от API:", response);
-                            if (!response.ok) {
-                                throw new Error("Ошибка с запросом к API. Статус: " + response.status);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log("Данные из API:", data); // Логируем полученные данные
-                            if (data && data.name) {
-                                updateCityText(data.name); // Обновляем название города в кнопке
-                            } else {
-                                console.error("Не удалось извлечь название города.");
-                                updateCityText("Город"); // Если не удалось получить город, показываем "Город"
-                            }
-                        })
-                        .catch(err => {
-                            // Логируем более подробные ошибки
-                            console.error("Ошибка получения данных из API:", err);
-                            updateCityText("Город"); // Если ошибка API, показываем "Город"
-                        });
+            fetch("{% url 'main:save_location_session' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": getCSRFToken(),
                 },
-                function (error) {
-                    console.error("Ошибка геолокации:", error);
-                    updateCityText("Город"); // Если ошибка геолокации, показываем "Город"
-                }
-            );
-        } else {
-            console.log("Геолокация не поддерживается этим браузером.");
-            updateCityText("Город"); // Если геолокация не поддерживается, показываем "Город"
+                body: `lat=${lat}&lon=${lon}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Геопозиция сохранена в сессии.");
+                        sessionStorage.setItem("locationSaved", "true"); // Флаг, что геопозиция сохранена
+                    }
+                });
         }
 
-        // Обработчик для выбора города из выпадающего списка
-        const cityItems = document.querySelectorAll(".dropdown-item");
-        cityItems.forEach(item => {
-            item.addEventListener("click", function () {
-                const cityName = this.getAttribute("data-city");
-                updateCityText(cityName); // Обновляем город на кнопке
-            });
-        });
+        function saveLocationToDB(lat, lon) {
+            if (sessionStorage.getItem("locationSavedDB") === "true") {
+                console.log("Геопозиция уже сохранена в БД, пропускаем.");
+                return;
+            }
+
+            fetch("{% url 'main:save_location_db' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": getCSRFToken(),
+                },
+                body: `lat=${lat}&lon=${lon}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Геопозиция обновлена в БД.");
+                        sessionStorage.setItem("locationSavedDB", "true"); // Флаг, что данные уже есть в БД
+                    }
+                });
+        }
+
+        function getCSRFToken() {
+            const name = "csrftoken";
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                const cookies = document.cookie.split(";");
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function fetchCity(lat, lon) {
+            let savedCity = sessionStorage.getItem("savedCity");
+
+            if (savedCity) {
+                console.log("Используем сохранённый город:", savedCity);
+                updateCityText(savedCity);
+                return; // Прерываем выполнение, если город уже сохранён
+            }
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b1381f10950e14157c697db0fe47ba5e&lang=ru`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Ответ от API:", data);
+
+                    if (data && data.name) {
+                        console.log("Обновляем название города:", data.name);
+                        updateCityText(data.name);
+
+                        // Сохраняем город в сессии
+                        sessionStorage.setItem("savedCity", data.name);
+                    } else {
+                        console.log("Не удалось получить название города");
+                        updateCityText("Город");
+                    }
+                })
+                .catch(err => {
+                    console.error("Ошибка получения данных из API:", err);
+                    updateCityText("Город");
+                });
+        }
+
+        // Проверяем, есть ли координаты в сессии или БД
+        fetch("{% url 'main:get_user_location' %}", {
+            method: "GET",
+            headers: {"X-Requested-With": "XMLHttpRequest"}
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.latitude && data.longitude) {
+                    console.log("Используем сохранённые координаты:", data.latitude, data.longitude);
+                    fetchCity(data.latitude, data.longitude);
+                } else {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            function (position) {
+                                console.log("Геопозиция получена через браузер.");
+                                fetchCity(position.coords.latitude, position.coords.longitude);
+                            },
+                            function () {
+                                updateCityText("Город");
+                            }
+                        );
+                    } else {
+                        updateCityText("Город");
+                    }
+                }
+            })
+            .catch(err => console.error("Ошибка проверки сессии или БД:", err));
     });
 </script>
+
 </body>
 
 
