@@ -197,6 +197,7 @@
         const departureDate = document.querySelector("input[name='departure_date']").value;
         const returnDate = document.querySelector("input[name='return_date']").value;
 
+        console.log(departureDate, returnDate)
         // Проверка на пустые поля
         if (!city || !personCount || !departureDate || !returnDate) {
             showCustomAlert("Пожалуйста, заполните все обязательные поля: Куда, Количество человек, Даты 'Туда' и 'Обратно'.");

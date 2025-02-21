@@ -14,10 +14,10 @@ def route_page(request):
     budget = request.session.get('budget', 'Не указано')
     selected_categories = request.session.get('selected_categories', [])
     selected_images = request.session.get('selected_images', [])
+    preferences = request.POST.get('preferences', '')
+    request.session['preferences'] = preferences
     # Получаем предпочтения из сессии по ключу 'preferences'
-    if request.method == "POST":
-        preferences = request.POST.get('preferences', '')
-        request.session['preferences'] = preferences
+
 
     print(request.session.items())
 
@@ -56,7 +56,7 @@ def route_page(request):
     if not route:
         print()
         user_preferences = f"""
-            Я хочу завтрак каждый день. Поездка на {days_count} дней
+            Я хочу чтобы было больше тегов{selected_images + selected_categories}. {preferences}. Поездка на {days_count} дней
             """
         route = generate_route(user_preferences)
         # Сохраняем маршрут в сессии как JSON

@@ -1,7 +1,5 @@
 from django.contrib import admin
 from django import forms
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from routes.models import Category, Place, WorkingHours, Route, Day, RouteCell, CustomUser
 
 admin.site.register(WorkingHours)

@@ -23,7 +23,7 @@
                 <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
                     <i class="fas fa-bed"></i> Проживание
                 </a>
-                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="{% url 'places:place_page' %}">
                     <i class="fas fa-landmark"></i> Места
                 </a>
                 <a class="btn btn-purple text-white fw-bold nav-btn selected" href="#">
@@ -115,7 +115,7 @@
                                                     </span>
                                                 </span>
                                                 </div>
-                                                <p class="card-discription">
+                                                <p class="card-description">
                                                     {{ activity.place.full_description|default:"Описание отсутствует" }}
                                                 </p>
                                             {% else %}
@@ -160,6 +160,16 @@
                 navButtons.forEach(btn => btn.classList.remove('selected'));
                 // Добавляем класс "selected" к нажатой кнопке
                 button.classList.toggle('selected');
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const heartIcon = button.querySelector('i'); // Находим иконку внутри кнопки
+                    heartIcon.classList.toggle('favorited'); // Переключаем класс у иконки
+                });
             });
         });
     </script>

@@ -29,6 +29,7 @@ urlpatterns = [
     path('survey/', survey_view, name='survey_combined'),
     path('survey/', include('survey.urls', namespace='survey')),
     path('routes/', include('routes.urls', namespace='routes')),
+    path('places/', include('places.urls')),
 ]
 
 if settings.DEBUG:

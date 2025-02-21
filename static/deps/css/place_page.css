@@ -259,8 +259,55 @@ header .container {
     }
 }
 
-/* Изменение цвета только иконки сердечка при добавлении в избранное */
-.favorite-btn i.favorited {
-    color: red !important; /* Делаем только иконку красной */
-    transition: color 0.3s ease-in-out;
+
+
+/* Стили для кнопок категорий */
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background-color: #6A0DAD;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.category-btn:hover {
+    background-color: #8c30d4;
+}
+
+.category-btn.selected {
+    background-color: #bdf31f;
+    color: black;
+    font-weight: bold;
+}
+
+.category-header {
+    display: flex;
+    justify-content: center;  /* Центрирует по горизонтали */
+    align-items: center;      /* Центрирует по вертикали */
+    text-align: center;       /* Центрирует текст */
+    border: 25px solid #00AEEF; /* Голубой контур */
+    border-radius: 10px; /* Скругленные углы */
+    width: fit-content; /* Размер под контент */
+    margin: 20px auto; /* Центрирование */
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: black;
+    background-color: #00AEEF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+/* Изменение цвета иконки при добавлении в избранное */
+.favorite-btn.favorited i {
+    color: red; /* Красный цвет для активного состояния */
+    transition: color 0.3s ease;
 }
