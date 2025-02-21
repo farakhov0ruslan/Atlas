@@ -3,13 +3,8 @@ from django.core.paginator import Paginator
 from django.templatetags.static import static
 
 def survey_view(request):
-    # Сохраняем данные из сессии
-    if request.method == "POST":
-        request.session['city'] = request.POST.get('city', 'Не указано')
-        request.session['person_count'] = request.POST.get('person_count', 'Не указано')
-        request.session['budget'] = request.POST.get('budget', 'Не указано')
-        request.session['departure_date'] = request.POST.get('departure_date', 'Не указано')
-        request.session['return_date'] = request.POST.get('return_date', 'Не указано')
+
+
 
     # Пример данных для страниц опроса
     pages_content = [

@@ -291,52 +291,6 @@
             cityButtonText.textContent = cityName;
         }
 
-        function saveLocationToSession(lat, lon) {
-            if (sessionStorage.getItem("locationSaved") === "true") {
-                console.log("Геопозиция уже сохранена в сессии, пропускаем.");
-                return;
-            }
-
-            fetch("{% url 'main:save_location_session' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "X-CSRFToken": getCSRFToken(),
-                },
-                body: `lat=${lat}&lon=${lon}`
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log("Геопозиция сохранена в сессии.");
-                        sessionStorage.setItem("locationSaved", "true"); // Флаг, что геопозиция сохранена
-                    }
-                });
-        }
-
-        function saveLocationToDB(lat, lon) {
-            if (sessionStorage.getItem("locationSavedDB") === "true") {
-                console.log("Геопозиция уже сохранена в БД, пропускаем.");
-                return;
-            }
-
-            fetch("{% url 'main:save_location_db' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "X-CSRFToken": getCSRFToken(),
-                },
-                body: `lat=${lat}&lon=${lon}`
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        console.log("Геопозиция обновлена в БД.");
-                        sessionStorage.setItem("locationSavedDB", "true"); // Флаг, что данные уже есть в БД
-                    }
-                });
-        }
-
         function getCSRFToken() {
             const name = "csrftoken";
             let cookieValue = null;
@@ -354,63 +308,74 @@
         }
 
         function fetchCity(lat, lon) {
-            let savedCity = sessionStorage.getItem("savedCity");
-
-            if (savedCity) {
-                console.log("Используем сохранённый город:", savedCity);
-                updateCityText(savedCity);
-                return; // Прерываем выполнение, если город уже сохранён
-            }
-
+            console.log("Отправляем запрос к API...");
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b1381f10950e14157c697db0fe47ba5e&lang=ru`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Ответ от API:", data);
-
                     if (data && data.name) {
-                        console.log("Обновляем название города:", data.name);
+                        console.log("Город получен:", data.name);
                         updateCityText(data.name);
 
-                        // Сохраняем город в сессии
+                        // Сохраняем город и координаты в sessionStorage
                         sessionStorage.setItem("savedCity", data.name);
+                        sessionStorage.setItem("lastLat", lat);
+                        sessionStorage.setItem("lastLon", lon);
                     } else {
                         console.log("Не удалось получить название города");
                         updateCityText("Город");
                     }
                 })
                 .catch(err => {
-                    console.error("Ошибка получения данных из API:", err);
+                    console.error("Ошибка запроса API:", err);
                     updateCityText("Город");
                 });
         }
 
-        // Проверяем, есть ли координаты в сессии или БД
-        fetch("{% url 'main:get_user_location' %}", {
-            method: "GET",
-            headers: {"X-Requested-With": "XMLHttpRequest"}
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.latitude && data.longitude) {
-                    console.log("Используем сохранённые координаты:", data.latitude, data.longitude);
-                    fetchCity(data.latitude, data.longitude);
-                } else {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(
-                            function (position) {
-                                console.log("Геопозиция получена через браузер.");
-                                fetchCity(position.coords.latitude, position.coords.longitude);
-                            },
-                            function () {
-                                updateCityText("Город");
-                            }
-                        );
-                    } else {
-                        updateCityText("Город");
-                    }
-                }
+        function checkAndFetchLocation(lat, lon) {
+            let lastLat = sessionStorage.getItem("lastLat");
+            let lastLon = sessionStorage.getItem("lastLon");
+            let savedCity = sessionStorage.getItem("savedCity");
+
+            if (savedCity && lastLat && lastLon && lastLat == lat && lastLon == lon) {
+                console.log("Город из sessionStorage:", savedCity);
+                updateCityText(savedCity);
+            } else {
+                console.log("Координаты изменились или нет сохраненного города, делаем запрос...");
+                fetchCity(lat, lon);
+            }
+        }
+
+        function getUserLocation() {
+            fetch("{% url 'main:get_user_location' %}", {
+                method: "GET",
+                headers: {"X-Requested-With": "XMLHttpRequest"}
             })
-            .catch(err => console.error("Ошибка проверки сессии или БД:", err));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.latitude && data.longitude) {
+                        console.log("Координаты из БД:", data.latitude, data.longitude);
+                        checkAndFetchLocation(data.latitude, data.longitude);
+                    } else {
+                        console.log("Координаты отсутствуют в БД, используем геолокацию браузера...");
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(
+                                function (position) {
+                                    console.log("Геопозиция получена через браузер.");
+                                    checkAndFetchLocation(position.coords.latitude, position.coords.longitude);
+                                },
+                                function () {
+                                    updateCityText("Город");
+                                }
+                            );
+                        } else {
+                            updateCityText("Город");
+                        }
+                    }
+                })
+                .catch(err => console.error("Ошибка проверки сессии или БД:", err));
+        }
+
+        getUserLocation();
     });
 </script>
 
