@@ -32,6 +32,7 @@ SESSION_COOKIE_NAME = 'sessionid'  # Имя cookie сессии
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Сессия не будет удаляться при закрытии браузера
 
 AUTH_USER_MODEL = 'routes.CustomUser'
+
 # Application definition
 
 CSRF_COOKIE_NAME = "csrftoken"  # Убедитесь, что это название соответствует тому, что вы используете
@@ -138,6 +139,15 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / "media"
 
+YANDEX_OAUTH_TOKEN = "y0_AgAAAAAsA27kAATuwQAAAAEcoGZNAAAZ2bVqhehPe67on8fEWv3T9Av5hw"
+FOLDER_ID = "b1gspfv2o3g5um6ak5n5"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

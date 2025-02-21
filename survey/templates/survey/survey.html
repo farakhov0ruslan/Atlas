@@ -3,81 +3,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Опрос</title>
-    <link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
+	<meta charset="UTF-8">
+	<title>Опрос</title>
+	<link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
 </head>
 <body class="page-{{ page_content.number }}">
-<div class="container">
-    <h1>{{ page_content.object_list.0.title }}</h1>
+	<div class="container">
+		<h1>{{ page_content.object_list.0.title }}</h1>
 
-    {% if page_content.object_list.0.type == 'buttons' %}
-        <div class="row">
-            <button class="btn-primary">Бары</button>
-            <button class="btn-primary">Музыка</button>
-            <button class="btn-primary">Шоппинг</button>
-            <button class="btn-primary">Экстрим</button>
-            <button class="btn-primary">Достопримечательности</button>
-            <button class="btn-primary">Искусство</button>
-            <button class="btn-primary">Музеи</button>
-            <button class="btn-primary">Гулять</button>
-            <button class="btn-primary">Инстаграмные места</button>
-            <button class="btn-primary">Экскурсии</button>
-            <button class="btn-primary">Выставки</button>
-            <button class="btn-primary">Вкусно поесть</button>
-        </div>
-    {% endif %}
+		{# Страница с кнопками #}
+		{% if page_content.object_list.0.type == 'buttons' %}
+			<form id="survey-form" method="post" action="?page={{ page_content.next_page_number }}">
+				{% csrf_token %}
+				<div class="row">
+					{% for category in page_content.object_list.0.data %}
+						<button type="button" class="btn-primary" data-value="{{ category }}">
+							{{ category }}
+						</button>
+					{% endfor %}
+				</div>
+				<input type="hidden" name="selected_categories" id="selected_categories">
+				<div class="pagination">
+					{% if page_content.number == 1 %}
+						<button class="next-btn" type="button"
+						        onclick="location.href='{% url 'main:index' %}'">◄ Назад
+						</button>
+					{% endif %}
+					<button class="next-btn" type="button" onclick="submitSurveyButtons()">Далее ►
+					</button>
+				</div>
+			</form>
+		{% endif %}
 
-    {% if page_content.object_list.0.type == 'images' %}
-        <div class="row">
-            {% for img in page_content.object_list.0.data %}
-                <img src="{{ img.src }}" alt="{{ img.alt }}" class="selectable-img">
-            {% endfor %}
-        </div>
-    {% endif %}
+		{# Страница с изображениями #}
+		{% if page_content.object_list.0.type == 'images' %}
+			<form id="survey-form" method="post" action="?page={{ page_content.next_page_number }}">
+				{% csrf_token %}
+				<div class="row">
+					{% for img in page_content.object_list.0.data %}
+						<img src="{{ img.src }}" alt="{{ img.alt }}" class="selectable-img"
+						     data-value="{{ img.alt }}">
+					{% endfor %}
+				</div>
+				<input type="hidden" name="selected_images" id="selected_images">
+				<div class="pagination">
+					{% if page_content.has_previous %}
+						<button class="next-btn" type="button"
+						        onclick="location.href='?page={{ page_content.previous_page_number }}'">
+							◄ Назад
+						</button>
+					{% endif %}
+					<button class="next-btn" type="button" onclick="submitSurveyImages()">Далее ►
+					</button>
+				</div>
+			</form>
+		{% endif %}
 
-    <div class="pagination">
-        <!-- Условие для кнопки "Назад" на первой странице -->
-        {% if page_content.number == 1 %}
-            <button class="next-btn" onclick="location.href='{% url 'main:index' %}'">
-                ◄ Назад
-            </button>
-        {% elif page_content.has_previous %}
-            <button class="next-btn" onclick="location.href='?page={{ page_content.previous_page_number }}'">
-                ◄ Назад
-            </button>
-        {% endif %}
+		{# Страница с пожеланиями (текст) #}
+		{% if page_content.object_list.0.type == 'text' %}
+			<form id="survey-form" method="post" action="{% url 'routes:route_page' %}">
+				{% csrf_token %}
+				<div class="row">
+					<textarea id="user_preferences" placeholder="Введите ваши пожелания" rows="5"
+					          cols="40"></textarea>
+					<input type="hidden" name="preferences" id="preferences_hidden">
+				</div>
+				<div class="pagination">
+					{% if page_content.has_previous %}
+						<button class="next-btn" type="button"
+						        onclick="location.href='?page={{ page_content.previous_page_number }}'">
+							◄ Назад
+						</button>
+					{% endif %}
+					<button class="next-btn" type="button" onclick="submitSurveyText()">Далее ►
+					</button>
+				</div>
+			</form>
+		{% endif %}
+	</div>
 
-        <!-- Кнопка "Далее" с условием для второй страницы -->
-        {% if page_content.number == 2 %}
-            <button class="next-btn" onclick="location.href='{% url 'routes:route_page' %}'">
-                Далее ►
-            </button>
-        {% elif page_content.has_next %}
-            <button class="next-btn" onclick="location.href='?page={{ page_content.next_page_number }}'">
-                Далее ►
-            </button>
-        {% endif %}
-    </div>
-</div>
-</body>
-<script>
-    // Находим все кнопки с классом btn-primary
-    const buttons = document.querySelectorAll('.btn-primary');
+	<script>
+        // Для страницы с кнопками (buttons)
+        function submitSurveyButtons() {
+            let selectedValues = [];
+            document.querySelectorAll('.btn-primary.selected').forEach(btn => {
+                selectedValues.push(btn.getAttribute('data-value'));
+            });
+            document.getElementById('selected_categories').value = JSON.stringify(selectedValues);
+            document.getElementById('survey-form').submit();
+        }
 
-    // Проходимся по каждой кнопке и добавляем обработчик событий
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Переключаем класс "selected" при клике
-            button.classList.toggle('selected');
+        // Для страницы с изображениями (images)
+        function submitSurveyImages() {
+            let selectedValues = [];
+            document.querySelectorAll('.selectable-img.selected').forEach(img => {
+                selectedValues.push(img.getAttribute('data-value'));
+            });
+            document.getElementById('selected_images').value = JSON.stringify(selectedValues);
+            document.getElementById('survey-form').submit();
+        }
+
+        // Для страницы с пожеланиями (text)
+        function submitSurveyText() {
+            const preferences = document.getElementById('user_preferences').value;
+            console.log(preferences);  // Выводим в консоль для проверки
+            document.getElementById('preferences_hidden').value = preferences;  // Записываем в скрытое поле
+            document.getElementById('survey-form').submit();
+        }
+
+        // Общая обработка для кнопок (buttons)
+        const buttons = document.querySelectorAll('.btn-primary');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('selected');
+            });
         });
-    });
-    // Выделение изображений
+
+        // Общая обработка для изображений (images)
         const images = document.querySelectorAll('.selectable-img');
         images.forEach(image => {
             image.addEventListener('click', () => {
                 image.classList.toggle('selected');
             });
         });
-</script>
+	</script>
+</body>
 </html>

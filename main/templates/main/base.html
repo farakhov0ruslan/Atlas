@@ -3,17 +3,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Атлас - Путешествия</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-          rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
-          rel="stylesheet">
-    <!-- Custom CSS -->
-    {% block css %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" href="{% static 'deps/images/icon_32.png' %}" sizes="32x32"
+	      type="image/png">
+
+	{% block title %}
+
+	{% endblock %}
+	<title>Атлас - Путешествия</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+	      rel="stylesheet">
+	<!-- Bootstrap Icons -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+	      rel="stylesheet">
+	<!-- Custom CSS -->
+	{% block css %}
 
     {% endblock %}
     <link rel="stylesheet" href="{% static "deps/css/style.css" %}">
@@ -60,15 +67,11 @@
                 <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
                     <i class="bi bi-suitcase"></i> Чемодан
                 </a>
-
-                <!-- Кнопка для выбора города -->
-                <a href="#" class="nav-item nav-link" aria-expanded="false">
-                    <i class="bi bi-geo-alt"></i>
-                    <span id="cityButtonText">Город</span> <!-- Место для отображения города -->
-                </a>
-
                 <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-question-circle"></i> Помощь
+                    <i class="bi bi-geo-alt"></i> МОСКВА
+                </a>
+                <a href="#" class="nav-item nav-link">
+                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
                 </a>
             </div>
         </div>
