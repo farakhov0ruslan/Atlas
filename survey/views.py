@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.templatetags.static import static
+import json
 
 def survey_view(request):
     if request.method == "POST":

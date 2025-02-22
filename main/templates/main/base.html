@@ -67,11 +67,14 @@
                 <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
                     <i class="bi bi-suitcase"></i> Чемодан
                 </a>
-                <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-geo-alt"></i> МОСКВА
+                <!-- Кнопка для выбора города -->
+                <a href="#" class="nav-item nav-link" aria-expanded="false">
+                    <i class="bi bi-geo-alt"></i>
+                    <span id="cityButtonText">Город</span> <!-- Место для отображения города -->
                 </a>
+
                 <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
+                    <i class="bi bi-question-circle"></i> Помощь
                 </a>
             </div>
         </div>
