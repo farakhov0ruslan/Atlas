@@ -24,14 +24,14 @@ SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
+
+AUTH_USER_MODEL = 'routes.CustomUser'
 
 # Настройки сессий
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Сессии сохраняются в базе данных
 SESSION_COOKIE_NAME = 'sessionid'  # Имя cookie сессии
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Сессия не будет удаляться при закрытии браузера
-
-AUTH_USER_MODEL = 'routes.CustomUser'
 
 # Application definition
 
@@ -93,10 +93,15 @@ WSGI_APPLICATION = 'Atlas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'davrr5cr_mysql',
+        'USER': 'davrr5cr_mysql',
+        'PASSWORD': 'Ruslan2005',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -148,8 +153,3 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

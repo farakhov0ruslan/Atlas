@@ -1,0 +1,159 @@
+
+.search-block {
+    display: flex;
+    background: white;
+    border: 2px solid #6200ea; /* Фиолетовая рамка */
+    border-radius: 15px;
+    padding: 15px;
+    gap: 15px;
+    position: relative; /* Для управления линиями */
+}
+
+/* Каждый элемент внутри блока */
+.search-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em;
+    position: relative; /* Для позиционирования линий */
+}
+
+/* Вертикальные линии между элементами */
+.search-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: -1em; /* Линия касается верхнего края */
+    right: 0; /* Расположение линии справа */
+    bottom: -1em; /* Линия касается нижнего края */
+    width: 2px; /* Толщина линии */
+    background-color: #6200ea; /* Цвет линии */
+    z-index: 1; /* Убедиться, что линия поверх содержимого */
+}
+
+.nav-link {
+    color: #000000;
+    font-weight: bold;
+}
+
+.bi {
+    font-size: 1.25rem;
+}
+
+/* Стили для кнопок и полей */
+
+.search-item button,
+.search-item input {
+    border: 2px solid #6200ea;
+    border-radius: 25px;
+    padding: 10px 5px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+
+.search-item label {
+    padding: 10px 5px;
+}
+
+input::placeholder {
+    text-align: center; /* Центрирование текста в placeholder */
+    font-weight: bold;
+}
+
+#cityInput {
+    border: 2px solid #6200ea;
+    border-radius: 25px;
+    padding: 10px 5px;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+input {
+    text-align: center; /* Центрируем текст внутри поля */
+}
+
+#budgetInput {
+    color: rgba(0, 0, 0, 0.7);
+    margin-right: 10px;
+    text-align: center;
+}
+
+#budgetInput::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Убираем стрелочки для числовых полей ввода */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Для Firefox */
+    appearance: none; /* Для других браузеров */
+}
+
+/* Адаптивность */
+@media (max-width: 800px) {
+    .search-block {
+        flex-direction: column;
+    }
+
+    .search-item {
+        width: 100%;
+    }
+
+    /* Горизонтальные линии для малых экранов */
+    .search-item:not(:last-child)::after {
+        height: 0px;
+    }
+
+    /* Горизонтальные линии */
+    .search-item + .search-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1em;
+        right: -1em;
+        height: 2px;
+        background-color: #6200ea;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-item {
+        width: 100%;
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #bdf31f; /* Новый цвет фона */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Логотип */
+.logo-link {
+    margin-right: 20px; /* Сдвиг логотипа правее */
+}
+
+.logo {
+    width: 120px; /* Ширина логотипа */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+/* Эффект при наведении на логотип */
+.logo:hover {
+    transform: scale(1.1); /* Увеличение логотипа при наведении */
+}
