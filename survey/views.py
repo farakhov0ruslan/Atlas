@@ -6,16 +6,9 @@ from django.templatetags.static import static
 
 def survey_view(request):
     if request.method == "POST":
-        if 'city' in request.POST:
-            request.session['city'] = request.POST.get('city', 'Не указано')
-        if 'person_count' in request.POST:
-            request.session['person_count'] = request.POST.get('person_count', 'Не указано')
-        if 'budget' in request.POST:
-            request.session['budget'] = request.POST.get('budget', 'Не указано')
-        if 'departure_date' in request.POST:
-            request.session['departure_date'] = request.POST.get('departure_date', 'Не указано')
-        if 'return_date' in request.POST:
-            request.session['return_date'] = request.POST.get('return_date', 'Не указано')
+        for field in ['city', 'person_count', 'budget', 'departure_date', 'return_date']:
+            if field in request.POST:
+                request.session[field] = request.POST[field]
         print(request.session.items())
         # Если пришёл POST с первой страницы (кнопки)
         selected_categories = request.POST.get('selected_categories')
@@ -25,6 +18,8 @@ def survey_view(request):
         selected_images = request.POST.get('selected_images')
         if selected_images:
             request.session['selected_images'] = json.loads(selected_images)
+
+        # С третьей страницы предпочтения, пользователь прийти не моэет
 
     pages_content = [
         {
