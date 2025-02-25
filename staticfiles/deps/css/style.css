@@ -1,0 +1,224 @@
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler:focus + .navbar-collapse .navbar-brand {
+    transform: translateX(-50px);
+}
+
+.nav-link:hover {
+    color: #8000FF;
+}
+
+body {
+    padding-top: 56px;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    margin-top: -56px;
+}
+
+.hero-text {
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    font-family: voga;
+}
+
+/* Search Panel */
+.search-panel {
+    background-color: #bdf31f;
+    padding: 2rem;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: -24px;
+}
+
+.search-panel h5 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.search-panel .form-label {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* White Background Containers */
+.search-panel .bg-white {
+    border-radius: 15px;
+    border: 2px solid #8000FF;
+    padding: 1rem !important;
+    height: 100%; /* Make all containers the same height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Remove margin between containers */
+.search-panel .col-md-4 {
+    padding-right: 0;
+}
+
+.search-panel .col-md-4:not(:last-child) {
+    margin-right: -2px; /* Overlap borders */
+}
+
+/* Button Styles */
+.btn-outline-primary,
+.btn-primary {
+    background-color: white;
+    color: #8000FF;
+    border: 2px solid #8000FF;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    height: 40px;
+    line-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary,
+.btn-outline-primary:hover,
+.btn-primary:hover {
+    background-color: #8000FF;
+    color: white;
+    border-color: #8000FF;
+}
+
+.btn-lg.btn-primary {
+    border-radius: 30px;
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    height: auto;
+}
+
+/* Form Controls */
+.form-control {
+    border: 2px solid #8000FF;
+    border-radius: 15px;
+    padding: 0.75rem;
+}
+
+/* Grid Layout */
+.search-panel .row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 1rem;
+}
+
+/* Destination Card */
+.destination-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.destination-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Header Icons */
+.header-icons {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.header-icons:hover {
+    color: #8000FF;
+}
+
+/* Button Groups */
+.d-flex.gap-2 {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 40vh;
+    }
+
+    .header-icons {
+        font-size: 0.8rem;
+    }
+
+    .search-panel {
+        padding: 1rem;
+    }
+
+    .btn-lg.btn-primary {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .search-panel .col-md-4 {
+        padding-right: 15px;
+        margin-right: 0;
+    }
+}
+
+/* Фон модального окна */
+.modal-content {
+    background-color: #8000FF; /* Фиолетовый */
+    color: #FFFFFF; /* Белый текст */
+}
+
+
+.modal-title {
+    text-align: center;
+}
+
+/* Стили кнопок */
+.modal-footer .btn {
+    background-color: #8BC34A; /* Зеленый фон */
+    color: #FFFFFF; /* Белый текст */
+    border: 2px solid #8000FF; /* Фиолетовая рамка */
+}
+
+/* Стили при наведении */
+.modal-footer .btn:hover {
+    background-color: #7CB342; /* Темно-зеленый фон при наведении */
+}
+
+/* Стили рамки кнопок */
+.modal-footer .btn-outline-secondary {
+    background-color: #56009e;
+    border: 2px solid #8BC34A;
+    color: #FFFFFF; /* Белый текст */
+}
+
+.modal-footer .btn-outline-secondary:hover {
+    background-color: #38007c; /* Фиолетовый при наведении */
+    color: #FFFFFF; /* Белый текст */
+}
+
+.text-primary {
+    color: #6200ea !important;
+}
