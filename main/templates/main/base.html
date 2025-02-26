@@ -65,9 +65,12 @@
                 {% endif %}
                 <!-- Прочие элементы меню -->
                 {% if request.session.route %}
-                    <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">Чемодан</a>
+                    <a href="{% url 'routes:route_page' %}" class="nav-item nav-link"><i class="bi bi-suitcase"></i>
+                        Чемодан
+                    </a>
                 {% else %}
-                    <span class="nav-item nav-link disabled">Чемодан</span>
+                    <span class="nav-item nav-link disabled"><i class="bi bi-suitcase"></i> Чемодан
+                </span>
                 {% endif %}
                 <!-- Кнопка для выбора города -->
                 <a href="#" class="nav-item nav-link" aria-expanded="false">
