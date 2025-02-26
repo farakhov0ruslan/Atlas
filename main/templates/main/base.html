@@ -86,38 +86,47 @@
     </div>
 </nav>
 <!-- Модальное окно для аккаунта -->
-<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-between">
                 <ul class="nav nav-tabs" id="accountTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
-                                type="button" role="tab" aria-controls="login" aria-selected="true">Вход
+                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                                data-bs-target="#login"
+                                type="button" role="tab" aria-controls="login"
+                                aria-selected="true">Вход
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register"
-                                type="button" role="tab" aria-controls="register" aria-selected="false">Регистрация
+                        <button class="nav-link" id="register-tab" data-bs-toggle="tab"
+                                data-bs-target="#register"
+                                type="button" role="tab" aria-controls="register"
+                                aria-selected="false">Регистрация
                         </button>
                     </li>
                 </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <div class="tab-content pt-3" id="accountTabContent">
-                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel"
+                         aria-labelledby="login-tab">
                         <form id="loginForm" method="post" action="{% url 'main:login' %}">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label for="loginEmail" class="form-label">Email адрес</label>
-                                <input type="email" class="form-control" name="email" placeholder="Введите email"
+                                <input type="email" class="form-control" name="email"
+                                       placeholder="Введите email"
                                        required>
-                                <div id="emailError" style="color:red;"></div>
+                                <div id="loginEmailError" style="color:red;"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label">Пароль</label>
-                                <input type="password" class="form-control" name="password" placeholder="Введите пароль"
+                                <input type="password" class="form-control" name="password"
+                                       placeholder="Введите пароль"
                                        required>
                                 <div id="passwordError" style="color:red;"></div>
                             </div>
@@ -125,22 +134,27 @@
                                 <button type="submit" class="btn btn-success">Войти</button>
                             </div>
                         </form>
-                        <div id="formErrors" style="color:red;"></div> <!-- Сообщения об ошибках на уровне формы -->
+                        <div id="formErrors" style="color:red;"></div>
+                        <!-- Сообщения об ошибках на уровне формы -->
                     </div>
-                    <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                    <div class="tab-pane fade" id="register" role="tabpanel"
+                         aria-labelledby="register-tab">
                         <form id="registerForm" method="post" action="{% url 'main:register' %}"
                               enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="mb-3">
-                                <label for="registerUsername" class="form-label">Имя пользователя</label>
-                                <input type="text" class="form-control" name="username"
+                                <label for="registerUsername" class="form-label">Имя
+                                    пользователя</label>
+                                <input type="text" class="form-control" name="name"
                                        placeholder="Введите имя пользователя" required>
                                 <div id="usernameError" style="color:red;"></div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="registerEmail" class="form-label">Email адрес</label>
-                                <input type="email" class="form-control" name="email" placeholder="Введите email"
+                                <label for="registerEmail" class="form-label">Email
+                                    адрес</label>
+                                <input type="email" class="form-control" name="email"
+                                       placeholder="Введите email"
                                        required>
                                 <div id="emailError" style="color:red;"></div>
                             </div>
@@ -153,18 +167,22 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="registerPassword2" class="form-label">Повторите пароль</label>
+                                <label for="registerPassword2" class="form-label">Повторите
+                                    пароль</label>
                                 <input type="password" class="form-control" name="password2"
                                        placeholder="Повторите пароль" required>
                                 <div id="password2Error" style="color:red;"></div>
                             </div>
 
                             <div class="text-end">
-                                <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+                                <button type="submit" class="btn btn-success">
+                                    Зарегистрироваться
+                                </button>
                             </div>
                         </form>
 
-                        <div id="formErrors" style="color:red;"></div> <!-- Сообщения об ошибках на уровне формы -->
+                        <div id="formErrors" style="color:red;"></div>
+                        <!-- Сообщения об ошибках на уровне формы -->
                     </div>
                 </div>
             </div>
@@ -302,6 +320,52 @@
             cityButtonText.textContent = cityName;
         }
 
+        function saveLocationToSession(lat, lon) {
+            if (sessionStorage.getItem("locationSaved") === "true") {
+                console.log("Геопозиция уже сохранена в сессии, пропускаем.");
+                return;
+            }
+
+            fetch("{% url 'main:save_location_session' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": getCSRFToken(),
+                },
+                body: `lat=${lat}&lon=${lon}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Геопозиция сохранена в сессии.");
+                        sessionStorage.setItem("locationSaved", "true"); // Флаг, что геопозиция сохранена
+                    }
+                });
+        }
+
+        function saveLocationToDB(lat, lon) {
+            if (sessionStorage.getItem("locationSavedDB") === "true") {
+                console.log("Геопозиция уже сохранена в БД, пропускаем.");
+                return;
+            }
+
+            fetch("{% url 'main:save_location_db' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": getCSRFToken(),
+                },
+                body: `lat=${lat}&lon=${lon}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Геопозиция обновлена в БД.");
+                        sessionStorage.setItem("locationSavedDB", "true"); // Флаг, что данные уже есть в БД
+                    }
+                });
+        }
+
         function getCSRFToken() {
             const name = "csrftoken";
             let cookieValue = null;
@@ -319,74 +383,63 @@
         }
 
         function fetchCity(lat, lon) {
-            console.log("Отправляем запрос к API...");
+            let savedCity = sessionStorage.getItem("savedCity");
+
+            if (savedCity) {
+                console.log("Используем сохранённый город:", savedCity);
+                updateCityText(savedCity);
+                return; // Прерываем выполнение, если город уже сохранён
+            }
+
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b1381f10950e14157c697db0fe47ba5e&lang=ru`)
                 .then(response => response.json())
                 .then(data => {
+                    console.log("Ответ от API:", data);
+
                     if (data && data.name) {
-                        console.log("Город получен:", data.name);
+                        console.log("Обновляем название города:", data.name);
                         updateCityText(data.name);
 
-                        // Сохраняем город и координаты в sessionStorage
+                        // Сохраняем город в сессии
                         sessionStorage.setItem("savedCity", data.name);
-                        sessionStorage.setItem("lastLat", lat);
-                        sessionStorage.setItem("lastLon", lon);
                     } else {
                         console.log("Не удалось получить название города");
                         updateCityText("Город");
                     }
                 })
                 .catch(err => {
-                    console.error("Ошибка запроса API:", err);
+                    console.error("Ошибка получения данных из API:", err);
                     updateCityText("Город");
                 });
         }
 
-        function checkAndFetchLocation(lat, lon) {
-            let lastLat = sessionStorage.getItem("lastLat");
-            let lastLon = sessionStorage.getItem("lastLon");
-            let savedCity = sessionStorage.getItem("savedCity");
-
-            if (savedCity && lastLat && lastLon && lastLat == lat && lastLon == lon) {
-                console.log("Город из sessionStorage:", savedCity);
-                updateCityText(savedCity);
-            } else {
-                console.log("Координаты изменились или нет сохраненного города, делаем запрос...");
-                fetchCity(lat, lon);
-            }
-        }
-
-        function getUserLocation() {
-            fetch("{% url 'main:get_user_location' %}", {
-                method: "GET",
-                headers: {"X-Requested-With": "XMLHttpRequest"}
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.latitude && data.longitude) {
-                        console.log("Координаты из БД:", data.latitude, data.longitude);
-                        checkAndFetchLocation(data.latitude, data.longitude);
+        // Проверяем, есть ли координаты в сессии или БД
+        fetch("{% url 'main:get_user_location' %}", {
+            method: "GET",
+            headers: {"X-Requested-With": "XMLHttpRequest"}
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.latitude && data.longitude) {
+                    console.log("Используем сохранённые координаты:", data.latitude, data.longitude);
+                    fetchCity(data.latitude, data.longitude);
+                } else {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            function (position) {
+                                console.log("Геопозиция получена через браузер.");
+                                fetchCity(position.coords.latitude, position.coords.longitude);
+                            },
+                            function () {
+                                updateCityText("Город");
+                            }
+                        );
                     } else {
-                        console.log("Координаты отсутствуют в БД, используем геолокацию браузера...");
-                        if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition(
-                                function (position) {
-                                    console.log("Геопозиция получена через браузер.");
-                                    checkAndFetchLocation(position.coords.latitude, position.coords.longitude);
-                                },
-                                function () {
-                                    updateCityText("Город");
-                                }
-                            );
-                        } else {
-                            updateCityText("Город");
-                        }
+                        updateCityText("Город");
                     }
-                })
-                .catch(err => console.error("Ошибка проверки сессии или БД:", err));
-        }
-
-        getUserLocation();
+                }
+            })
+            .catch(err => console.error("Ошибка проверки сессии или БД:", err));
     });
 </script>
 
