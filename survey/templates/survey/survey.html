@@ -64,8 +64,15 @@
 			<form id="survey-form" method="post" action="{% url 'routes:route_page' %}">
 				{% csrf_token %}
 				<div class="row">
-					<textarea id="user_preferences" placeholder="Введите ваши пожелания" rows="5"
-					          cols="40"></textarea>
+					<div class="form-floating mb-3">
+						<div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+  <textarea
+		  id="user_preferences"
+		  style="display: block; height: 165px; width: 894px; margin: 0 auto; resize: none;"
+		  placeholder="Введите ваши пожелания">
+  </textarea>
+						</div>
+					</div>
 					<input type="hidden" name="preferences" id="preferences_hidden">
 				</div>
 				<div class="pagination">
