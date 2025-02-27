@@ -82,7 +82,7 @@ input {
 }
 
 #budgetInput::placeholder {
-  color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 /* Убираем стрелочки для числовых полей ввода */
@@ -157,3 +157,35 @@ input[type="number"] {
 .logo:hover {
     transform: scale(1.1); /* Увеличение логотипа при наведении */
 }
+
+.modal-header{
+        background-color: #8000FF
+}
+
+.nav-tabs {
+    border-bottom: none !important; /* Убирает нижнюю границу у всех вкладок */
+}
+
+/* Цвет кнопок вкладок */
+.nav-tabs .nav-link {
+    color: #8BC34A; /* Цвет текста */
+    background-color: transparent; /* Фон по умолчанию */
+    border: none; /* Убираем рамку */
+}
+
+/* Цвет активной кнопки */
+.nav-tabs .nav-link.active {
+    color: white; /* Новый цвет текста для активной кнопки */
+    background-color: #8BC34A; /* Новый цвет фона */
+    border-radius: 5px; /* Скругление углов */
+    font-weight: bold;
+}
+
+.btn-success{
+    background-color: #8BC34A;
+}
+
+.btn-success:hover {
+    background-color: #7CB342; /* Темно-зеленый фон при наведении */
+}
+

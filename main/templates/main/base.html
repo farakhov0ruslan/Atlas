@@ -64,10 +64,14 @@
                     </a>
                 {% endif %}
                 <!-- Прочие элементы меню -->
-                <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
-                    <i class="bi bi-suitcase"></i> Чемодан
-                </a>
-
+                {% if request.session.route %}
+                    <a href="{% url 'routes:route_page' %}" class="nav-item nav-link"><i class="bi bi-suitcase"></i>
+                        Чемодан
+                    </a>
+                {% else %}
+                    <span class="nav-item nav-link disabled"><i class="bi bi-suitcase"></i> Чемодан
+                </span>
+                {% endif %}
                 <!-- Кнопка для выбора города -->
                 <a href="#" class="nav-item nav-link" aria-expanded="false">
                     <i class="bi bi-geo-alt"></i>
@@ -117,7 +121,7 @@
                                 <input type="email" class="form-control" name="email"
                                        placeholder="Введите email"
                                        required>
-                                <div id="emailError" style="color:red;"></div>
+                                <div id="loginEmailError" style="color:red;"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="loginPassword" class="form-label">Пароль</label>

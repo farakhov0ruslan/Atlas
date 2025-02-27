@@ -72,7 +72,7 @@ def login_view(request):
             return JsonResponse({"success": True, "redirect_url": '/'})  # Возвращаем JSON для успешного входа
         else:
             # Если аутентификация не прошла
-            return JsonResponse({"success": False, "errors": {"email": "Неверные данные для входа.", "password": "Неверные данные для входа."}})
+            return JsonResponse({"success": False, "errors": {"password": "Неверные данные для входа."}})
 
     return render(request, 'main/index.html')
 
