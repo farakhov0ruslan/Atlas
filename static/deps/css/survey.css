@@ -66,7 +66,7 @@ button:hover {
 }
 
 .btn-primary.selected {
-     outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
+    outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
     box-shadow: 0 0 10px #00D1FF; /* Дополнительный эффект свечения */
 }
 
@@ -117,4 +117,22 @@ button:hover {
 .selectable-img.selected {
     border: 3px solid #00D1FF;
     box-shadow: 0 0 10px #00D1FF;
+}
+
+
+.loading-logo {
+    width: 50px; /* Можно настроить размер логотипа */
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.5);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1.5);
+    }
 }

@@ -5,7 +5,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Опрос</title>
+
+	<!-- Подключите стили Bootstrap в <head> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	      rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
+
+	<link rel="icon" href="{% static 'deps/images/icon/icon_32.png' %}" sizes="32x32"
+	      type="image/png">
+
+
 </head>
 <body class="page-{{ page_content.number }}">
 	<div class="container">
@@ -68,9 +77,17 @@
 						<div style="max-width: 1000px; margin: 0 auto; text-align: center;">
   <textarea
 		  id="user_preferences"
-		  style="display: block; height: 165px; width: 894px; margin: 0 auto; resize: none;"
-		  placeholder="Введите ваши пожелания">
-  </textarea>
+		  style="
+      display: block;
+      width: 300%;
+
+      max-width: 1000px;
+      height: 165px;
+      margin: 0 auto;
+      resize: none;
+    "
+		  placeholder="Введите ваши пожелания"
+  ></textarea>
 						</div>
 					</div>
 					<input type="hidden" name="preferences" id="preferences_hidden">
@@ -88,6 +105,21 @@
 			</form>
 		{% endif %}
 	</div>
+
+	<!-- Модальное окно "Загрузка маршрута" -->
+	<div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel"
+	     aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content text-center">
+				<div class="modal-body">
+					<img src="{% static 'deps/images/icon/left icon.jpg' %}" alt="Логотип"
+					     class="loading-logo mb-3">
+					<p>Подождите, генерируется маршрут...</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<script>
         // Для страницы с кнопками (buttons)
@@ -113,9 +145,12 @@
         // Для страницы с пожеланиями (text)
         function submitSurveyText() {
             const preferences = document.getElementById('user_preferences').value;
-            console.log(preferences);  // Выводим в консоль для проверки
             document.getElementById('preferences_hidden').value = preferences;  // Записываем в скрытое поле
+            // Показываем модальное окно загрузки маршрута
+            let loadingModal = new bootstrap.Modal(document.getElementById('loadingModal'));
+            loadingModal.show();
             document.getElementById('survey-form').submit();
+
         }
 
         // Общая обработка для кнопок (buttons)
@@ -134,5 +169,7 @@
             });
         });
 	</script>
+	<!-- В конце body подключите Bootstrap JS перед вашими скриптами -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

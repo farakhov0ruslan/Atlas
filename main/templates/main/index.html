@@ -2,310 +2,370 @@
 {% load static %}
 
 {% block css %}
-    {# Здесь надо добавлять css стили#}
-    <style>
+	{# Здесь надо добавлять css стили#}
+	<style>
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
             url({% static "deps/images/фон_6.jpg" %}) center/cover no-repeat;
         }
-    </style>
+	</style>
 {% endblock %}
 
 
 
 {% block content %}
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-text">
-            <h1 class="display-4">Здесь рождаются самые крутые путешествия</h1>
-        </div>
-    </section>
+	<!-- Hero Section -->
+	<section class="hero-section">
+		<div class="hero-text">
+			<h1 class="display-4">Здесь рождаются самые крутые путешествия</h1>
+		</div>
+	</section>
 
-    <section class="search-panel py-4">
-        <div class="container">
-            <!-- Первый блок -->
-            <form method="post" id="travelForm" action="{% url 'survey:survey' %}">
-                {% csrf_token %}
-                <div class="search-block d-flex flex-wrap align-items-center mb-4">
-                    <!-- Куда -->
-                    <div class="search-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <select class="form-control" id="cityInput" name="city">
-                                <option value="Санкт-Петербург">Санкт-Петербург</option>
-                                <option value="Москва">Москва(В разработке)</option>
-                                <option value="Рязань">Рязань(В разработке)</option>
-                                <option value="Казань">Казань(В разработке)</option>
-                                <option value="Екатеринбург">Екатеринбург(В разработке)</option>
-                            </select>
-                        </div>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-outline-primary" id="cityInputBtn">
-                                Санкт-Петербург
-                            </button>
-                        </div>
-                    </div>
+	<section class="search-panel py-4">
+		<div class="container">
+			<!-- Первый блок -->
+			<form method="post" id="travelForm" action="{% url 'survey:survey' %}">
+				{% csrf_token %}
+				<div class="search-block d-flex flex-wrap align-items-center mb-4">
+					<!-- Куда -->
+					<div class="search-item">
+						<div class="d-flex align-items-center mb-3">
+							<select class="form-control" id="cityInput" name="city">
+								<option value="Санкт-Петербург">Санкт-Петербург</option>
+								<option value="Москва">Москва(В разработке)</option>
+								<option value="Рязань">Рязань(В разработке)</option>
+								<option value="Казань">Казань(В разработке)</option>
+								<option value="Екатеринбург">Екатеринбург(В разработке)</option>
+							</select>
+						</div>
+						<div class="d-flex gap-2">
+							<button type="button" class="btn btn-sm btn-outline-primary"
+							        id="cityInputBtn">
+								Санкт-Петербург
+							</button>
+						</div>
+					</div>
 
-                    <!-- Количество персон -->
-                    <div class="search-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <input
-                                    type="text"
-                                    class="form-control form-control-sm me-2"
-                                    id="personInput"
-                                    value="1 человек"
-                                    onfocus="clearInput()"
-                                    oninput="updatePersonCount()"
-                                    onblur="addPersonText()"
-                                    style="width: 150px; text-align: center;"
-                                    name="person_count"
-                            />
-                        </div>
-                        <button type="button" class="btn btn-outline-primary" id="personInputBtn">2 человека</button>
-                    </div>
+					<!-- Количество персон -->
+					<div class="search-item">
+						<div class="d-flex align-items-center mb-3">
+							<input
+									type="text"
+									class="form-control form-control-sm me-2"
+									id="personInput"
+									value="1 человек"
+									onfocus="clearInput()"
+									oninput="updatePersonCount()"
+									onblur="addPersonText()"
+									style="width: 150px; text-align: center;"
+									name="person_count"
+							/>
+						</div>
+						<button type="button" class="btn btn-outline-primary" id="personInputBtn">2
+							человека
+						</button>
+					</div>
 
 
-                    <!-- Бюджет -->
-                    <div class="search-item ">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="input-container" style="position: relative; width: 100%;">
-                                <input
-                                        type="number"
-                                        class="form-control form-control-sm me-2"
-                                        id="budgetInput"
-                                        placeholder="Бюджет"
-                                        min="0"
-                                        max="9999999999999"
-                                        name="budget"
-                                />
-                                <span class="currency-symbol"
-                                      style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);">₽</span>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-primary " id="budgetInputBtn">Не
-                            указывать
-                        </button>
-                    </div>
-                </div>
-                <!-- Второй блок -->
-                <div class="search-block d-flex flex-wrap">
-                    <!-- Когда -->
-                    <div class="search-item">
-                        <label class="form-label">Туда</label>
-                        <input type="date" class="form-control" name="departure_date" required>
-                    </div>
+					<!-- Бюджет -->
+					<div class="search-item ">
+						<div class="d-flex align-items-center mb-3">
+							<div class="input-container" style="position: relative; width: 100%;">
+								<input
+										type="number"
+										class="form-control form-control-sm me-2"
+										id="budgetInput"
+										placeholder="Бюджет"
+										min="0"
+										max="9999999999999"
+										name="budget"
+								/>
+								<span class="currency-symbol"
+								      style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);">₽</span>
+							</div>
+						</div>
+						<button type="button" class="btn btn-sm btn-outline-primary "
+						        id="budgetInputBtn">Не
+							указывать
+						</button>
+					</div>
+				</div>
+				<!-- Второй блок -->
+				<div class="search-block d-flex flex-wrap">
+					<!-- Когда -->
+					<div class="search-item">
+						<label class="form-label">Туда</label>
+						<input type="date" class="form-control" name="departure_date" required>
+					</div>
 
-                    <!-- Обратно -->
-                    <div class="search-item">
-                        <label class="form-label">Обратно</label>
-                        <input type="date" class="form-control" name="return_date" required>
-                    </div>
-                </div>
+					<!-- Обратно -->
+					<div class="search-item">
+						<label class="form-label">Обратно</label>
+						<input type="date" class="form-control" name="return_date" required>
+					</div>
+				</div>
 
-                <!-- Кнопка ПОЕХАЛИ для открытия модального окна -->
-                <div class="text-center mt-4">
-                    <button type="button" class="btn btn-primary btn-lg px-5" onclick="validateForm()">
-                        ПОЕХАЛИ!
-                    </button>
-                </div>
+				<!-- Кнопка ПОЕХАЛИ для открытия модального окна -->
+				<div class="text-center mt-4">
+					<button type="button" class="btn btn-primary btn-lg px-5"
+					        onclick="handleModalDisplay()">
+						ПОЕХАЛИ!
+					</button>
 
-                <!-- Модальное окно -->
-                <div class="modal fade" id="surveyModal" tabindex="-1" aria-labelledby="surveyModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="surveyModalLabel">Пройдите короткий опрос</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <p>Прежде чем вы увидите варианты путешествий - пройдите короткий опрос 🙏</p>
-                                <p>Так наша система сможет подобрать более подходящие варианты.</p>
-                            </div>
-                            <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Не
-                                    сейчас
-                                </button>
-                                <!-- Кнопка для отправки формы -->
-                                <button type="submit" form="travelForm" class="btn btn-primary">Пройти опрос</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
+				</div>
 
-    <!-- Destinations Section -->
-    <section class="container my-5">
-        <h3 class="mb-4">Подборки мест</h3>
-        <h5 class="text-primary mb-4">Хочу на север</h5>
+				<!-- Модальное окно -->
+				<div class="modal fade" id="surveyModal" tabindex="-1"
+				     aria-labelledby="surveyModalLabel"
+				     aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="surveyModalLabel">Пройдите короткий
+									опрос</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+								        aria-label="Close"></button>
+							</div>
+							<div class="modal-body text-center">
+								<p>Прежде чем вы увидите варианты путешествий - пройдите короткий
+									опрос 🙏</p>
+								<p>Так наша система сможет подобрать более подходящие варианты.</p>
+							</div>
+							<div class="modal-footer justify-content-center">
+								<button type="button" class="btn btn-outline-secondary"
+								        data-bs-dismiss="modal">Не
+									сейчас
+								</button>
+								<!-- Кнопка для отправки формы -->
+								<button type="submit" form="travelForm" class="btn btn-primary"
+								        onclick="validateForm()">
+									Пройти опрос
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Новый модальный блок для подтверждения выбора маршрута -->
+				<div class="modal fade" id="routeModal" tabindex="-1"
+				     aria-labelledby="routeModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="routeModalLabel">Подтверждение
+									маршрута</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+								        aria-label="Закрыть"></button>
+							</div>
+							<div class="modal-body text-center">
+								<p>Вы хотите перейти к маршруту с имеющимися предпочтениями или
+									пройти опрос заново?</p>
+							</div>
+							<div class="modal-footer justify-content-center">
+								<!-- Кнопка для перехода к маршруту -->
+								<button type="button" class="btn btn-outline-secondary"
+								        data-bs-dismiss="modal" onclick="goToRoute()">
+									Перейти к маршруту
+								</button>
+								<!-- Кнопка для повторного прохождения опроса -->
+								<button type="button" class="btn btn-primary"
+								        onclick="validateAndSurvey()">
+									Пройти опрос заново
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
-        <div class="row g-4">
-            <!-- Saint Petersburg -->
-            <div class="col-md-4">
-                <div class="card destination-card h-100">
-                    <img src={% static "deps/images/питер.jpg" %} class="card-img-top"
-                         alt="Санкт-Петербург">
-                    <div class="card-body">
-                        <h5 class="card-title">Санкт-Петербург</h5>
-                        <p class="card-text">Белая ночь спустилась как облако...</p>
-                    </div>
-                </div>
-            </div>
+			</form>
+		</div>
+	</section>
 
-            <!-- Arkhangelsk -->
-            <div class="col-md-4">
-                <div class="card destination-card h-100">
-                    <img src={% static "deps/images/архангельск.jpg" %} class="card-img-top"
-                         alt="Архангельск">
-                    <div class="card-body">
-                        <h5 class="card-title">Архангельск</h5>
-                        <p class="card-text">Здесь Ломоносов бродил</p>
-                    </div>
-                </div>
-            </div>
+	<!-- Destinations Section -->
+	<section class="container my-5">
+		<h3 class="mb-4">Подборки мест</h3>
+		<h5 class="text-primary mb-4">Хочу на север</h5>
 
-            <!-- Murmansk -->
-            <div class="col-md-4">
-                <div class="card destination-card h-100">
-                    <img src={% static "deps/images/мурманск.jpg" %} class="card-img-top"
-                         alt="Мурманск">
-                    <div class="card-body">
-                        <h5 class="card-title">Мурманск</h5>
-                        <p class="card-text">Едем кушать рыбу!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
- <!-- Кастомное модальное уведомление -->
-<div id="customAlert" class="custom-alert">
-    <div class="custom-alert-content">
-        <p id="customAlertMessage">Текст уведомления</p>
-        <button class="btn btn-primary" onclick="closeCustomAlert()">Закрыть</button>
-    </div>
-</div>
-    <!--Скрипт для корректного изменения поля количества человек -->
-    <script>
-        // Проверка всех полей перед отправкой формы
-    function validateForm() {
-        const city = document.getElementById("cityInput").value;
-        const personCount = document.getElementById("personInput").value;
-        const budget = document.getElementById("budgetInput").value;
-        const departureDate = document.querySelector("input[name='departure_date']").value;
-        const returnDate = document.querySelector("input[name='return_date']").value;
+		<div class="row g-4">
+			<!-- Saint Petersburg -->
+			<div class="col-md-4">
+				<div class="card destination-card h-100">
+					<img src={% static "deps/images/питер.jpg" %} class="card-img-top"
+					     alt="Санкт-Петербург">
+					<div class="card-body">
+						<h5 class="card-title">Санкт-Петербург</h5>
+						<p class="card-text">Белая ночь спустилась как облако...</p>
+					</div>
+				</div>
+			</div>
 
-        console.log(departureDate, returnDate)
-        // Проверка на пустые поля
-        if (!city || !personCount || !departureDate || !returnDate) {
-            showCustomAlert("Пожалуйста, заполните все обязательные поля: Куда, Количество человек, Даты 'Туда' и 'Обратно'.");
-            return; // Прерываем выполнение
-        }
+			<!-- Arkhangelsk -->
+			<div class="col-md-4">
+				<div class="card destination-card h-100">
+					<img src={% static "deps/images/архангельск.jpg" %} class="card-img-top"
+					     alt="Архангельск">
+					<div class="card-body">
+						<h5 class="card-title">Архангельск</h5>
+						<p class="card-text">Здесь Ломоносов бродил</p>
+					</div>
+				</div>
+			</div>
 
-        // Проверка на корректность дат
-        const departureDateObj = new Date(departureDate);
-        const returnDateObj = new Date(returnDate);
+			<!-- Murmansk -->
+			<div class="col-md-4">
+				<div class="card destination-card h-100">
+					<img src={% static "deps/images/мурманск.jpg" %} class="card-img-top"
+					     alt="Мурманск">
+					<div class="card-body">
+						<h5 class="card-title">Мурманск</h5>
+						<p class="card-text">Едем кушать рыбу!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Кастомное модальное уведомление -->
+	<div id="customAlert" class="custom-alert">
+		<div class="custom-alert-content">
+			<p id="customAlertMessage">Текст уведомления</p>
+			<button class="btn btn-primary" onclick="closeCustomAlert()">Закрыть</button>
+		</div>
+	</div>
+	<!--Скрипт для корректного изменения поля количества человек -->
+	<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Создаём экземпляры модальных окон один раз после загрузки DOM
+            const routeModalInstance = new bootstrap.Modal(document.getElementById('routeModal'));
+            const surveyModalInstance = new bootstrap.Modal(document.getElementById('surveyModal'));
 
-        if (returnDateObj < departureDateObj) {
-            showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
-            return; // Прерываем выполнение
-        }
+            // Функция для валидации полей формы
+            function validateFormFields() {
+                const city = document.getElementById("cityInput").value;
+                const personCount = document.getElementById("personInput").value;
+                const departureDate = document.querySelector("input[name='departure_date']").value;
+                const returnDate = document.querySelector("input[name='return_date']").value;
 
-        // Если все поля корректны, открываем модальное окно
-        let surveyModal = new bootstrap.Modal(document.getElementById('surveyModal'));
-        surveyModal.show();
-    }
+                if (!city || !personCount || !departureDate || !returnDate) {
+                    showCustomAlert("Пожалуйста, заполните все обязательные поля: Куда, Количество человек, Даты 'Туда' и 'Обратно'.");
+                    return false;
+                }
 
-        // Функция для очистки текста при фокусе на поле
-        function clearInput() {
-            let personInput = document.getElementById("personInput");
+                const departureDateObj = new Date(departureDate);
+                const returnDateObj = new Date(returnDate);
+                if (returnDateObj < departureDateObj) {
+                    showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
+                    return false;
+                }
+                return true;
+            }
 
-            // Убираем все, кроме цифры и текста "человек" или "человека"
-            if (/^\d+ человек(а)?$/.test(personInput.value)) {
+            // Функция для показа модального окна (определяется по наличию маршрута в сессии)
+            function handleModalDisplay() {
+                // Если в сессии есть маршрут, показываем модальное окно с выбором
+                const routeExists = {% if request.session.route %} true {% else %}
+                    false {% endif %};
+                if (routeExists) {
+                    routeModalInstance.show();
+                } else {
+                    surveyModalInstance.show();
+                }
+            }
+
+            // Функция для прямого перехода к маршруту (без валидации)
+            function goToRoute() {
+                window.location.href = "{% url 'routes:route_page' %}";
+            }
+
+            // Функция для прохождения опроса заново (с валидацией)
+            function validateAndSurvey() {
+                if (validateFormFields()) {
+                      document.getElementById('travelForm').submit();
+                } else {
+                    // Если данные не прошли валидацию, закрываем все модальные окна
+                    routeModalInstance.hide();
+                    surveyModalInstance.hide();
+                }
+            }
+
+            // Функция для очистки текста при фокусе на поле "Количество человек"
+            function clearInput() {
+                let personInput = document.getElementById("personInput");
+                // Убираем всё, кроме цифры и текста "человек" или "человека"
+                if (/^\d+ человек(а)?$/.test(personInput.value)) {
+                    personInput.value = personInput.value.replace(/\D/g, '');
+                }
+            }
+
+            // Функция для обновления значения поля, оставляя только цифры
+            function updatePersonCount() {
+                let personInput = document.getElementById("personInput");
                 personInput.value = personInput.value.replace(/\D/g, '');
             }
-        }
 
-        // Функция для обновления значения с правильным окончанием
-        function updatePersonCount() {
-            let personInput = document.getElementById("personInput");
-
-            // Оставляем только цифры
-            personInput.value = personInput.value.replace(/\D/g, '');
-
-
-        }
-
-        // Функция для добавления текста "человек"
-        function addPersonText() {
-            let personInput = document.getElementById("personInput");
-
-            // Получаем число из value
-            let count = parseInt(personInput.value) || 1;
-
-            // Если введено 1, то пишем "человек", иначе "человека"
-            if (count === 1 || count >= 5) {
-                personInput.value = count + " человек";
-            } else {
-                personInput.value = count + " человека";
+            // Функция для добавления текста "человек" с правильным окончанием
+            function addPersonText() {
+                let personInput = document.getElementById("personInput");
+                let count = parseInt(personInput.value) || 1;
+                if (count === 1 || count >= 5) {
+                    personInput.value = count + " человек";
+                } else {
+                    personInput.value = count + " человека";
+                }
             }
-        }
-    </script>
-    <!--Скрипт для автозаполнения кнопок -->
-    <script>
-        document.getElementById('cityInputBtn').addEventListener('click', function () {
-            document.getElementById('cityInput').value = document.getElementById('cityInputBtn').innerText;  // Обновляем поле ввода
-        });
 
+            // Привязка событий к кнопкам автозаполнения
+            document.getElementById('cityInputBtn').addEventListener('click', function () {
+                document.getElementById('cityInput').value = document.getElementById('cityInputBtn').innerText;
+            });
 
-        document.getElementById('budgetInputBtn').addEventListener('click', function () {
-            document.getElementById('budgetInput').value = '';
-            document.getElementById('budgetInput').placeholder = document.getElementById('budgetInputBtn').innerText;  // Обновляем поле ввода
-        });
+            document.getElementById('budgetInputBtn').addEventListener('click', function () {
+                document.getElementById('budgetInput').value = '';
+                document.getElementById('budgetInput').placeholder = document.getElementById('budgetInputBtn').innerText;
+            });
 
-        document.getElementById('personInputBtn').addEventListener('click', function () {
-            document.getElementById('personInput').value = document.getElementById('personInputBtn').innerText;  // Обновляем поле ввода
-        });
-        document.addEventListener("DOMContentLoaded", function () {
-        const departureDateInput = document.querySelector("input[name='departure_date']");
-        const returnDateInput = document.querySelector("input[name='return_date']");
+            document.getElementById('personInputBtn').addEventListener('click', function () {
+                document.getElementById('personInput').value = document.getElementById('personInputBtn').innerText;
+            });
 
-
-    });
-    </script>
-    <script>
-    // Функция для показа кастомного уведомления
-    function showCustomAlert(message) {
-        document.getElementById("customAlertMessage").innerText = message;
-        document.getElementById("customAlert").style.display = "flex";
-    }
-
-    // Функция для закрытия уведомления
-    function closeCustomAlert() {
-        document.getElementById("customAlert").style.display = "none";
-    }
-
-    // Проверка дат с кастомным уведомлением
-    document.addEventListener("DOMContentLoaded", function () {
-        const departureDateInput = document.querySelector("input[name='departure_date']");
-        const returnDateInput = document.querySelector("input[name='return_date']");
-
-        departureDateInput.addEventListener("change", validateDates);
-        returnDateInput.addEventListener("change", validateDates);
-
-        function validateDates() {
-            const departureDate = new Date(departureDateInput.value);
-            const returnDate = new Date(returnDateInput.value);
-
-            if (returnDate < departureDate) {
-                showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
-                returnDateInput.value = ""; // Очищаем поле
+            // Функция для показа кастомного уведомления
+            function showCustomAlert(message) {
+                document.getElementById("customAlertMessage").innerText = message;
+                document.getElementById("customAlert").style.display = "flex";
             }
-        }
-    });
-</script>
+
+            // Функция для закрытия кастомного уведомления
+            function closeCustomAlert() {
+                document.getElementById("customAlert").style.display = "none";
+            }
+
+            // Проверка дат с кастомным уведомлением
+            const departureDateInput = document.querySelector("input[name='departure_date']");
+            const returnDateInput = document.querySelector("input[name='return_date']");
+
+            departureDateInput.addEventListener("change", validateDates);
+            returnDateInput.addEventListener("change", validateDates);
+
+            function validateDates() {
+                const departureDate = new Date(departureDateInput.value);
+                const returnDate = new Date(returnDateInput.value);
+                if (returnDate < departureDate) {
+                    showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
+                    returnDateInput.value = ""; // Очищаем поле
+                }
+            }
+
+            // Экспорт функций для использования в inline-атрибутах (onclick и т.п.)
+            window.handleModalDisplay = handleModalDisplay;
+            window.goToRoute = goToRoute;
+            window.validateAndSurvey = validateAndSurvey;
+            window.clearInput = clearInput;
+            window.updatePersonCount = updatePersonCount;
+            window.addPersonText = addPersonText;
+            window.showCustomAlert = showCustomAlert;
+            window.closeCustomAlert = closeCustomAlert;
+        });
+	</script>
+
 {% endblock %}
 
 
