@@ -19,8 +19,6 @@ def survey_view(request):
         if selected_images:
             request.session['selected_images'] = json.loads(selected_images)
 
-        # С третьей страницы предпочтения, пользователь прийти не моэет
-
     pages_content = [
         {
             'title': 'Выберите наиболее интересные категории мест или активностей, которые вы хотите включить в план поездки',
@@ -50,6 +48,7 @@ def survey_view(request):
         }
     ]
 
+    # Пагинация
     paginator = Paginator(pages_content, 1)
     page_number = request.GET.get('page', 1)
     page_content = paginator.get_page(page_number)
