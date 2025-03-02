@@ -3,39 +3,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Опрос</title>
-    <link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
+	<meta charset="UTF-8">
+	<title>Опрос</title>
+	<link rel="stylesheet" href="{% static 'deps/css/survey.css' %}">
 </head>
-<body>
-<div class="container">
-    <h1>Выберите наиболее интересные категории мест или активностей, которые вы хотите включить в план поездки</h1>
-    <div class="row">
-        <button class="btn-primary col-md-4">Бары</button>
-        <button class="btn-primary col-md-4">Музыка</button>
-        <button class="btn-primary col-md-4">Шоппинг</button>
-        <button class="btn-primary col-md-4">Экстрим</button>
-        <button class="btn-primary col-md-4">Достопримечательности</button>
-        <button class="btn-primary col-md-4">Искусство</button>
-        <button class="btn-primary col-md-4">Музеи</button>
-        <button class="btn-primary col-md-4">Гулять</button>
-        <button class="btn-primary col-md-4">Инстаграмные места</button>
-        <button class="btn-primary col-md-4">Экскурсии</button>
-        <button class="btn-primary col-md-4">Вкусно поесть</button>
-        <button class="next-btn col-md-4" onclick="location.href='{% url 'survey:survey_second' %}'">Далее ➤</button>
-    </div>
-</div>
-</body>
-<script>
-    // Находим все кнопки с классом btn-primary
-    const buttons = document.querySelectorAll('.btn-primary');
+<body class="page-{{ page_content.number }}">
+	<div class="container">
+		<h1>{{ page_content.object_list.0.title }}</h1>
 
-    // Проходимся по каждой кнопке и добавляем обработчик событий
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Переключаем класс "selected" при клике
-            button.classList.toggle('selected');
+		{# Страница с кнопками #}
+		{% if page_content.object_list.0.type == 'buttons' %}
+			<form id="survey-form" method="post" action="?page={{ page_content.next_page_number }}">
+				{% csrf_token %}
+				<div class="row">
+					{% for category in page_content.object_list.0.data %}
+						<button type="button" class="btn-primary" data-value="{{ category }}">
+							{{ category }}
+						</button>
+					{% endfor %}
+				</div>
+				<input type="hidden" name="selected_categories" id="selected_categories">
+				<div class="pagination">
+					{% if page_content.number == 1 %}
+						<button class="next-btn" type="button"
+						        onclick="location.href='{% url 'main:index' %}'">◄ Назад
+						</button>
+					{% endif %}
+					<button class="next-btn" type="button" onclick="submitSurveyButtons()">Далее ►
+					</button>
+				</div>
+			</form>
+		{% endif %}
+
+		{# Страница с изображениями #}
+		{% if page_content.object_list.0.type == 'images' %}
+			<form id="survey-form" method="post" action="?page={{ page_content.next_page_number }}">
+				{% csrf_token %}
+				<div class="row">
+					{% for img in page_content.object_list.0.data %}
+						<img src="{{ img.src }}" alt="{{ img.alt }}" class="selectable-img"
+						     data-value="{{ img.alt }}">
+					{% endfor %}
+				</div>
+				<input type="hidden" name="selected_images" id="selected_images">
+				<div class="pagination">
+					{% if page_content.has_previous %}
+						<button class="next-btn" type="button"
+						        onclick="location.href='?page={{ page_content.previous_page_number }}'">
+							◄ Назад
+						</button>
+					{% endif %}
+					<button class="next-btn" type="button" onclick="submitSurveyImages()">Далее ►
+					</button>
+				</div>
+			</form>
+		{% endif %}
+
+		{# Страница с пожеланиями (текст) #}
+		{% if page_content.object_list.0.type == 'text' %}
+			<form id="survey-form" method="post" action="{% url 'routes:route_page' %}">
+				{% csrf_token %}
+				<div class="row">
+					<div class="form-floating mb-3">
+						<div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+  <textarea
+		  id="user_preferences"
+		  style="display: block; height: 165px; width: 894px; margin: 0 auto; resize: none;"
+		  placeholder="Введите ваши пожелания">
+  </textarea>
+						</div>
+					</div>
+					<input type="hidden" name="preferences" id="preferences_hidden">
+				</div>
+				<div class="pagination">
+					{% if page_content.has_previous %}
+						<button class="next-btn" type="button"
+						        onclick="location.href='?page={{ page_content.previous_page_number }}'">
+							◄ Назад
+						</button>
+					{% endif %}
+					<button class="next-btn" type="button" onclick="submitSurveyText()">Далее ►
+					</button>
+				</div>
+			</form>
+		{% endif %}
+	</div>
+
+	<script>
+        // Для страницы с кнопками (buttons)
+        function submitSurveyButtons() {
+            let selectedValues = [];
+            document.querySelectorAll('.btn-primary.selected').forEach(btn => {
+                selectedValues.push(btn.getAttribute('data-value'));
+            });
+            document.getElementById('selected_categories').value = JSON.stringify(selectedValues);
+            document.getElementById('survey-form').submit();
+        }
+
+        // Для страницы с изображениями (images)
+        function submitSurveyImages() {
+            let selectedValues = [];
+            document.querySelectorAll('.selectable-img.selected').forEach(img => {
+                selectedValues.push(img.getAttribute('data-value'));
+            });
+            document.getElementById('selected_images').value = JSON.stringify(selectedValues);
+            document.getElementById('survey-form').submit();
+        }
+
+        // Для страницы с пожеланиями (text)
+        function submitSurveyText() {
+            const preferences = document.getElementById('user_preferences').value;
+            console.log(preferences);  // Выводим в консоль для проверки
+            document.getElementById('preferences_hidden').value = preferences;  // Записываем в скрытое поле
+            document.getElementById('survey-form').submit();
+        }
+
+        // Общая обработка для кнопок (buttons)
+        const buttons = document.querySelectorAll('.btn-primary');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('selected');
+            });
         });
-    });
-</script>
+
+        // Общая обработка для изображений (images)
+        const images = document.querySelectorAll('.selectable-img');
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                image.classList.toggle('selected');
+            });
+        });
+	</script>
+</body>
 </html>

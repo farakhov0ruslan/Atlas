@@ -19,16 +19,23 @@ from django.urls import path, include
 
 from django.conf.urls.static import static
 from Atlas import settings
+from django.urls import path
+from survey.views import survey_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace="main")),
-    path('survey/', include('survey.urls', namespace='survey'))
+    path('survey/', survey_view, name='survey_combined'),
+    path('survey/', include('survey.urls', namespace='survey')),
+    path('routes/', include('routes.urls', namespace='routes')),
+    path('places/', include('places.urls')),
 ]
 
 if settings.DEBUG:
-    urlpatterns += [
-        path('__debug__/', include("debug_toolbar.urls"))
-    ]
+    # urlpatterns += [
+    #     path('__debug__/', include("debug_toolbar.urls"))
+    # ]
 
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

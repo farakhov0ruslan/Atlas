@@ -1,0 +1,266 @@
+/* Основные стили */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
+}
+
+/* Общий фон */
+.bg-lime {
+    background-color: #bdf31f !important; /* Ярко-зеленый фон */
+}
+
+.py-3 {
+    background-color: #FFFFFF !important;
+}
+
+.bg-lime.py-3 {
+    padding-bottom: 0 !important;
+    padding-top: 1.6rem !important;
+}
+
+/* Уменьшение отступа сверху */
+.container-fluid.my-4 {
+    margin-top: 0 !important; /* Уменьшили отступ сверху */
+}
+
+
+/* Контейнер для дней и маршрутов */
+.route-day-container {
+    position: relative; /* Родительский контейнер для позиционирования */
+    display: flex;
+    justify-content: center; /* Центрирование основного блока */
+    align-items: center;
+    width: 100%;
+    margin: 20px auto; /* Центрирование */
+    box-sizing: border-box;
+}
+
+/* Контейнер для дней и маршрутов */
+.route-day-container {
+    display: flex;
+    justify-content: center; /* Центрирование основного блока */
+    align-items: center;
+    gap: 20px; /* Отступы между стрелками и центральным блоком */
+    margin: 20px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Центральный блок (День или Маршрут) */
+.route-day-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px; /* Минимальная ширина */
+    padding: 10px 20px;
+    background-color: #bdf31f; /* Зеленый фон */
+    border-radius: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    text-align: center;
+}
+
+/* Кнопка-стрелка слева и справа */
+.route-day-btn-arrow {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #bdf31f;
+    border: 3px solid #bdf31f;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    flex-shrink: 0; /* Предотвращаем сжатие стрелок */
+}
+
+/* Эффект при наведении */
+.route-day-btn-arrow:hover {
+    background-color: #bdf31f;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Текст внутри блоков */
+.route-day-btn span {
+    flex: 1; /* Текст занимает оставшееся пространство */
+    text-align: left; /* Текст выравнивается слева */
+    color: #333; /* Цвет текста */
+    font-size: 20px; /* Размер шрифта */
+    text-transform: uppercase; /* Верхний регистр */
+}
+
+
+/* Убираем отступы у основного контейнера */
+main.container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Стили для обычных кнопок */
+.btn-purple {
+    background-color: #6A0DAD; /* Фиолетовый фон */
+    color: #fff; /* Белый текст */
+    font-size: 18px;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+/* Состояние при наведении */
+.btn-purple:hover {
+    background-color: #8c30d4; /* Более темный фиолетовый */
+    transform: scale(1.1);
+}
+
+/* Состояние при выборе */
+.btn-purple.selected {
+    /*border: 3px solid #00D1FF;*/
+    outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
+    box-shadow: 0 0 10px #00D1FF;
+    /*transform: scale(1.1);*/
+}
+
+/* Убираем эффект белого фона при клике */
+.btn-purple:active,
+.btn-purple:focus {
+    background-color: #6A0DAD !important; /* Цвет фона остаётся таким же */
+}
+
+
+/* Последняя кнопка без отступа */
+.btn-purple:last-child {
+    margin-right: 0;
+}
+
+/* Контейнер для логотипа и кнопок */
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.favorite-btn {
+    position: relative; /* Сбрасываем абсолютное позиционирование */
+    background-color: #6A0DAD; /* Фиолетовый фон */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: 15px; /* Отступ сверху от последнего элемента */
+    align-self: flex-end; /* Выравниваем кнопку справа */
+    transition: all 0.3s ease;
+}
+
+/* Стили для иконки */
+.favorite-btn i {
+    font-size: 18px;
+}
+
+/* Обновляем стили карточки */
+.card {
+    display: flex;
+    flex-direction: column; /* Элементы карточки идут вертикально */
+    justify-content: space-between; /* Равномерное распределение */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    margin-top: 30px; /* Отступ для заголовка */
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 768px) {
+     .route-day-btn {
+        font-size: 14px; /* Уменьшаем размер шрифта */
+        padding: 8px 15px; /* Уменьшаем отступы */
+        min-width: 150px; /* Сужаем минимальную ширину */
+        max-width: 200px; /* Ограничиваем максимальную ширину */
+    }
+
+    .route-day-btn-arrow {
+        width: 40px; /* Сужаем стрелки */
+        height: 40px;
+        font-size: 12px; /* Уменьшаем размер стрелки */
+    }
+    header .container {
+        flex-direction: column; /* Элементы располагаются вертикально */
+        align-items: center; /* Центрирование по горизонтали */
+    }
+
+    header .container .d-flex {
+        flex-direction: column; /* Вертикальное расположение кнопок */
+        gap: 10px; /* Добавляем отступы между кнопками */
+    }
+
+    .btn-purple {
+        width: 100%; /* Кнопки на всю ширину */
+        max-width: 300px; /* Ограничиваем ширину кнопок */
+        text-align: center; /* Центрирование текста */
+    }
+
+    .btn-purple:last-child {
+        margin-bottom: 0;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .favorite-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        margin-top: 10px;
+        align-self: center; /* Центрируем на маленьких экранах */
+    }
+
+    .favorite-btn span {
+        display: none; /* Скрываем текст на маленьких экранах */
+    }
+
+    .favorite-btn i {
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .card {
+        padding-right: 15px; /* Убираем дополнительный отступ */
+    }
+    .place-list .card-title {
+        padding-right: 3.4rem;
+    }
+}
+
+/* Изменение цвета только иконки сердечка при добавлении в избранное */
+.favorite-btn i.favorited {
+    color: red !important; /* Делаем только иконку красной */
+    transition: color 0.3s ease-in-out;
+}

@@ -1,0 +1,176 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+	<title>{{ title }}</title>
+{% endblock %}
+
+{% block css %}
+
+    <link rel="stylesheet" href="{% static 'deps/css/route_page.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/card_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+{% endblock %}
+
+{% block content %}
+    <header class="bg-lime py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex justify-content-center flex-grow-1 gap-3">
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+                    <i class="fas fa-bus"></i> Трансфер
+                </a>
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
+                    <i class="fas fa-bed"></i> Проживание
+                </a>
+                <a class="btn btn-purple text-white fw-bold nav-btn" href="{% url 'places:place_page' %}">
+                    <i class="fas fa-landmark"></i> Места
+                </a>
+                <a class="btn btn-purple text-white fw-bold nav-btn selected" href="#">
+                    <i class="fas fa-route"></i> Маршрут
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Пагинация дней -->
+    <div class="container my-4">
+        <!-- Контейнер для Маршрут 1 -->
+        <div class="route-day-container">
+            <button class="route-day-btn-arrow left" onclick="">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="route-day-btn">Маршрут 1 из 1</div>
+            <button class="route-day-btn-arrow right" onclick="">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="route-day-container">
+            <!-- Кнопка слева -->
+            <button class="route-day-btn-arrow left" onclick="navigateDay(-1)">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+
+            <!-- Центральный блок -->
+            <div class="route-day-btn">
+                День {{ current_day_index|add:1 }} из {{ days_count }}
+            </div>
+
+            <!-- Кнопка справа -->
+            <button class="route-day-btn-arrow right" onclick="navigateDay(1)">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <main class="mb-5">
+        <div class="place-list container my-4">
+            {% with current_day_index|add:1 as day_index %}
+                {% with route|get_item:day_index as day_activities %}
+                    {% if day_activities %}
+                        {% for activity in day_activities %}
+                            <div class="card border-0 shadow p-3 position-relative mb-4">
+                                <!-- Кнопка "В избранное" -->
+                                <button class="favorite-btn">
+                                    <i class="fas fa-heart"></i>
+                                    <span>В избранное</span>
+                                </button>
+                                <div class="row">
+                                    <h4 class="card-title">{{ activity.activity }}
+                                        | {{ activity.place.name }}</h4>
+
+                                </div>
+                                <div class="row">
+                                    <!-- Фото места -->
+                                    <div class="col-md-4 mb-3">
+                                        {% if activity.place.image %}
+                                            <img src="{{ activity.place.image.url }}" class="img-fluid rounded"
+                                                 alt="{{ activity.place.name }}">
+                                        {% else %}
+                                            <img src="https://via.placeholder.com/350x300"
+                                                 class="img-fluid rounded" alt="Нет изображения">
+                                        {% endif %}
+                                    </div>
+                                    <!-- Детали активности -->
+                                    <div class="col-md-8 d-flex flex-column justify-content-between">
+                                        <div>
+                                            <!-- Время активности -->
+                                            <div class="col-12 mb-2">
+                                                <h5 class="card-text"><strong>{{ activity.time }}</strong></h5>
+                                            </div>
+                                            {% if activity.place %}
+                                                <p class="card-location">
+                                                    <i class="bi bi-geo-alt"
+                                                       style="color: #6A0DAD"></i> {{ activity.place.address }}
+                                                </p>
+                                                <div class="rating d-flex align-items-center mb-2">
+                                                    <span class="text-warning"><i class="fas fa-star"
+                                                                                  style="color: #6A0DAD"></i></span>
+                                                    <span class="rating-value ms-2">
+{#                                                    {{ activity.place.rating|default:"4.5" }}#}
+                                                        {% random_float %}
+                                                    <span class="rating-label">
+{#                                                        ({{ activity.place.reviews|default:"0" }} отзывов)#}
+                                                        ({% random_number %} отзывов)
+                                                    </span>
+                                                </span>
+                                                </div>
+                                                <p class="card-description">
+                                                    {{ activity.place.full_description|default:"Описание отсутствует" }}
+                                                </p>
+                                            {% else %}
+                                                <p class="card-text">Место не указано.</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>На выбранный день маршрута данных нет.</p>
+                    {% endif %}
+                {% endwith %}
+            {% endwith %}
+        </div>
+    </main>
+
+
+{% endblock %}
+
+{% block footer %}
+    <script>
+        function navigateDay(direction) {
+            const url = new URL(window.location.href);
+            let currentDay = parseInt(url.searchParams.get('day') || 1);
+            const daysCount = {{ days_count|default:1 }};
+
+            const newDay = currentDay + direction;
+            if (newDay > 0 && newDay <= daysCount) {
+                url.searchParams.set('day', newDay);
+                window.location.href = url.toString();
+            }
+        }
+
+        // Находим все кнопки с классом "nav-btn"
+        const navButtons = document.querySelectorAll('.nav-btn.btn-purple');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Убираем класс "selected" у всех кнопок
+                navButtons.forEach(btn => btn.classList.remove('selected'));
+                // Добавляем класс "selected" к нажатой кнопке
+                button.classList.toggle('selected');
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const heartIcon = button.querySelector('i'); // Находим иконку внутри кнопки
+                    heartIcon.classList.toggle('favorited'); // Переключаем класс у иконки
+                });
+            });
+        });
+    </script>
+{% endblock %}

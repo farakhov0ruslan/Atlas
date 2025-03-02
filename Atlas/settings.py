@@ -24,9 +24,20 @@ SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost']
+ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
+
+AUTH_USER_MODEL = 'routes.CustomUser'
+
+# Настройки сессий
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Сессии сохраняются в базе данных
+SESSION_COOKIE_NAME = 'sessionid'  # Имя cookie сессии
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Сессия не будет удаляться при закрытии браузера
 
 # Application definition
+
+CSRF_COOKIE_NAME = "csrftoken"  # Убедитесь, что это название соответствует тому, что вы используете
+CSRF_COOKIE_HTTPONLY = False    # Чтобы токен был доступен для JavaScript
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,8 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'survey',
-    "places.apps.PlacesConfig"
+    'routes',
+    'places',
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,7 +63,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+LOGOUT_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'Atlas.urls'
 
@@ -76,11 +94,21 @@ WSGI_APPLICATION = 'Atlas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'davrr5cr_mysql',
+        'USER': 'davrr5cr_mysql',
+        'PASSWORD': 'Ruslan2005',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -102,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -114,6 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR/"staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static"  # Указывает на вашу корневую static-папку
 ]
@@ -122,8 +151,12 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / "media"
 
+YANDEX_OAUTH_TOKEN = "y0_AgAAAAAsA27kAATuwQAAAAEcoGZNAAAZ2bVqhehPe67on8fEWv3T9Av5hw"
+FOLDER_ID = "b1gspfv2o3g5um6ak5n5"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}

@@ -1,4 +1,3 @@
-from django.contrib import admin
-from .models import Travel
 
-admin.site.register(Travel)
+from django.contrib import admin
+# from routes.models import Category, Place, WorkingHours, Route, Day, RouteCell
