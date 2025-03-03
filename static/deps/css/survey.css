@@ -1,138 +1,125 @@
-/* Общие стили */
+/* Сбрасываем отступы у html и body */
+html, body {
+  margin: 0;
+  padding: 0;
+  /* height: 100%;  -- можно убрать, чтобы контент мог растягиваться */
+  min-height: 100vh; /* или хотя бы min-height:100vh */
+}
+
+/* Делаем body флекс-контейнером, центрируем по вертикали и горизонтали */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #bdf31f; /* Цвет фона */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bdf31f;
+
+  /* Добавляем отступы, чтобы белый блок не прилегал к краям */
+  padding: 20px;
+  box-sizing: border-box; /* Чтобы padding не ломал расчёт ширины */
 }
 
+/* Контейнер, белый блок */
 .container {
-    width: 100%;
-    max-width: 900px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
 }
 
-/* Заголовок */
+/* Остальные стили без изменений */
 h1 {
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-/* Сетка для кнопок */
-.row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Три колонки */
-    gap: 20px;
-    justify-items: center;
-    margin-bottom: 40px; /* Увеличенный отступ для кнопок пагинации */
-}
-
-/* Кнопки */
 button {
-    border: none;
-    padding: 15px 40px; /* Увеличиваем ширину кнопок */
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #fff;
-    text-align: center;
-    width: 100%;
-    max-width: 300px; /* Делаем кнопки шире */
+  border: none;
+  padding: 15px 40px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  width: 100%;
+  text-align: center;
 }
 
-button:hover {
-    transform: scale(1.05);
-}
-
-/* Фиолетовые кнопки */
 .btn-primary {
-    background-color: #6A0DAD;
+  background-color: #6A0DAD;
 }
 
 .btn-primary:hover {
-    background-color: #8c30d4;
-    box-shadow: 0 4px 6px rgba(106, 13, 173, 0.5);
+  background-color: #8c30d4;
+  box-shadow: 0 4px 6px rgba(106, 13, 173, 0.5);
 }
-
 .btn-primary.selected {
-    outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
-    box-shadow: 0 0 10px #00D1FF; /* Дополнительный эффект свечения */
+  outline: 3px solid #00D1FF;
+  box-shadow: 0 0 10px #00D1FF;
 }
 
-/* Кнопки пагинации */
 .pagination {
-    display: flex;
-    justify-content: space-between; /* Распределить кнопки по краям */
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.next-btn {
+  background-color: #00D1FF;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 25px;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+.next-btn:hover {
+  background-color: #00A1CC;
+  box-shadow: 0 4px 6px rgba(0, 209, 255, 0.5);
 }
 
-.pagination .next-btn {
-    background-color: #00D1FF;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 15px 40px; /* Ширина и высота кнопки */
-    text-align: center;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
-    max-width: 280px; /* Ограничиваем ширину кнопок */
-}
-
-.pagination .next-btn:hover {
-    background-color: #00A1CC;
-    box-shadow: 0 4px 6px rgba(0, 209, 255, 0.5);
-}
-
-
-/* Изображения на второй странице */
 .selectable-img {
-    width: 100%;
-    max-width: 350px;
-    border: 3px solid transparent;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  border: 3px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
-
 .selectable-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.3);
 }
-
 .selectable-img.selected {
-    border: 3px solid #00D1FF;
-    box-shadow: 0 0 10px #00D1FF;
+  border: 3px solid #00D1FF;
+  box-shadow: 0 0 10px #00D1FF;
 }
-
 
 .loading-logo {
-    width: 50px; /* Можно настроить размер логотипа */
-    animation: pulse 1.5s infinite;
+  width: 50px;
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1.5);
-    }
-    50% {
-        transform: scale(2);
-    }
-    100% {
-        transform: scale(1.5);
-    }
+  0%   { transform: scale(1.5); }
+  50%  { transform: scale(2);   }
+  100% { transform: scale(1.5); }
+}
+
+@media (max-width: 576px) {
+  /* Уменьшаем заголовок */
+  h1 {
+    font-size: 20px;  /* вместо 26px */
+  }
+
+  /* Уменьшаем размер текста и отступы у кнопок */
+  .btn-primary,
+  .next-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 }
