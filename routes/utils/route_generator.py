@@ -3,7 +3,6 @@ from random import Random
 
 from routes.utils import yandex
 from django.conf import settings
-from typing import Dict, List
 from routes.models import Place
 
 
@@ -11,7 +10,7 @@ def generate_route(user_preferences: str) -> dict:
     """
      Генерирует маршрут с помощью Yandex GPT API на основе предпочтений пользователя.
 
-     Выходны данны
+     Выходные данные
      {
       "1 день": [
         {"time": "08:00-09:00", "activity": "Завтрак", "place": Place(...)},
@@ -30,29 +29,7 @@ def generate_route(user_preferences: str) -> dict:
 
     print(responce_route_str)
     route_dict = json.loads(responce_route_str)
-    # route_dict = {
-    #     '1 день': [{'time': '08:00-09:00', 'activity': 'Завтрак', 'tags': ['Вкусно поесть']},
-    #                {'time': '09:30-11:00', 'activity': 'Выставка',
-    #                 'tags': ['Выставки', 'Искусство']},
-    #                {'time': '12:00-13:30', 'activity': 'Пиццерия',
-    #                 'tags': ['Вкусно поесть', 'Еда']},
-    #                {'time': '14:00-15:30', 'activity': 'Гулять',
-    #                 'tags': ['Достопримечательности', 'Гулять']},
-    #                {'time': '16:00-17:30', 'activity': 'Музыка',
-    #                 'tags': ['Музыка', 'Культура']},
-    #                {'time': '18:30-20:00', 'activity': 'Шоппинг',
-    #                 'tags': ['Шоппинг', 'Торговля']}], '2 день': [
-    #         {'time': '07:00-08:30', 'activity': 'Утренняя пробежка', 'tags': ['Экстрим', 'Спорт']},
-    #         {'time': '09:00-10:30', 'activity': 'Архитектура',
-    #          'tags': ['Архитектура', 'Достопримечательности']},
-    #         {'time': '11:30-13:00', 'activity': 'Вегетарианские блюда',
-    #          'tags': ['Вегетарианские блюда', 'Еда']},
-    #         {'time': '13:30-15:00', 'activity': 'Наука', 'tags': ['Наука', 'Образование']},
-    #         {'time': '15:30-17:00', 'activity': 'Необычное место',
-    #          'tags': ['Необычное место', 'Достопримечательности']},
-    #         {'time': '17:30-19:00', 'activity': 'Итальянская кухня',
-    #          'tags': ['Итальянская кухня', 'Вкусно поесть']}]}
-    # print(route_dict)
+
 
     using_place = set()
     for day, activities in route_dict.items():
