@@ -1,25 +1,34 @@
-/* Общие стили */
-body {
-    font-family: Arial, sans-serif;
+/* Сбрасываем отступы у html и body */
+html, body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #bdf31f; /* Цвет фона */
+    /* height: 100%;  -- можно убрать, чтобы контент мог растягиваться */
+    min-height: 100vh; /* или хотя бы min-height:100vh */
 }
 
-.container {
-    width: 100%;
-    max-width: 900px;
+/* Делаем body флекс-контейнером, центрируем по вертикали и горизонтали */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #bdf31f;
+
+    /* Добавляем отступы, чтобы белый блок не прилегал к краям */
     padding: 20px;
-    background-color: #fff;
+    box-sizing: border-box; /* Чтобы padding не ломал расчёт ширины */
+}
+
+/* Контейнер, белый блок */
+.container {
+    background: #fff;
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 900px;
+    width: 100%;
 }
 
-/* Заголовок */
+/* Остальные стили без изменений */
 h1 {
     font-size: 26px;
     text-align: center;
@@ -27,35 +36,18 @@ h1 {
     font-weight: bold;
 }
 
-/* Сетка для кнопок */
-.row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Три колонки */
-    gap: 20px;
-    justify-items: center;
-    margin-bottom: 40px; /* Увеличенный отступ для кнопок пагинации */
-}
-
-/* Кнопки */
 button {
     border: none;
-    padding: 15px 40px; /* Увеличиваем ширину кнопок */
-    font-size: 18px;
+    padding: 15px 40px;
     font-weight: bold;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
     color: #fff;
-    text-align: center;
     width: 100%;
-    max-width: 300px; /* Делаем кнопки шире */
+    text-align: center;
 }
 
-button:hover {
-    transform: scale(1.05);
-}
-
-/* Фиолетовые кнопки */
 .btn-primary {
     background-color: #6A0DAD;
 }
@@ -66,42 +58,35 @@ button:hover {
 }
 
 .btn-primary.selected {
-    outline: 3px solid #00D1FF; /* Внешняя рамка, не меняет размеры */
-    box-shadow: 0 0 10px #00D1FF; /* Дополнительный эффект свечения */
+    outline: 3px solid #00D1FF;
+    box-shadow: 0 0 10px #00D1FF;
 }
 
-/* Кнопки пагинации */
 .pagination {
     display: flex;
-    justify-content: space-between; /* Распределить кнопки по краям */
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
 }
 
-.pagination .next-btn {
+.next-btn {
     background-color: #00D1FF;
     font-size: 18px;
     font-weight: bold;
-    padding: 15px 40px; /* Ширина и высота кнопки */
-    text-align: center;
+    padding: 15px 40px;
     border-radius: 25px;
-    transition: all 0.3s ease;
     color: #fff;
     cursor: pointer;
     width: 100%;
-    max-width: 280px; /* Ограничиваем ширину кнопок */
 }
 
-.pagination .next-btn:hover {
+.next-btn:hover {
     background-color: #00A1CC;
     box-shadow: 0 4px 6px rgba(0, 209, 255, 0.5);
 }
 
-
-/* Изображения на второй странице */
 .selectable-img {
     width: 100%;
-    max-width: 350px;
     border: 3px solid transparent;
     border-radius: 25px;
     cursor: pointer;
@@ -119,9 +104,8 @@ button:hover {
     box-shadow: 0 0 10px #00D1FF;
 }
 
-
 .loading-logo {
-    width: 50px; /* Можно настроить размер логотипа */
+    width: 50px;
     animation: pulse 1.5s infinite;
 }
 
@@ -134,5 +118,23 @@ button:hover {
     }
     100% {
         transform: scale(1.5);
+    }
+}
+
+@media (max-width: 576px) {
+    /* Уменьшаем заголовок */
+    h1 {
+        font-size: 20px; /* вместо 26px */
+    }
+
+    /* Уменьшаем размер текста и отступы у кнопок */
+    .btn-primary,
+    .next-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    body.modal-open {
+        display: block;
     }
 }
