@@ -125,7 +125,7 @@
 									<input type="email" class="form-control" name="email"
 									       placeholder="Введите email"
 									       required>
-									<div id="emailError" style="color:red;"></div>
+									<div id="emailError1" style="color:red;"></div>
 								</div>
 								<div class="mb-3">
 									<label for="loginPassword" class="form-label">Пароль</label>
@@ -157,7 +157,7 @@
 								<div class="mb-3">
 									<label for="registerEmail" class="form-label">Email
 										адрес</label>
-									<input type="email" class="form-control" name="email"
+									<input id="registerEmail" type="email" class="form-control" name="email"
 									       placeholder="Введите email"
 									       required>
 									<div id="emailError" style="color:red;"></div>
@@ -280,19 +280,27 @@
                         xhr.setRequestHeader("X-CSRFToken", getCSRFToken());  // Добавляем CSRF токен
                     },
                     success: function (response) {
+                        console.log("Ошибки:", response.errors);  // Для отладки
                         if (response.success) {
                             window.location.href = response.redirect_url;  // Редирект на главную страницу
                         } else {
                             // Показать ошибки, если есть
+
                             if (response.errors) {
+                                console.log(response.errors)
                                 for (const [field, message] of Object.entries(response.errors)) {
-                                    $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
+                                    if (field==="email"){
+                                        $("#" + field + "Error1").html(message).show();  // Показываем ошибки на уровне формы
+                                    } else {
+                                        $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
+                                    }
+
                                 }
                             }
                         }
                     },
                     error: function (xhr, status, error) {
-                        console.log(error);
+
                         $("#formErrors").html("Произошла ошибка. Попробуйте снова.").show();  // Общая ошибка
                     }
                 });
