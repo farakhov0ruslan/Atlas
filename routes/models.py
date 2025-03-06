@@ -18,6 +18,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)  # Убедитесь, что email уникален
     avatar_image = models.ImageField(upload_to='avatars/', null=True, blank=True, default='path/to/default/image.jpg')
 
+    username = models.CharField(max_length=150, unique=False, null=True, blank=True)
     USERNAME_FIELD = 'email'  # Указываем, что для аутентификации будет использоваться email
     REQUIRED_FIELDS = ['username']  # username по-прежнему нужен, но его не будем использовать для входа
 

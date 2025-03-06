@@ -9,7 +9,11 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2', 'username']
+
+    def clean_username(self):
+        # Просто возвращаем введённое значение без проверки уникальности
+        return self.cleaned_data.get('username')
 
     def save(self, commit=True):
         user = super().save(commit=False)
