@@ -35,15 +35,20 @@ def index(request):
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
+
         if form.is_valid():
+            print(form.data)
             user = form.save()  # Сохраняем пользователя
+            print(user)
             login(request, user)  # Логиним пользователя
             # Возвращаем успешный ответ с редиректом на главную страницу
             return JsonResponse({'success': True, 'redirect_url': '/'})  # Перенаправляем на главную страницу
         else:
+
             errors = {}
             for field, error_list in form.errors.items():
                 errors[field] = error_list  # Собираем ошибки для каждого поля
+            print(errors)
             return JsonResponse({'success': False, 'errors': errors})  # Отправляем ошибки на фронт
     else:
         form = UserRegistrationForm()
