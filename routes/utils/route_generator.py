@@ -23,6 +23,7 @@ def generate_route(user_preferences: str) -> dict:
     """
     iam_token = yandex.get_iam_token()
     folder_id = settings.FOLDER_ID
+    print(user_preferences)
     user_text = f""" Учтите мои предпочтения: {user_preferences}"""
     response = yandex.query_yandex_gpt(iam_token, folder_id, user_text)
     responce_route_str = response.get('result', {})['alternatives'][0]['message']['text']

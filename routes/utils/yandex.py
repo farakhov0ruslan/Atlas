@@ -9,7 +9,7 @@ def get_iam_token():
     iam_token = cache.get('yandex_iam_token')
     expires_at = cache.get('yandex_iam_token_expires_at')
 
-    print(iam_token, expires_at)
+    # print(iam_token, expires_at)
     if iam_token and datetime.utcnow() < expires_at:
         return iam_token
 
