@@ -9,7 +9,7 @@ def survey_view(request):
         for field in ['city', 'person_count', 'budget', 'departure_date', 'return_date']:
             if field in request.POST:
                 request.session[field] = request.POST[field]
-        print(request.session.items())
+
         # Если пришёл POST с первой страницы (кнопки)
         selected_categories = request.POST.get('selected_categories')
         if selected_categories:
@@ -18,6 +18,17 @@ def survey_view(request):
         selected_images = request.POST.get('selected_images')
         if selected_images:
             request.session['selected_images'] = json.loads(selected_images)
+
+        preferences = request.POST.get('preferences')
+
+        print(request.POST)
+        if preferences:
+            print(111)
+            request.session['preferences'] = preferences
+
+        r = request.session
+        r["route"] = ""
+        print(r.items())
 
     pages_content = [
         {
