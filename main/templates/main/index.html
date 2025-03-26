@@ -279,7 +279,7 @@
             // Функция для прохождения опроса заново (с валидацией)
             function validateAndSurvey() {
                 if (validateFormFields()) {
-                      document.getElementById('travelForm').submit();
+                    document.getElementById('travelForm').submit();
                 } else {
                     // Если данные не прошли валидацию, закрываем все модальные окна
                     routeModalInstance.hide();
@@ -351,6 +351,13 @@
                 if (returnDate < departureDate) {
                     showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
                     returnDateInput.value = ""; // Очищаем поле
+                } else {
+                    // Вычисляем разницу в днях
+                    const diffDays = (returnDate - departureDate) / (1000 * 60 * 60 * 24);
+                    if (diffDays > 5) {
+                        showCustomAlert("Продолжительность поездки не может превышать 5 дней.");
+                        returnDateInput.value = ""; // Очищаем поле
+                    }
                 }
             }
 

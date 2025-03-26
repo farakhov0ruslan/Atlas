@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'goatlas.ru', 'www.goatlas.ru', 'localhost']
+# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost']
 ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
 
 AUTH_USER_MODEL = 'routes.CustomUser'
