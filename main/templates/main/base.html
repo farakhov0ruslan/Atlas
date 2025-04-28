@@ -48,8 +48,8 @@
 				<div class="navbar-nav ms-auto">
 					{% if user.is_authenticated %}
 						<!-- Отображение имени пользователя и кнопки выхода -->
-						<!-- <a href="{% url 'main:profile' %}" class="nav-item nav-link"> -->
-						<a href="#" class="nav-item nav-link">
+						<a href="{% url 'main:profile' %}" class="nav-item nav-link">
+{#						<a href="#" class="nav-item nav-link">#}
 							<i class="bi bi-person"></i> {{ user.username }}
 						</a>
 						<form method="post" action="{% url 'main:logout' %}"

@@ -31,7 +31,6 @@ def generate_route(user_preferences: str) -> dict:
     print(responce_route_str)
     route_dict = json.loads(responce_route_str)
 
-
     using_place = set()
     for day, activities in route_dict.items():
         for activity in activities:
@@ -52,7 +51,7 @@ def generate_route(user_preferences: str) -> dict:
                             break
                         rand_ind = Random().randint(0, len(matched_places) - 1)
                         place = matched_places[rand_ind]
-                        i+=1
+                        i += 1
                     # Заменяем 'tags' на 'place'
                     activity.pop("tags", None)
                     activity["place_id"] = place.id
@@ -68,4 +67,10 @@ def generate_route(user_preferences: str) -> dict:
                 activity.pop("tags", None)
 
         # В итоге route_dict теперь имеет поле "place" вместо "tags".
+
+    counter = 1
+    for day, activities in route_dict.items():
+        for activity in activities:
+            activity["id"] = counter
+            counter += 1
     return route_dict

@@ -155,7 +155,7 @@ header .container {
     background-color: #6A0DAD; /* Фиолетовый фон */
     color: #fff;
     border: none;
-    padding: 8px 12px;
+    padding: 2px;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -164,6 +164,9 @@ header .container {
     margin-top: 15px; /* Отступ сверху от последнего элемента */
     align-self: flex-end; /* Выравниваем кнопку справа */
     transition: all 0.3s ease;
+    flex: 0 0 19%;
+    max-width: 19%;
+    text-align: right; /* выравнивание текста по правому краю, если нужно */
 }
 
 /* Стили для иконки */
@@ -188,8 +191,33 @@ header .container {
     font-size: 20px;
     font-weight: bold;
     color: #333;
+    flex: 0 0 78%;
+    max-width: 78%;
 }
 
+.row {
+    display: flex;
+    align-items: center; /* для вертикального выравнивания */
+}
+@media (min-width: 769px) and (max-width: 1100px){
+.favorite-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        margin-top: 10px;
+        align-self: center; /* Центрируем на маленьких экранах */
+    }
+
+    .favorite-btn span {
+        display: none; /* Скрываем текст на маленьких экранах */
+    }
+
+    .favorite-btn i {
+        font-size: 18px;
+        color: #fff;
+    }
+}
 
 /* Адаптивность для маленьких экранов */
 @media (max-width: 768px) {
@@ -264,3 +292,4 @@ header .container {
     color: red !important; /* Делаем только иконку красной */
     transition: color 0.3s ease-in-out;
 }
+
