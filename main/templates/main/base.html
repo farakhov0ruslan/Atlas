@@ -28,7 +28,7 @@
     >
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <!-- Header with Logo -->
 <nav class="navbar navbar-expand-md navbar-light bg-green">
@@ -194,10 +194,11 @@
         </div>
     </div>
 </div>
-
+  <main class="flex-grow-1">
 {% block content %}
 
 {% endblock %}
+  </main>
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -455,10 +456,6 @@
             .catch(err => console.error("Ошибка проверки сессии или БД:", err));
     });
 </script>
-
-</body>
-
-
 {% block footer %}
     <footer class="bg-light py-3 border-top">
         <div class="container d-flex justify-content-start align-items-center gap-3">
@@ -477,4 +474,5 @@
         </div>
     </footer>
 {% endblock %}
+</body>
 </html>
