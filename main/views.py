@@ -138,3 +138,17 @@ def get_user_location(request):
         return JsonResponse({"latitude": latitude, "longitude": longitude})
 
     return JsonResponse({"latitude": None, "longitude": None})
+
+def offer(request):
+    """
+        Страница договора-оферты.
+        Шаблон: main/templates/main/oferta.html
+        """
+    return render(request, 'main/oferta.html')
+
+def prices(request):
+    """
+        Страница договора-оферты.
+        Шаблон: main/templates/main/oferta.html
+        """
+    return render(request, 'main/prices.html')

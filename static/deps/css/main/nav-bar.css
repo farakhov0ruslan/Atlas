@@ -189,3 +189,6 @@ input[type="number"] {
     background-color: #7CB342; /* Темно-зеленый фон при наведении */
 }
 
+html, body {
+  font-family: 'Jost', sans-serif;
+}
