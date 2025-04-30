@@ -2,9 +2,7 @@
 {% load static %}
 {% load custom_tags %}
 
-{% block title %}
-	<title>{{ title }}</title>
-{% endblock %}
+{% block title %}Маршрут{% endblock %}
 
 {% block css %}
 
@@ -70,15 +68,14 @@
                     {% if day_activities %}
                         {% for activity in day_activities %}
                             <div class="card border-0 shadow p-3 position-relative mb-4">
-                                <!-- Кнопка "В избранное" -->
-                                <button class="favorite-btn">
-                                    <i class="fas fa-heart"></i>
-                                    <span>В избранное</span>
-                                </button>
                                 <div class="row">
                                     <h4 class="card-title">{{ activity.activity }}
                                         | {{ activity.place.name }}</h4>
-
+                                    <!-- Кнопка "В избранное" -->
+                                    <button class="favorite-btn">
+                                        <i class="fas fa-heart"></i>
+                                        <span>В избранное</span>
+                                    </button>
                                 </div>
                                 <div class="row">
                                     <!-- Фото места -->
@@ -103,24 +100,114 @@
                                                     <i class="bi bi-geo-alt"
                                                        style="color: #6A0DAD"></i> {{ activity.place.address }}
                                                 </p>
-                                                <div class="rating d-flex align-items-center mb-2">
-                                                    <span class="text-warning"><i class="fas fa-star"
-                                                                                  style="color: #6A0DAD"></i></span>
-                                                    <span class="rating-value ms-2">
+{#                                                <div class="rating d-flex align-items-center mb-2">#}
+{#                                                    <span class="text-warning"><i class="fas fa-star"#}
+{#                                                                                  style="color: #6A0DAD"></i></span>#}
+{#                                                    <span class="rating-value ms-2">#}
 {#                                                    {{ activity.place.rating|default:"4.5" }}#}
-                                                        {% random_float %}
-                                                    <span class="rating-label">
+{#                                                        {% random_float %}#}
+{#                                                    <span class="rating-label">#}
 {#                                                        ({{ activity.place.reviews|default:"0" }} отзывов)#}
-                                                        ({% random_number %} отзывов)
-                                                    </span>
-                                                </span>
-                                                </div>
+{#                                                        ({% random_number %} отзывов)#}
+{#                                                    </span>#}
+{#                                                </span>#}
+{#                                                </div>#}
                                                 <p class="card-description">
                                                     {{ activity.place.full_description|default:"Описание отсутствует" }}
                                                 </p>
                                             {% else %}
                                                 <p class="card-text">Место не указано.</p>
                                             {% endif %}
+                                        </div>
+                                        <!-- Кнопка "Заменить" -->
+                                        <div class="text-end mt-3">
+                                            <button type="button"
+                                                    class="btn btn-outline-secondary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#replaceModal{{ forloop.counter }}">
+                                                Заменить
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Модальное окно для замены места -->
+                            <div class="modal fade" id="replaceModal{{ forloop.counter }}" tabindex="-1"
+                                 aria-labelledby="replaceModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="replaceModalLabel{{ forloop.counter }}">
+                                                Выберите место для категорий
+                                                «{% for cat in activity.place.category.all %}{{ cat.name }}
+                                                {% if not forloop.last %}, {% endif %}{% endfor %}»
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Закрыть"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {% comment %}
+                                            Здесь предполагается, что в контекст шаблона передаётся список всех мест в переменной all_places.
+                                            {% endcomment %}
+                                            {% with filtered_places=all_places|filter_by_current_place_categories:activity.place %}
+                                                {% if filtered_places %}
+                                                    {% for place_option in filtered_places %}
+                                                        <div class="card border-0 shadow p-3 position-relative mb-4">
+                                                            <div class="row">
+                                                                <h4 class="card-title">
+                                                                    {{ place_option.name }}
+                                                                </h4>
+                                                            </div>
+                                                            <div class="row">
+                                                                <!-- Фото места -->
+                                                                <div class="col-md-4 mb-3">
+                                                                    {% if place_option.image %}
+                                                                        <img src="{{ place_option.image.url }}"
+                                                                             class="img-fluid rounded"
+                                                                             alt="{{ place_option.name }}">
+                                                                    {% else %}
+                                                                        <img src="https://via.placeholder.com/350x300"
+                                                                             class="img-fluid rounded"
+                                                                             alt="Нет изображения">
+                                                                    {% endif %}
+                                                                </div>
+                                                                <!-- Детали места -->
+                                                                <div class="col-md-8 d-flex flex-column justify-content-between">
+                                                                    <div>
+                                                                        <p class="card-location">
+                                                                            <i class="bi bi-geo-alt"
+                                                                               style="color: #6A0DAD"></i> {{ place_option.address }}
+                                                                        </p>
+                                                                        <div class="rating d-flex align-items-center mb-2">
+                                <span class="text-warning">
+                                    <i class="fas fa-star" style="color: #6A0DAD"></i>
+                                </span>
+                                                                            <span class="rating-value ms-2">
+                                    {% random_float %}
+                                    <span class="rating-label">
+                                        ({% random_number %} отзывов)
+                                    </span>
+                                </span>
+                                                                        </div>
+                                                                        <p class="card-description">
+                                                                            {{ place_option.full_description|default:"Описание отсутствует" }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <!-- Кнопка "Выбрать" -->
+                                                                    <div class="text-end mt-3">
+                                                                        <button class="btn btn-outline-secondary"
+                                                                                onclick="replacePlace('{{ activity.id }}', '{{ place_option.id }}')">
+                                                                            Выбрать
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <p>Нет доступных мест для замены.</p>
+                                                {% endif %}
+                                            {% endwith %}
                                         </div>
                                     </div>
                                 </div>
@@ -138,6 +225,7 @@
 {% endblock %}
 
 {% block footer %}
+    {{ block.super }}
     <script>
         function navigateDay(direction) {
             const url = new URL(window.location.href);
@@ -172,5 +260,37 @@
                 });
             });
         });
+
+        function replacePlace(activityId, placeId) {
+            // Запрашиваем у пользователя новое название для события
+            var newEventName = prompt("Введите новое название описания для события:");
+            if (newEventName === null) {
+                // Если пользователь отменил ввод, прерываем выполнение
+                return;
+            }
+            fetch("/routes/replace_place/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({
+                    activity_id: activityId,
+                    new_place_id: placeId,
+                    new_activity_name: newEventName
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert("Ошибка при замене места");
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert("Ошибка при замене места");
+                });
+        }
     </script>
 {% endblock %}

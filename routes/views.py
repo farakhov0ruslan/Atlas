@@ -7,7 +7,6 @@ from django.shortcuts import render
 from routes.utils.route_generator import generate_route
 from routes.models import Place
 
-
 def compute_route_fingerprint(data):
     # Формируем строку из параметров
     data_str = f"""{data.get('selected_categories', '')}
@@ -35,9 +34,6 @@ def route_page(request):
 
     # Вычисляем количество дней
 
-
-
-
     # Проверяем, есть ли уже маршрут в сессии
     route_json = request.session.get('route')
     if route_json:
@@ -48,7 +44,6 @@ def route_page(request):
     else:
         route = None
 
-
     # Если маршрут уже готов, подставляем объекты Place по идентификатору
     for route_day in route:
         for activity in route[route_day]:
@@ -56,6 +51,8 @@ def route_page(request):
                 activity["place"] = Place.objects.get(id=activity["place_id"])
             else:
                 activity["place"] = None
+
+    all_places = Place.objects.all()
 
     context = {
         "title": "Ваш маршрут",
@@ -66,7 +63,8 @@ def route_page(request):
         "days": days,
         "person_count": session_data['person_count'],
         "budget": session_data['budget'],
-        "route": route
+        "route": route,
+        'all_places': all_places,
     }
     return render(request, 'routes/route_page.html', context)
 
@@ -151,3 +149,65 @@ def check_route(request):
         "status": status,
         "route_data": route_data
     })
+
+def replace_place(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            activity_id = data.get('activity_id')
+            new_place_id = data.get('new_place_id')
+            new_activity_name = data.get('new_activity_name')  # Получаем новое название события
+            print("Получены данные:", activity_id, new_place_id, new_activity_name)
+
+            # Извлекаем маршрут из сессии
+            route_json = request.session.get('route')
+            if not route_json:
+                return JsonResponse({'error': 'Маршрут не найден в сессии.'}, status=400)
+            route = json.loads(route_json)
+            print("Маршрут до обновления:", route)
+
+            updated = False
+            # Проходим по всем дням маршрута
+            for day_key, activities in route.items():
+                for activity in activities:
+                    # Ищем активность по уникальному ключу "id"
+                    if str(activity.get("id")) == str(activity_id):
+                        # Обновляем идентификатор места
+                        activity["place_id"] = new_place_id
+                        # Получаем новый объект Place
+                        new_place = Place.objects.get(id=new_place_id)
+                        # Обновляем данные о новом месте
+                        activity["place"] = {
+                            "name": new_place.name,
+                            "short_description": new_place.short_description,
+                            "full_description": new_place.full_description,
+                            "address": new_place.address,
+                            "image_url": new_place.image.url if new_place.image else '',
+                            "reviews": new_place.reviews,
+                            "slug": new_place.slug,
+                            "contacts": new_place.contacts,
+                        }
+                        # Обновляем название события, если пользователь ввёл новое название
+                        if new_activity_name:
+                            activity["activity"] = new_activity_name
+                        updated = True
+                        print(f"Активность {activity_id} обновлена в дне {day_key}")
+                        break
+                if updated:
+                    break
+
+            if not updated:
+                print("Активность не найдена")
+                return JsonResponse({'error': 'Активность не найдена'}, status=404)
+
+            # Сохраняем обновленный маршрут обратно в сессию
+            request.session['route'] = json.dumps(route)
+            request.session.modified = True
+            print("Маршрут после обновления:", route)
+
+            return JsonResponse({'status': 'ok'}, status=200)
+        except Exception as e:
+            print("Ошибка в replace_place:", str(e))
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid method'}, status=405)

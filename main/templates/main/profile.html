@@ -1,10 +1,10 @@
 {% extends "main/base.html" %}
-
+{% block title %}Профиль{% endblock %}
 {% block content %}
 <div class="container mt-5">
     <h2>Профиль пользователя</h2>
     <p><strong>Имя:</strong> {{ user.username }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
-    <a href="{% url 'logout' %}" class="btn btn-danger">Выйти</a>
+    <a href="{% url 'main:logout' %}" class="btn btn-danger">Выйти</a>
 </div>
 {% endblock %}

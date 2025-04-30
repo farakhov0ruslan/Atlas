@@ -354,8 +354,8 @@
                 } else {
                     // Вычисляем разницу в днях
                     const diffDays = (returnDate - departureDate) / (1000 * 60 * 60 * 24);
-                    if (diffDays > 5) {
-                        showCustomAlert("Продолжительность поездки не может превышать 5 дней.");
+                    if (diffDays > 7) {
+                        showCustomAlert("Продолжительность поездки не может превышать 7 дней.");
                         returnDateInput.value = ""; // Очищаем поле
                     }
                 }
@@ -372,11 +372,6 @@
             window.closeCustomAlert = closeCustomAlert;
         });
 	</script>
-
-{% endblock %}
-
-
-{% block footer %}
 
 {% endblock %}
 

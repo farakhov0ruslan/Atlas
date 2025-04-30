@@ -1,0 +1,206 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Цены{% endblock %}
+
+{% block css %}
+    <style>
+        /* Фон секций */
+        .bg-lime {
+            background-color: #9ccb2b;
+        }
+
+        /* Карточки пакетов */
+        .pricing-card {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-connect {
+            background-color: #6A0DAD;
+            border: none;
+        }
+
+        .btn-connect:hover {
+            background-color: #550b8a;
+        }
+
+        /* Подробное описание */
+        .details-box {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            color: white;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Стили модального окна */
+        #confirmModal .modal-content {
+            background-color: #6A0DAD;
+            border-radius: 16px;
+        }
+
+        #confirmModal .modal-body {
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        #confirmModal .modal-body p {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        /* футер как flex-контейнер */
+        #confirmModal .modal-footer {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 2rem 2rem;
+            border: none;
+        }
+
+        /* и кнопка, и форма — flex:1 */
+        #confirmModal .modal-footer > * {
+            flex: 1;
+        }
+
+        /* внутри формы кнопку тянем на 100% ширины */
+        #confirmModal .modal-footer .btn-modal {
+            width: 100%;
+            background-color: #9ccb2b;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            padding: 0.75rem 0;
+            border-radius: 12px;
+            transition: background-color 0.2s;
+        }
+
+        #confirmModal .modal-footer .btn-modal:hover {
+            background-color: #85a721;
+        }
+
+        .mb-5 {
+            padding-top: 0.5%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="bg-lime text-center text-white py-5">
+        <div class="container">
+            <h1 class="mb-5">Цены</h1>
+            <div class="row gx-4 gy-4 justify-content-center">
+
+                <div class="col-md-4">
+                    <div class="pricing-card h-100">
+                        <h3>Пакет «Выходные»</h3>
+                        <p>Пакет включает в себя <strong>5</strong> маршрутов на месяц</p>
+                        <div class="price">100 ₽</div>
+                        <button
+                                type="button"
+                                class="mt-auto btn btn-connect btn-lg text-white"
+                                data-bs-toggle="modal"
+                                data-bs-target="#confirmModal"
+                        >
+                            Подключить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pricing-card h-100">
+                        <h3>Пакет «Отпуск»</h3>
+                        <p>Пакет включает в себя <strong>12</strong> маршрутов на 6 месяцев</p>
+                        <div class="price">200 ₽</div>
+                        <button
+                                type="button"
+                                class="mt-auto btn btn-connect btn-lg text-white"
+                                data-bs-toggle="modal"
+                                data-bs-target="#confirmModal"
+                        >
+                            Подключить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="pricing-card h-100">
+                        <h3>Пакет «Каникулы»</h3>
+                        <p>Пакет включает в себя <strong>25</strong> маршрутов на год</p>
+                        <div class="price">300 ₽</div>
+                        <button
+                                type="button"
+                                class="mt-auto btn btn-connect btn-lg text-white"
+                                data-bs-toggle="modal"
+                                data-bs-target="#confirmModal"
+                        >
+                            Подключить
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-lime text-center text-white py-5">
+        <div class="container">
+            <h2 class="mb-4">Подробное описание</h2>
+            <div class="details-box mx-auto" style="max-width: 800px;">
+                <p>
+                    <strong>О пакетах:</strong> при покупке пакета у вас есть ограничение на количество запросов
+                    и на период действия пакета. Расходовать их можно в любое время, но они сгорают по истечению
+                    указанного срока (месяц для пакета «Выходные», 6 месяцев для пакета «Отпуск» и 12 месяцев для
+                    пакета «Каникулы»). Один маршрут включает одну генерацию с указанным при вводе
+                    количеством дней, то есть количество дней никак не влияет на расход маршрутов.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно подтверждения -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p id="confirmModalLabel">
+                        Нажимая кнопку «Подключить» вы подтверждаете, что ознакомлены с офертой
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-modal" data-bs-dismiss="modal">Назад</button>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-modal">Подтверждаю</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
