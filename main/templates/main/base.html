@@ -58,33 +58,33 @@
                         {% csrf_token %}
                         <button type="submit" class="nav-item nav-link btn btn-link"
                                 style="border: none; background: none;">
-                            <i class="bi bi-box-arrow-right"></i> Выйти
+                            <i class="bi bi-box-arrow-right"></i> ВЫЙТИ
                         </button>
                     </form>
                 {% else %}
                     <!-- Если пользователь не авторизован, отображаем кнопку "Аккаунт" -->
                     <a href="#" class="nav-item nav-link" data-bs-toggle="modal"
                        data-bs-target="#accountModal">
-                        <i class="bi bi-person"></i> Аккаунт
+                        <i class="bi bi-person"></i> АККАУНТ
                     </a>
                 {% endif %}
                 <!-- Прочие элементы меню -->
                 {% if request.session.route %}
                     <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
-                        <i class="bi bi-suitcase"></i> Чемодан
+                        <i class="bi bi-suitcase"></i> ЧЕМОДАН
                     </a>
                 {% else %}
-                    <span class="nav-item nav-link disabled"><i class="bi bi-suitcase"></i> Чемодан
+                    <span class="nav-item nav-link disabled"><i class="bi bi-suitcase"></i> ЧЕМОДАН
                 </span>
                 {% endif %}
 
                 <!-- Кнопка для выбора города -->
                 <a href="#" class="nav-item nav-link" aria-expanded="false">
                     <i class="bi bi-geo-alt"></i>
-                    <span id="cityButtonText">Город</span> <!-- Место для отображения города -->
+                    <span id="cityButtonText">ГОРОД</span> <!-- Место для отображения города -->
                 </a>
                 <a href="#" class="nav-item nav-link">
-                    <i class="bi bi-question-circle"></i> Помощь
+                    <i class="bi bi-question-circle"></i> ПОМОЩЬ
                 </a>
             </div>
         </div>
@@ -331,7 +331,7 @@
         const cityButtonText = document.getElementById("cityButtonText");
 
         function updateCityText(cityName) {
-            cityButtonText.textContent = cityName;
+            cityButtonText.textContent = cityName.toUpperCase();
         }
 
         function saveLocationToSession(lat, lon) {
