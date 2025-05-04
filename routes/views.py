@@ -7,6 +7,7 @@ from django.shortcuts import render
 from routes.utils.route_generator import generate_route
 from routes.models import Place
 
+
 def compute_route_fingerprint(data):
     # Формируем строку из параметров
     data_str = f"""{data.get('selected_categories', '')}
@@ -69,11 +70,14 @@ def route_page(request):
     return render(request, 'routes/route_page.html', context)
 
 
-def generate_route_bg(session_key, user_preferences, current_fingerprint):
+def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprint):
     from django.contrib.sessions.models import Session
     from django.contrib.sessions.backends.db import SessionStore
 
-    route = generate_route(user_preferences)
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    user = User.objects.get(pk=user_pk)
+    route = generate_route(user, user_preferences)
     # route = ""
     # import time
     # time.sleep(20)
@@ -129,7 +133,12 @@ def start_route(request):
         # Запускаем фоновую задачу
         t = threading.Thread(
             target=generate_route_bg,
-            args=(request.session.session_key, user_preferences, current_fingerprint),
+            args=(
+                request.session.session_key,
+                request.user.pk,  # передаём PK пользователя
+                user_preferences,
+                current_fingerprint
+            ),
             daemon=True
         )
         t.start()
@@ -149,6 +158,7 @@ def check_route(request):
         "status": status,
         "route_data": route_data
     })
+
 
 def replace_place(request):
     if request.method == 'POST':

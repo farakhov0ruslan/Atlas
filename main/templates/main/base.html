@@ -46,13 +46,17 @@
 
 			<div class="collapse navbar-collapse" id="navbarMenu">
 				<div class="navbar-nav ms-auto d-flex align-items-center">
+                    <a class="nav-item nav-link">
+						<span class="countRouteText">количество маршрутов: {{ user.max_routes }}</span>
+					</a>
+
 					<!-- 1. ГОРОД -->
 					<a href="#" class="nav-item nav-link" aria-expanded="false">
 						<span id="cityButtonText">ГОРОД</span> <!-- Место для отображения города -->
 					</a>
 
 					<!-- 2. ЦЕНЫ -->
-					<a href="{% url 'main:prices' %}" class="nav-item nav-link">ЦЕНЫ</a>
+					<a href="{% url 'main:prices' %}" class="nav-item nav-link">ПОДПИСКА</a>
 
 					<!-- 3. АККАУНТ / профиль -->
 					{% if user.is_authenticated %}
