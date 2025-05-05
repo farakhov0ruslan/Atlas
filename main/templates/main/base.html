@@ -9,10 +9,7 @@
 	<link rel="icon" href="{% static 'deps/images/icon/icon_32.png' %}" sizes="32x32"
 	      type="image/png">
 
-	{% block title %}
-
-	{% endblock %}
-	<title>Атлас - Путешествия</title>
+	<title>{% block title %}Атлас – Путешествия{% endblock %}</title>
 	<!-- Bootstrap CSS -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
 	      rel="stylesheet">
@@ -25,11 +22,14 @@
 	{% endblock %}
 	<link rel="stylesheet" href="{% static "deps/css/style.css" %}">
 	<link rel="stylesheet" href="{% static "deps/css/main/nav-bar.css" %}">
+	<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+	>
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-	<!-- Header with Logo -->
 	<nav class="navbar navbar-expand-md navbar-light bg-green">
 		<div class="container">
 			<!-- Логотип -->
@@ -37,54 +37,59 @@
 				<img src="{% static 'deps/images/icon/left icon.jpg' %}" alt="Atlas Logo"
 				     class="logo">
 			</a>
-			<!-- Кнопка-гамбургер -->
+			<!-- Гамбургер -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			        data-bs-target="#navbarMenu"
-			        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+			        data-bs-target="#navbarMenu" aria-controls="navbarMenu"
+			        aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Основное меню -->
+
 			<div class="collapse navbar-collapse" id="navbarMenu">
-				<div class="navbar-nav ms-auto">
+				<div class="navbar-nav ms-auto d-flex align-items-center">
+                    <a class="nav-item nav-link">
+						<span class="countRouteText">количество маршрутов: {{ user.max_routes }}</span>
+					</a>
+
+					<!-- 1. ГОРОД -->
+					<a href="#" class="nav-item nav-link" aria-expanded="false">
+						<span id="cityButtonText">ГОРОД</span> <!-- Место для отображения города -->
+					</a>
+
+					<!-- 2. ЦЕНЫ -->
+					<a href="{% url 'main:prices' %}" class="nav-item nav-link">ПОДПИСКА</a>
+
+					<!-- 3. АККАУНТ / профиль -->
 					{% if user.is_authenticated %}
-						<!-- Отображение имени пользователя и кнопки выхода -->
-						<!-- <a href="{% url 'main:profile' %}" class="nav-item nav-link"> -->
-						<a href="#" class="nav-item nav-link">
-							<i class="bi bi-person"></i> {{ user.username }}
+						<a href="{% url 'main:profile' %}" class="nav-item nav-link">
+							{{ user.username }}
 						</a>
 						<form method="post" action="{% url 'main:logout' %}"
-						      style="display: inline;">
+						      style="display:inline;">
 							{% csrf_token %}
-							<button type="submit" class="nav-item nav-link btn btn-link"
-							        style="border: none; background: none;">
-								<i class="bi bi-box-arrow-right"></i> Выйти
+							<button type="submit"
+							        class="nav-item nav-link btn btn-link"
+							        style="border:none; background:none;">
+								ВЫЙТИ
 							</button>
 						</form>
 					{% else %}
-						<!-- Если пользователь не авторизован, отображаем кнопку "Аккаунт" -->
-						<a href="#" class="nav-item nav-link" data-bs-toggle="modal"
-						   data-bs-target="#accountModal">
-							<i class="bi bi-person"></i> Аккаунт
+						<a href="#" class="nav-item nav-link"
+						   data-bs-toggle="modal" data-bs-target="#accountModal">
+							АККАУНТ
 						</a>
-					{% endif %}
-					<!-- Прочие элементы меню -->
-					{% if request.session.route %}
-						<a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
-							<i class="bi bi-suitcase"></i> Чемодан
-						</a>
-					{% else %}
-						<span class="nav-item nav-link disabled"><i class="bi bi-suitcase"></i> Чемодан
-                </span>
 					{% endif %}
 
-					<!-- Кнопка для выбора города -->
-					<a href="#" class="nav-item nav-link" aria-expanded="false">
-						<i class="bi bi-geo-alt"></i>
-						<span id="cityButtonText">Город</span> <!-- Место для отображения города -->
-					</a>
-					<a href="#" class="nav-item nav-link">
-						<i class="bi bi-question-circle"></i> ПОМОЩЬ
-					</a>
+					<!-- 4. ЧЕМОДАН -->
+					{% if request.session.route %}
+						<a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
+							ЧЕМОДАН
+						</a>
+					{% else %}
+						<span class="nav-item nav-link disabled">ЧЕМОДАН</span>
+					{% endif %}
+
+					<!-- 5. ПОМОЩЬ -->
+					<a href="#" class="nav-item nav-link">ПОМОЩЬ</a>
 				</div>
 			</div>
 		</div>
@@ -157,7 +162,8 @@
 								<div class="mb-3">
 									<label for="registerEmail" class="form-label">Email
 										адрес</label>
-									<input id="registerEmail" type="email" class="form-control" name="email"
+									<input id="registerEmail" type="email" class="form-control"
+									       name="email"
 									       placeholder="Введите email"
 									       required>
 									<div id="emailError" style="color:red;"></div>
@@ -193,10 +199,11 @@
 			</div>
 		</div>
 	</div>
+	<main class="flex-grow-1">
+		{% block content %}
 
-	{% block content %}
-
-	{% endblock %}
+		{% endblock %}
+	</main>
 	<!-- Bootstrap Bundle with Popper -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -289,7 +296,7 @@
                             if (response.errors) {
                                 console.log(response.errors)
                                 for (const [field, message] of Object.entries(response.errors)) {
-                                    if (field==="email"){
+                                    if (field === "email") {
                                         $("#" + field + "Error1").html(message).show();  // Показываем ошибки на уровне формы
                                     } else {
                                         $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
@@ -329,7 +336,7 @@
             const cityButtonText = document.getElementById("cityButtonText");
 
             function updateCityText(cityName) {
-                cityButtonText.textContent = cityName;
+                cityButtonText.textContent = cityName.toUpperCase();
             }
 
             function saveLocationToSession(lat, lon) {
@@ -454,11 +461,25 @@
                 .catch(err => console.error("Ошибка проверки сессии или БД:", err));
         });
 	</script>
+	{% block footer %}
+		<footer class="bg-light py-3 border-top">
+			<div class="container d-flex justify-content-start align-items-center gap-3">
+				<!-- Логотип или иконка -->
+				<img src="{% static 'deps/images/icon/left icon.jpg' %}"
+				     alt="Atlas Logo"
+				     style="height: 25px; margin-top: -30px;">
 
+				<!-- Контакты -->
+				<div class="text-muted small">
+					<a href="mailto:goatlas.ru@yandex.ru"
+					   class="text-muted text-decoration-none">goatlas.ru@yandex.ru</a><br>
+					<a href="tel:+79120444288" class="text-muted text-decoration-none">+7 (912)
+						044-42-88</a><br>
+					<a href="{% url 'main:offer' %}"
+					   class="text-muted text-decoration-none">Оферта</a>
+				</div>
+			</div>
+		</footer>
+	{% endblock %}
 </body>
-
-
-{% block footer %}
-
-{% endblock %}
 </html>

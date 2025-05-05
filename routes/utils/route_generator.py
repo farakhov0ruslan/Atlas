@@ -4,9 +4,10 @@ from random import Random
 from routes.utils import yandex
 from django.conf import settings
 from routes.models import Place
+from django.db.models import F
 
 
-def generate_route(user_preferences: str) -> dict:
+def generate_route(user, user_preferences: str) -> dict:
     """
      Генерирует маршрут с помощью Yandex GPT API на основе предпочтений пользователя.
 
@@ -31,7 +32,6 @@ def generate_route(user_preferences: str) -> dict:
     print(responce_route_str)
     route_dict = json.loads(responce_route_str)
 
-
     using_place = set()
     for day, activities in route_dict.items():
         for activity in activities:
@@ -52,7 +52,7 @@ def generate_route(user_preferences: str) -> dict:
                             break
                         rand_ind = Random().randint(0, len(matched_places) - 1)
                         place = matched_places[rand_ind]
-                        i+=1
+                        i += 1
                     # Заменяем 'tags' на 'place'
                     activity.pop("tags", None)
                     activity["place_id"] = place.id
@@ -68,4 +68,17 @@ def generate_route(user_preferences: str) -> dict:
                 activity.pop("tags", None)
 
         # В итоге route_dict теперь имеет поле "place" вместо "tags".
+
+    counter = 1
+    for day, activities in route_dict.items():
+        for activity in activities:
+            activity["id"] = counter
+            counter += 1
+
+    user.__class__.objects.filter(pk=user.pk) \
+        .update(max_routes=F('max_routes') - 1)
+
+    # подгружаем обновлённое значение в экземпляр и в сессию (если есть request)
+    user.refresh_from_db(fields=['max_routes'])
+
     return route_dict

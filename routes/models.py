@@ -25,6 +25,22 @@ class CustomUser(AbstractUser):
     latitude = models.FloatField(null=True, blank=True, verbose_name="Широта")  # Добавляем поле широты
     longitude = models.FloatField(null=True, blank=True, verbose_name="Долгота")
 
+    max_routes = models.PositiveIntegerField(default=0, verbose_name="Макс. маршрутов по подписке", db_default = 0)
+
+    def active_subscription(self):
+        # возвращает последнюю активную подписку или None
+        from django.utils import timezone
+        return (
+            self.subscriptions
+            .filter(end_date__gt=timezone.now())
+            .order_by('-end_date')
+            .first()
+        )
+
+    def remaining_routes(self):
+        used = self.route_set.count()
+        return max(0, self.max_routes - used)
+
     def __str__(self):
         return self.email
 
