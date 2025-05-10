@@ -5,6 +5,7 @@
 
 {% block css %}
 	<style>
+
         /* Фон секций */
         .bg-lime {
             background-color: #9ccb2b;
@@ -12,13 +13,14 @@
 
         /* Карточки пакетов */
         .pricing-card {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.1);
             border-radius: 16px;
             padding: 2rem 1.5rem;
-            color: white;
+            color: #fffdfd;
             display: flex;
             flex-direction: column;
         }
+
 
         .pricing-card h3 {
             font-weight: 600;
@@ -47,47 +49,51 @@
 
         /* Подробное описание */
         .details-box {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.1);
             border-radius: 16px;
             padding: 2rem;
             color: white;
-            font-size: 1rem;
+            font-size: 1.5rem;
             line-height: 1.6;
         }
 
         /* Стили модального окна */
-        #confirmModal .modal-content {
+        /* вместо текущих #confirmModal ... */
+        #confirmModal .modal-content,
+        #registerModal .modal-content {
             background-color: #6A0DAD;
             border-radius: 16px;
         }
 
-        #confirmModal .modal-body {
+        #confirmModal .modal-body,
+        #registerModal .modal-body {
             color: white;
             text-align: center;
             padding: 2rem;
         }
 
-        #confirmModal .modal-body p {
+        #confirmModal .modal-body p,
+        #registerModal .modal-body p {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 2rem;
         }
 
-        /* футер как flex-контейнер */
-        #confirmModal .modal-footer {
+        #confirmModal .modal-footer,
+        #registerModal .modal-footer {
             display: flex;
             gap: 1rem;
             padding: 1rem 2rem 2rem;
             border: none;
         }
 
-        /* и кнопка, и форма — flex:1 */
-        #confirmModal .modal-footer > * {
+        #confirmModal .modal-footer > *,
+        #registerModal .modal-footer > * {
             flex: 1;
         }
 
-        /* внутри формы кнопку тянем на 100% ширины */
-        #confirmModal .modal-footer .btn-modal {
+        #confirmModal .modal-footer .btn-modal,
+        #registerModal .modal-footer .btn-modal {
             width: 100%;
             background-color: #9ccb2b;
             color: white;
@@ -98,9 +104,11 @@
             transition: background-color 0.2s;
         }
 
-        #confirmModal .modal-footer .btn-modal:hover {
+        #confirmModal .modal-footer .btn-modal:hover,
+        #registerModal .modal-footer .btn-modal:hover {
             background-color: #85a721;
         }
+
 
         .mb-5 {
             padding-top: 0.5%;
@@ -122,8 +130,7 @@
 						<button
 								type="button"
 								class="mt-auto btn btn-connect btn-lg text-white"
-								data-bs-toggle="modal"
-								data-bs-target="#confirmModal"
+								data-increment="5"
 						>
 							Подключить
 						</button>
@@ -138,8 +145,7 @@
 						<button
 								type="button"
 								class="mt-auto btn btn-connect btn-lg text-white"
-								data-bs-toggle="modal"
-								data-bs-target="#confirmModal"
+								data-increment="12"
 						>
 							Подключить
 						</button>
@@ -154,8 +160,7 @@
 						<button
 								type="button"
 								class="mt-auto btn btn-connect btn-lg text-white"
-								data-bs-toggle="modal"
-								data-bs-target="#confirmModal"
+								data-increment="25"
 						>
 							Подключить
 						</button>
@@ -212,4 +217,103 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Модал про регистрацию (стиль как у confirmModal) -->
+	<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel"
+	     aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- Тело модала -->
+				<div class="modal-body text-center">
+					<p id="registerModalLabel">
+						Чтобы подключить пакет и получать маршруты, необходимо
+						<strong>зарегистрироваться<strong> или <strong>войти<strong>
+							в систему.
+					</p>
+				</div>
+				<!-- Футер модала про регистрацию -->
+				<div class="modal-footer">
+					<!-- Отмена -->
+					<button type="button" class="btn-modal" data-bs-dismiss="modal">
+						Отмена
+					</button>
+					<!-- Кнопка, закрывающая этот модал и сразу открывающая accountModal -->
+					<button
+							type="button"
+							class="btn-modal"
+							data-bs-dismiss="modal"
+							data-bs-toggle="modal"
+							data-bs-target="#accountModal"
+					>
+						Войти / Регистрация
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // флаг из шаблона
+            const isAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
+
+            // инстансы модалей
+            const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+
+            // сюда запомним, сколько нужно прибавить
+            let selectedIncrement = 0;
+
+            // утилита для CSRF
+            function getCSRFToken() {
+                const name = 'csrftoken';
+                const match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+                return match ? decodeURIComponent(match[2]) : null;
+            }
+
+            // 1) при клике на «Подключить» — сохраняем increment и открываем нужный модал
+            document.querySelectorAll('.btn-connect').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    selectedIncrement = parseInt(this.dataset.increment, 10) || 0;
+
+                    if (isAuthenticated) {
+                        confirmModal.show();
+                    } else {
+                        registerModal.show();
+                    }
+                });
+            });
+
+            // 2) перехватываем сабмит формы внутри confirmModal
+            const confirmForm = document.querySelector('#confirmModal form');
+            confirmForm.addEventListener('submit', async function (e) {
+                e.preventDefault();            // не даём форме уйти обычным POST
+                confirmModal.hide();           // прячем модал
+
+                try {
+                    const resp = await fetch("{% url 'main:subscribe' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCSRFToken()
+                        },
+                        body: JSON.stringify({increment: selectedIncrement})
+                    });
+                    const data = await resp.json();
+                    if (resp.ok && data.success) {
+                        // перезагружаем страницу, чтобы обновился счётчик
+                        window.location.reload();
+                    } else {
+                        alert(data.error || 'Не удалось подключить пакет');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Ошибка при подключении пакета');
+                }
+            });
+        });
+	</script>
 {% endblock %}

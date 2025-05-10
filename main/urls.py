@@ -14,4 +14,5 @@ urlpatterns = [
     path('get-location/', views.get_user_location, name="get_user_location"),
     path('oferta/', views.offer, name='offer'),
     path('prices/', views.prices, name='prices'),
+    path('subscribe/', views.subscribe, name='subscribe'),
 ]
