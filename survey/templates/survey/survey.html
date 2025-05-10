@@ -257,7 +257,6 @@
 
                 if (checkData.status === 'completed') {
                     clearInterval(pollInterval);
-                    // Перенаправляем пользователя на страницу маршрута
                     window.location.href = '{% url "routes:route_page" %}';
                 }
             }, 3000);

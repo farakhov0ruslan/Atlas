@@ -22,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
@@ -37,7 +38,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Сессия не будет удал
 # Application definition
 
 CSRF_COOKIE_NAME = "csrftoken"  # Убедитесь, что это название соответствует тому, что вы используете
-CSRF_COOKIE_HTTPONLY = False    # Чтобы токен был доступен для JavaScript
+CSRF_COOKIE_HTTPONLY = False  # Чтобы токен был доступен для JavaScript
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,9 +52,6 @@ INSTALLED_APPS = [
     'routes',
     'places',
 ]
-
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,7 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR/"staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static"  # Указывает на вашу корневую static-папку
 ]

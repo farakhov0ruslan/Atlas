@@ -192,3 +192,7 @@ input[type="number"] {
 html, body {
   font-family: 'Jost', sans-serif;
 }
+
+.countRouteText {
+    color: #555555;
+}

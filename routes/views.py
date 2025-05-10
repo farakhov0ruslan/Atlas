@@ -6,6 +6,8 @@ from datetime import datetime
 from django.shortcuts import render
 from routes.utils.route_generator import generate_route
 from routes.models import Place
+from django.db.models import F
+
 
 def compute_route_fingerprint(data):
     # Формируем строку из параметров
@@ -69,11 +71,14 @@ def route_page(request):
     return render(request, 'routes/route_page.html', context)
 
 
-def generate_route_bg(session_key, user_preferences, current_fingerprint):
+def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprint):
     from django.contrib.sessions.models import Session
     from django.contrib.sessions.backends.db import SessionStore
 
-    route = generate_route(user_preferences)
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    user = User.objects.get(pk=user_pk)
+    route = generate_route(user, user_preferences)
     # route = ""
     # import time
     # time.sleep(20)
@@ -126,14 +131,24 @@ def start_route(request):
     saved_fingerprint = request.session.get('route_fingerprint')
     # Если маршрут отсутствует или параметры изменились ищем маршрут иначе completed
     if not route or current_fingerprint != saved_fingerprint:
+        request.user.__class__.objects.filter(pk=request.user.pk) \
+            .update(max_routes=F('max_routes') - 1)
+        request.user.refresh_from_db(fields=['max_routes'])
+
         # Запускаем фоновую задачу
         t = threading.Thread(
             target=generate_route_bg,
-            args=(request.session.session_key, user_preferences, current_fingerprint),
+            args=(
+                request.session.session_key,
+                request.user.pk,  # передаём PK пользователя
+                user_preferences,
+                current_fingerprint
+            ),
             daemon=True
         )
         t.start()
 
+        request.session['route_fingerprint'] = current_fingerprint
         request.session["route_status"] = "started"
         return JsonResponse({"status": "started"})
 
@@ -149,6 +164,7 @@ def check_route(request):
         "status": status,
         "route_data": route_data
     })
+
 
 def replace_place(request):
     if request.method == 'POST':

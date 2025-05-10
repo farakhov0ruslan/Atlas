@@ -15,12 +15,12 @@
     <header class="bg-lime py-3">
         <div class="container d-flex align-items-center justify-content-between">
             <div class="d-flex justify-content-center flex-grow-1 gap-3">
-                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
-                    <i class="fas fa-bus"></i> Трансфер
-                </a>
-                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">
-                    <i class="fas fa-bed"></i> Проживание
-                </a>
+{#                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">#}
+{#                    <i class="fas fa-bus"></i> Трансфер#}
+{#                </a>#}
+{#                <a class="btn btn-purple text-white fw-bold nav-btn" href="#">#}
+{#                    <i class="fas fa-bed"></i> Проживание#}
+{#                </a>#}
                 <a class="btn btn-purple text-white fw-bold nav-btn" href="{% url 'places:place_page' %}">
                     <i class="fas fa-landmark"></i> Места
                 </a>
@@ -72,10 +72,10 @@
                                     <h4 class="card-title">{{ activity.activity }}
                                         | {{ activity.place.name }}</h4>
                                     <!-- Кнопка "В избранное" -->
-                                    <button class="favorite-btn">
-                                        <i class="fas fa-heart"></i>
-                                        <span>В избранное</span>
-                                    </button>
+{#                                    <button class="favorite-btn">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                        <span>В избранное</span>#}
+{#                                    </button>#}
                                 </div>
                                 <div class="row">
                                     <!-- Фото места -->
@@ -179,15 +179,15 @@
                                                                                style="color: #6A0DAD"></i> {{ place_option.address }}
                                                                         </p>
                                                                         <div class="rating d-flex align-items-center mb-2">
-                                <span class="text-warning">
-                                    <i class="fas fa-star" style="color: #6A0DAD"></i>
-                                </span>
-                                                                            <span class="rating-value ms-2">
-                                    {% random_float %}
-                                    <span class="rating-label">
-                                        ({% random_number %} отзывов)
-                                    </span>
-                                </span>
+{#                                <span class="text-warning">#}
+{#                                    <i class="fas fa-star" style="color: #6A0DAD"></i>#}
+{#                                </span>#}
+{#                                                                            <span class="rating-value ms-2">#}
+{#                                    {% random_float %}#}
+{#                                    <span class="rating-label">#}
+{#                                        ({% random_number %} отзывов)#}
+{#                                    </span>#}
+{#                                </span>#}
                                                                         </div>
                                                                         <p class="card-description">
                                                                             {{ place_option.full_description|default:"Описание отсутствует" }}

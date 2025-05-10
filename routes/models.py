@@ -14,19 +14,41 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)  # Убедитесь, что email уникален
-    avatar_image = models.ImageField(upload_to='avatars/', null=True, blank=True, default='path/to/default/image.jpg')
+    avatar_image = models.ImageField(upload_to='avatars/', null=True, blank=True,
+                                     default='path/to/default/image.jpg')
 
     username = models.CharField(max_length=150, unique=False, null=True, blank=True)
     USERNAME_FIELD = 'email'  # Указываем, что для аутентификации будет использоваться email
-    REQUIRED_FIELDS = ['username']  # username по-прежнему нужен, но его не будем использовать для входа
+    REQUIRED_FIELDS = [
+        'username']  # username по-прежнему нужен, но его не будем использовать для входа
 
-    latitude = models.FloatField(null=True, blank=True, verbose_name="Широта")  # Добавляем поле широты
+    latitude = models.FloatField(null=True, blank=True,
+                                 verbose_name="Широта")  # Добавляем поле широты
     longitude = models.FloatField(null=True, blank=True, verbose_name="Долгота")
+
+    max_routes = models.PositiveIntegerField(default=0, verbose_name="Макс. маршрутов по подписке",
+                                             db_default=0)
+
+    def active_subscription(self):
+        # возвращает последнюю активную подписку или None
+        from django.utils import timezone
+        return (
+            self.subscriptions
+            .filter(end_date__gt=timezone.now())
+            .order_by('-end_date')
+            .first()
+        )
+
+    def remaining_routes(self):
+        used = self.route_set.count()
+        return max(0, self.max_routes - used)
 
     def __str__(self):
         return self.email
+
 
 class WorkingHours(models.Model):
     place = models.ForeignKey(
