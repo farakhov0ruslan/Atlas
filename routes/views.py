@@ -6,6 +6,7 @@ from datetime import datetime
 from django.shortcuts import render
 from routes.utils.route_generator import generate_route
 from routes.models import Place
+from django.db.models import F
 
 
 def compute_route_fingerprint(data):
@@ -130,6 +131,10 @@ def start_route(request):
     saved_fingerprint = request.session.get('route_fingerprint')
     # Если маршрут отсутствует или параметры изменились ищем маршрут иначе completed
     if not route or current_fingerprint != saved_fingerprint:
+        request.user.__class__.objects.filter(pk=request.user.pk) \
+            .update(max_routes=F('max_routes') - 1)
+        request.user.refresh_from_db(fields=['max_routes'])
+
         # Запускаем фоновую задачу
         t = threading.Thread(
             target=generate_route_bg,
@@ -143,6 +148,7 @@ def start_route(request):
         )
         t.start()
 
+        request.session['route_fingerprint'] = current_fingerprint
         request.session["route_status"] = "started"
         return JsonResponse({"status": "started"})
 

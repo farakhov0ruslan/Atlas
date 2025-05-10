@@ -3,8 +3,10 @@ from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.views.decorators.http import require_POST
 from django.http import JsonResponse
+from django.db.models import F
+import json
 
 def survey_redirect(request):
     if request.method == "POST":
@@ -152,3 +154,26 @@ def prices(request):
         Шаблон: main/templates/main/oferta.html
         """
     return render(request, 'main/prices.html')
+
+@login_required
+@require_POST
+def subscribe(request):
+    """
+    AJAX-вьюшка, которая принимает JSON {increment: N}
+    и атомарно прибавляет N маршрутов к user.max_routes.
+    """
+    try:
+        payload = json.loads(request.body)
+        inc = int(payload.get('increment', 0))
+        if inc <= 0:
+            return JsonResponse({'success': False, 'error': 'Неверное количество'}, status=400)
+
+        # атомарно увеличиваем max_routes
+        request.user.__class__.objects.filter(pk=request.user.pk) \
+            .update(max_routes=F('max_routes') + inc)
+
+        # (по желанию) можете здесь создать запись о подписке в своей модели Subscription
+
+        return JsonResponse({'success': True})
+    except (ValueError, json.JSONDecodeError):
+        return JsonResponse({'success': False, 'error': 'Неверный формат'}, status=400)
