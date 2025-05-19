@@ -22,11 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
-# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1']
-ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
+ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1', "jointly-confirmed-perch.cloudpub.ru"]
+# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://jointly-confirmed-perch.cloudpub.ru',
+    # если у вас ещё http-тесты — можно указать 'http://…'
+]
 
 AUTH_USER_MODEL = 'routes.CustomUser'
 
@@ -51,6 +56,7 @@ INSTALLED_APPS = [
     'survey',
     'routes',
     'places',
+    "payments"
 ]
 
 MIDDLEWARE = [
@@ -101,12 +107,12 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -150,6 +156,8 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
 YANDEX_OAUTH_TOKEN = "y0_AgAAAAAsA27kAATuwQAAAAEcoGZNAAAZ2bVqhehPe67on8fEWv3T9Av5hw"
+YOOKASSA_SHOP_ID = "1090100"
+YOOKASSA_API_KEY = "test_BBx9nQV5pqyPKmf4WjsGDta7yUsnzyZKQ9cAHY0kYvc"
 FOLDER_ID = "b1gspfv2o3g5um6ak5n5"
 
 CACHES = {

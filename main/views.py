@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.db.models import F
+from .models import SubscriptionPlan
 import json
 
 def survey_redirect(request):
@@ -151,9 +152,12 @@ def offer(request):
 def prices(request):
     """
         Страница договора-оферты.
-        Шаблон: main/templates/main/oferta.html
+        Шаблон: main/templates/main/prices.html
         """
-    return render(request, 'main/prices.html')
+    plans = SubscriptionPlan.objects.all().order_by('price')  # можно сортировать
+    return render(request, 'main/prices.html', {
+        'plans': plans,
+    })
 
 @login_required
 @require_POST
