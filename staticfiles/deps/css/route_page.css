@@ -130,6 +130,14 @@ header .btn-purple.mx-2 {
     margin-right: 10px;
 }
 
+/* добавьте в ваш CSS-файл */
+.card.blurred {
+  filter: blur(6px);
+  pointer-events: none;   /* запретим клики */
+  user-select: none;      /* запретим выделение текста */
+}
+
+
 /* Адаптивность */
 @media (max-width: 768px) {
     header .container {

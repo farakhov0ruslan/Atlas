@@ -1,13 +1,13 @@
 import hashlib
 import json
 import threading
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from datetime import datetime
 from django.shortcuts import render
 from routes.utils.route_generator import generate_route
-from routes.models import Place
+from routes.models import Place, RouteCell, Day, Route
 from django.db.models import F
-
+from django.utils import timezone
 
 def compute_route_fingerprint(data):
     # Формируем строку из параметров
@@ -34,23 +34,56 @@ def route_page(request):
 
     days = [f"День {i + 1}" for i in range(session_data['days_count'])]
 
-    # Вычисляем количество дней
-
-    # Проверяем, есть ли уже маршрут в сессии
+    # 2) Пытаемся получить маршрут из сессии
+    route = None
     route_json = request.session.get('route')
     if route_json:
         try:
             route = json.loads(route_json)
         except json.JSONDecodeError:
             route = None
-    else:
-        route = None
 
-    # Если маршрут уже готов, подставляем объекты Place по идентификатору
-    for route_day in route:
-        for activity in route[route_day]:
-            if activity.get("place_id"):
-                activity["place"] = Place.objects.get(id=activity["place_id"])
+    # 3) Если в сессии нет маршрута и пользователь залогинен — подтягиваем последний из БД
+    if route is None and request.user.is_authenticated:
+        last_route = (
+            Route.objects
+            .filter(user_id=request.user)
+            .order_by('-created_at')
+            .first()
+        )
+        if last_route:
+            # строим словарь вида {1: [...], 2: [...], ...}
+            route = {}
+            days_qs = Day.objects.filter(route_id=last_route).order_by('id')
+            for idx, day_obj in enumerate(days_qs, start=1):
+                cells = RouteCell.objects.filter(day_id=day_obj).order_by('start_time')
+                activities = []
+                for cell in cells:
+                    activities.append({
+                        "id": cell.id,
+                        "time": f"{cell.start_time.strftime('%H:%M')}-{cell.end_time.strftime('%H:%M')}",
+                        "activity": cell.notes or cell.place_id.name,
+                        "place_id": cell.place_id.id,
+                    })
+                route[idx] = activities
+            # обновим количество дней если оно отличается
+            days_count = len(route)
+            days = [f"День {i}" for i in range(1, days_count + 1)]
+
+
+    # 4) Если после этого всё ещё нет маршрута — 404 или пустой
+    if route is None:
+        raise Http404("Маршрут не найден")
+
+    # 5) Подмена place_id на actual Place-объект
+    for route_day, activities in route.items():
+        for activity in activities:
+            pid = activity.get("place_id")
+            if pid:
+                try:
+                    activity["place"] = Place.objects.get(pk=pid)
+                except Place.DoesNotExist:
+                    activity["place"] = None
             else:
                 activity["place"] = None
 
@@ -71,17 +104,71 @@ def route_page(request):
     return render(request, 'routes/route_page.html', context)
 
 
-def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprint):
+def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprint, city):
     from django.contrib.sessions.models import Session
     from django.contrib.sessions.backends.db import SessionStore
 
     from django.contrib.auth import get_user_model
     User = get_user_model()
-    user = User.objects.get(pk=user_pk)
-    route = generate_route(user, user_preferences)
+    user = None
+    if user_pk is not None:
+        try:
+            user = User.objects.get(pk=user_pk)
+        except User.DoesNotExist:
+            user = None
+    route = generate_route(user, user_preferences, city)
     # route = ""
     # import time
     # time.sleep(20)
+    # ========= НОВОЕ: сохраняем маршрут в БД =========
+    if user is not None:
+        now = timezone.now()
+        # 1) создаём сам маршрут
+        route_obj = Route.objects.create(
+            user_id=user,
+            name=f"Маршрут {now.strftime('%Y-%m-%d %H:%M')}",
+            created_at=now,
+            updated_at=now,
+            days_count=len(route),
+        )
+
+        # 2) пробегаем по дням
+        for day_index, (day_name, activities) in enumerate(route.items(), start=1):
+            # вычисляем минимальное/максимальное время дня из всех активностей
+            times = [act.get("time", "") for act in activities if act.get("time")]
+            starts = [t.split("-")[0] for t in times if "-" in t]
+            ends = [t.split("-")[1] for t in times if "-" in t]
+
+            day_obj = Day.objects.create(
+                route_id=route_obj,
+                start_time=min(starts) if starts else "00:00",
+                end_time=max(ends) if ends else "23:59",
+            )
+
+            # 3) сохраняем каждую активность как RouteCell
+            for act in activities:
+                t = act.get("time", "")
+                if "-" in t:
+                    start, end = t.split("-")
+                else:
+                    start = end = t
+
+                place_obj = None
+                pid = act.get("place_id")
+                if pid:
+                    try:
+                        place_obj = Place.objects.get(pk=pid)
+                    except Place.DoesNotExist:
+                        pass
+                if place_obj:
+                    RouteCell.objects.create(
+                        day_id=day_obj,
+                        place_id=place_obj,
+                        start_time=start,
+                        end_time=end,
+                        notes=act.get("activity", ""), )
+    # ======== конец вставки сохранения в БД ========
+
     try:
 
         s = SessionStore(session_key=session_key)
@@ -93,6 +180,17 @@ def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprin
 
 
 def start_route(request):
+    # 0) Убедимся, что для гостя уже есть session_key
+    if not request.session.session_key:
+        request.session.create()
+
+    # 1) Квота для анонимов
+    if not request.user.is_authenticated:
+        if request.session['routes_left'] <= 0:
+            return JsonResponse({
+                "status": "no_routes",
+                "message": "Пробный маршрут уже использован. Пожалуйста, зарегистрируйтесь."
+            }, status=403)
     # Из сессии получаем необходимые данные
 
     selected_categories = request.session.get('selected_categories', [])
@@ -131,18 +229,25 @@ def start_route(request):
     saved_fingerprint = request.session.get('route_fingerprint')
     # Если маршрут отсутствует или параметры изменились ищем маршрут иначе completed
     if not route or current_fingerprint != saved_fingerprint:
-        request.user.__class__.objects.filter(pk=request.user.pk) \
-            .update(max_routes=F('max_routes') - 1)
-        request.user.refresh_from_db(fields=['max_routes'])
+        if request.user.is_authenticated:
+            request.user.__class__.objects.filter(pk=request.user.pk) \
+                .update(max_routes=F('max_routes') - 1)
+            request.user.refresh_from_db(fields=['max_routes'])
+        else:
+            request.session['routes_left'] -= 1
 
+        user_pk = request.user.pk if request.user.is_authenticated else None
+
+        city = request.session.get('city', '')
         # Запускаем фоновую задачу
         t = threading.Thread(
             target=generate_route_bg,
             args=(
                 request.session.session_key,
-                request.user.pk,  # передаём PK пользователя
+                user_pk,  # передаём PK пользователя
                 user_preferences,
-                current_fingerprint
+                current_fingerprint,
+                city
             ),
             daemon=True
         )
@@ -158,7 +263,11 @@ def start_route(request):
 def check_route(request):
     # Возвращаем статус из сессии
     status = request.session.get('route_status', 'no_session')
-    route_data = request.session.get('route_data', {})
+    route_json = request.session.get('route', 'null')
+    try:
+        route_data = json.loads(route_json)
+    except (TypeError, ValueError):
+        route_data = {}
 
     return JsonResponse({
         "status": status,

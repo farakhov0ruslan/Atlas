@@ -46,13 +46,15 @@
 
 			<div class="collapse navbar-collapse" id="navbarMenu">
 				<div class="navbar-nav ms-auto d-flex align-items-center">
-					{% if user.is_authenticated %}
 						<a class="nav-item nav-link">
 							<span class="countRouteText">
-							  Количество маршрутов: {{ user.max_routes }}
+							  {% if user.is_authenticated %}
+                                  Количество маршрутов: {{ user.max_routes }}
+                              {% else %}
+                                  Количество маршрутов: {{ request.session.routes_left }}
+                              {% endif %}
 							</span>
 						</a>
-					{% endif %}
 
 					{#					<!-- 1. ГОРОД -->#}
 					{#					<a href="#" class="nav-item nav-link" aria-expanded="false">#}
