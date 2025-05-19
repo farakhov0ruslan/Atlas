@@ -104,7 +104,7 @@ def route_page(request):
     return render(request, 'routes/route_page.html', context)
 
 
-def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprint):
+def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprint, city):
     from django.contrib.sessions.models import Session
     from django.contrib.sessions.backends.db import SessionStore
 
@@ -116,7 +116,7 @@ def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprin
             user = User.objects.get(pk=user_pk)
         except User.DoesNotExist:
             user = None
-    route = generate_route(user, user_preferences)
+    route = generate_route(user, user_preferences, city)
     # route = ""
     # import time
     # time.sleep(20)
@@ -160,13 +160,13 @@ def generate_route_bg(session_key, user_pk, user_preferences, current_fingerprin
                         place_obj = Place.objects.get(pk=pid)
                     except Place.DoesNotExist:
                         pass
-
-                RouteCell.objects.create(
-                    day_id=day_obj,
-                    place_id=place_obj,
-                    start_time=start,
-                    end_time=end,
-                    notes=act.get("activity", ""),)
+                if place_obj:
+                    RouteCell.objects.create(
+                        day_id=day_obj,
+                        place_id=place_obj,
+                        start_time=start,
+                        end_time=end,
+                        notes=act.get("activity", ""), )
     # ======== конец вставки сохранения в БД ========
 
     try:
@@ -238,6 +238,7 @@ def start_route(request):
 
         user_pk = request.user.pk if request.user.is_authenticated else None
 
+        city = request.session.get('city', '')
         # Запускаем фоновую задачу
         t = threading.Thread(
             target=generate_route_bg,
@@ -245,7 +246,8 @@ def start_route(request):
                 request.session.session_key,
                 user_pk,  # передаём PK пользователя
                 user_preferences,
-                current_fingerprint
+                current_fingerprint,
+                city
             ),
             daemon=True
         )

@@ -7,7 +7,7 @@ from routes.models import Place
 from django.db.models import F
 
 
-def generate_route(user, user_preferences: str) -> dict:
+def generate_route(user, user_preferences: str, city: str) -> dict:
     """
      Генерирует маршрут с помощью Yandex GPT API на основе предпочтений пользователя.
 
@@ -43,7 +43,9 @@ def generate_route(user, user_preferences: str) -> dict:
 
                 # Найдём место, соответствующее этому тегу.
                 # Предполагается, что модель Place имеет связанный ManyToMany 'tags' с полем 'name'.
-                matched_places = Place.objects.filter(category__name=main_tag)
+                matched_places = Place.objects.filter(
+                                    category__name = main_tag,
+                                city = city)
                 if matched_places.exists():
                     i = 0
                     place = matched_places[0]
