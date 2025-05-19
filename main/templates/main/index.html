@@ -288,7 +288,15 @@
                 if (!validateFormFields()) {
                     return;  // Если не прошли — выходим, модалки не покажутся
                 }
-                const letGo = {% if user.max_routes > 0 %} true {% else %} false {% endif %};
+                let letGo;
+
+                // 2) assign in the template
+                {% if user.is_authenticated %}
+                    letGo = {{ user.max_routes|default:0 }} > 0;
+                {% else %}
+                    letGo = {{ request.session.routes_left }} > 0;
+                {% endif %}
+
                 if (!letGo) {
                     noCountModalInstance.show();
                 } else {

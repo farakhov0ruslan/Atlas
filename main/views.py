@@ -31,6 +31,12 @@ def survey_redirect(request):
 
 
 def index(request):
+    # если сессии ещё нет — создаём
+    if not request.session.session_key:
+        request.session.create()
+
+    # задаём дефолт
+    request.session.setdefault('routes_left', 1)
     return render(request, 'main/index.html', {'user': request.user})
 
 
@@ -63,8 +69,26 @@ def profile(request):
     return render(request, 'main/profile.html')
 
 def custom_logout(request):
-    logout(request)  # Завершаем сессию пользователя
-    return redirect('main:index')  # Перенаправляем на главную страницу
+    # Сохраняем в локальную переменную всё, что не должны терять при flush()
+    routes_left = request.session.get('routes_left', 1)
+    route_json = request.session.get('route')
+    days_count = request.session.get('days_count', None)
+    # Можно сохранить и другие ключи, если нужно:
+    # some_other = request.session.get('some_other', default)
+
+    # Разлогиниваем — по умолчанию это делает session.flush()
+    logout(request)
+
+    # Т.к. сессия уже новая, но cookie та же, сразу восстанавливаем счётчик
+    request.session['routes_left'] = routes_left
+    # И любые другие необходимые данные:
+    if route_json is not None:
+        request.session['route'] = route_json
+    if days_count is not None:
+        request.session['days_count'] = days_count
+    # request.session['some_other'] = some_other
+
+    return redirect('main:index')
 
 def login_view(request):
     if request.method == "POST":

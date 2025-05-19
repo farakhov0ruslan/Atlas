@@ -293,3 +293,65 @@ header .container {
     transition: color 0.3s ease-in-out;
 }
 
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* вот что размазываем */
+.card .card-inner.blurred {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* оверлей поверх размытого inner */
+.card .subscription-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Делаем саму карточку контейнером для абсолютного позиционирования */
+.place-list .card.blurred {
+  position: relative;
+  overflow: hidden; /* чтобы оверлей не вылезал */
+}
+
+/* Оверлей поверх размытой карточки */
+.place-list .card.blurred .subscription-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.85); /* почти белый полупрозрачный слой */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  pointer-events: auto; /* чтобы кнопки кликабельны */
+}
+
+/* Стили текста и кнопки внутри оверлея */
+.place-list .card.blurred .subscription-overlay p {
+  margin: 0;
+  color: #333;
+  text-align: center;
+}
+.place-list .card.blurred .subscription-overlay .btn-purple {
+  /* можно переопределить размер, если нужно */
+  padding: 0.5rem 1rem;
+}
+
+.subscription-overlay p {
+  font-size: 1.5rem !important;
+  line-height: 1.4 !important;
+}

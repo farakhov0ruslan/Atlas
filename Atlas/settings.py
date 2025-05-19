@@ -33,7 +33,15 @@ AUTH_USER_MODEL = 'routes.CustomUser'
 # Настройки сессий
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Сессии сохраняются в базе данных
 SESSION_COOKIE_NAME = 'sessionid'  # Имя cookie сессии
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Сессия не будет удаляться при закрытии браузера
+# сколько секунд жить сессионной куке (по умолчанию 2 недели = 1209600 сек.)
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30    # 30 дней
+
+# продлять жизнь сессии при каждом запросе
+SESSION_SAVE_EVERY_REQUEST = True
+
+# если True, то сессия завершается при закрытии браузера,
+# если False — живёт до отработки COOKIE_AGE
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Application definition
 
