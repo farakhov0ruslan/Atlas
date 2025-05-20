@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1', "jointly-confirmed-perch.cloudpub.ru"]
-# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
+# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1', "jointly-confirmed-perch.cloudpub.ru"]
+ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://jointly-confirmed-perch.cloudpub.ru',
@@ -115,12 +115,12 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
