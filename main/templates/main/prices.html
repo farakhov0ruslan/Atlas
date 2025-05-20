@@ -122,50 +122,36 @@
 			<h1 class="mb-5">Цены</h1>
 			<div class="row gx-4 gy-4 justify-content-center">
 
-				<div class="col-md-4">
-					<div class="pricing-card h-100">
-						<h3>Пакет «Выходные»</h3>
-						<p>Пакет включает в себя <strong>5</strong> маршрутов на месяц</p>
-						<div class="price">100 ₽</div>
-						<button
-								type="button"
-								class="mt-auto btn btn-connect btn-lg text-white"
-								data-increment="5"
-						>
-							Подключить
-						</button>
+				{% for plan in plans %}
+					<div class="col-md-4">
+						<div class="pricing-card h-100">
+							<h3>{{ plan.name }}</h3>
+							<p>Пакет включает в себя
+								<strong>{{ plan.routes }}</strong> маршрутов
+								{% if plan.duration.days > 30 %}
+									на
+									<strong>{% widthratio plan.duration.days 30 1 %}</strong>
+									месяцев
+								{% else %}
+									на
+									<strong>{{ plan.duration.days }}</strong>
+									дней
+								{% endif %}
+							</p>
+							<div class="price">{% widthratio plan.price 1 1 %} {{ plan.currency }}</div>
+							<button
+									type="button"
+									class="mt-auto btn btn-connect btn-lg text-white"
+									data-plan-id="{{ plan.id }}"
+									data-increment="{{ plan.routes }}"
+									data-price="{{ plan.price }}"
+									data-duration="{{ plan.duration.days }}"
+							>
+								Подключить
+							</button>
+						</div>
 					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="pricing-card h-100">
-						<h3>Пакет «Отпуск»</h3>
-						<p>Пакет включает в себя <strong>12</strong> маршрутов на 6 месяцев</p>
-						<div class="price">200 ₽</div>
-						<button
-								type="button"
-								class="mt-auto btn btn-connect btn-lg text-white"
-								data-increment="12"
-						>
-							Подключить
-						</button>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="pricing-card h-100">
-						<h3>Пакет «Каникулы»</h3>
-						<p>Пакет включает в себя <strong>25</strong> маршрутов на год</p>
-						<div class="price">300 ₽</div>
-						<button
-								type="button"
-								class="mt-auto btn btn-connect btn-lg text-white"
-								data-increment="25"
-						>
-							Подключить
-						</button>
-					</div>
-				</div>
+				{% endfor %}
 
 			</div>
 		</div>
@@ -227,8 +213,8 @@
 				<div class="modal-body text-center">
 					<p id="registerModalLabel">
 						Чтобы подключить пакет и получать маршруты, необходимо
-						<strong>зарегистрироваться<strong> или <strong>войти<strong>
-							в систему.
+						<strong>зарегистрироваться</strong> или <strong>войти</strong>
+						в систему.
 					</p>
 				</div>
 				<!-- Футер модала про регистрацию -->
@@ -277,13 +263,11 @@
             document.querySelectorAll('.btn-connect').forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    selectedIncrement = parseInt(this.dataset.increment, 10) || 0;
-
-                    if (isAuthenticated) {
-                        confirmModal.show();
-                    } else {
-                        registerModal.show();
-                    }
+                    selectedIncrement = parseInt(btn.dataset.increment, 10) || 0;
+                    selectedPrice = parseFloat(btn.dataset.price) || 0;
+                    selectedDuration = parseInt(btn.dataset.duration, 10) || 0;
+                    selectedPlanId    = parseInt(btn.dataset.planId, 10) || null;
+                    (isAuthenticated ? confirmModal : registerModal).show();
                 });
             });
 
@@ -294,24 +278,29 @@
                 confirmModal.hide();           // прячем модал
 
                 try {
-                    const resp = await fetch("{% url 'main:subscribe' %}", {
+                    const resp = await fetch("{% url 'payments:payment_view' %}", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRFToken': getCSRFToken()
                         },
-                        body: JSON.stringify({increment: selectedIncrement})
+                        body: JSON.stringify({
+	                        plan_id:  selectedPlanId,
+                            increment: selectedIncrement,
+                            price: selectedPrice,
+                            duration: selectedDuration
+                        })
                     });
                     const data = await resp.json();
-                    if (resp.ok && data.success) {
-                        // перезагружаем страницу, чтобы обновился счётчик
-                        window.location.reload();
+                    if (resp.ok && data.success && data.confirmation_url) {
+                        // Перенаправляем на YooKassa
+                        window.location.href = data.confirmation_url;
                     } else {
-                        alert(data.error || 'Не удалось подключить пакет');
+                        alert(data.error || 'Не удалось инициировать платёж');
                     }
                 } catch (err) {
                     console.error(err);
-                    alert('Ошибка при подключении пакета');
+                    alert('Ошибка при создании платежа');
                 }
             });
         });
