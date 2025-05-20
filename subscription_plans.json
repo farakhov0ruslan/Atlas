@@ -1,0 +1,38 @@
+[
+{
+  "model": "main.subscriptionplan",
+  "pk": 1,
+  "fields": {
+    "key": "d9a9a2c9414c3aad605b087d29f158625e3ff3b9",
+    "name": "Выходные",
+    "routes": 5,
+    "duration": "30 00:00:00",
+    "price": "100.00",
+    "currency": "RUB"
+  }
+},
+{
+  "model": "main.subscriptionplan",
+  "pk": 2,
+  "fields": {
+    "key": "a9442b3638d30d843cd0b4e2dac9836dde1c4125",
+    "name": "Отпуск",
+    "routes": 12,
+    "duration": "181 00:00:00",
+    "price": "200.00",
+    "currency": "RUB"
+  }
+},
+{
+  "model": "main.subscriptionplan",
+  "pk": 3,
+  "fields": {
+    "key": "336cf6babccb8894033aa60f3812818f4a98052c",
+    "name": "Каникулы",
+    "routes": 25,
+    "duration": "366 00:00:00",
+    "price": "300.00",
+    "currency": "RUB"
+  }
+}
+]
