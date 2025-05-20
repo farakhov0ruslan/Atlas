@@ -20,3 +20,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # import sys
+    # Если запускается runserver, принудительно отключаем авто-перезагрузку
+    # if 'runserver' in sys.argv and '--noreload' not in sys.argv:
+        # sys.argv.append('--noreload')
+    # main()

@@ -22,7 +22,6 @@ from Atlas import settings
 from django.urls import path
 from survey.views import survey_view
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace="main")),
@@ -30,6 +29,7 @@ urlpatterns = [
     path('survey/', include('survey.urls', namespace='survey')),
     path('routes/', include('routes.urls', namespace='routes')),
     path('places/', include('places.urls')),
+    path('payments/', include('payments.urls')),
 ]
 
 if settings.DEBUG:
