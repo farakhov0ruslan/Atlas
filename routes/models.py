@@ -99,6 +99,11 @@ class Place(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
     updated_at = models.DateTimeField(blank=True, null=True, verbose_name="Изменено")
     contacts = models.JSONField(blank=True, null=True, verbose_name="Контакты")
+    city = models.CharField(
+                max_length = 100,
+            verbose_name = "Город",
+            default = "Санкт-Петербург",
+            help_text = "Город, в котором находится это место")
 
     class Meta:
         verbose_name = "Место"
