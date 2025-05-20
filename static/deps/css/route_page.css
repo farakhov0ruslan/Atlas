@@ -195,10 +195,7 @@ header .container {
     max-width: 78%;
 }
 
-.row {
-    display: flex;
-    align-items: center; /* для вертикального выравнивания */
-}
+
 @media (min-width: 769px) and (max-width: 1100px){
 .favorite-btn {
         width: 40px;
@@ -221,6 +218,13 @@ header .container {
 
 /* Адаптивность для маленьких экранов */
 @media (max-width: 768px) {
+    .place-list .card .subscription-overlay p {
+    font-size: 1.1rem !important;    /* чуть больше шрифт */
+    line-height: 1.3 !important;      /* чуть большей межстрочный интервал */
+    text-align: center !important;    /* выравнивание по центру */
+    margin: 0 1rem !important;        /* отступы по бокам, чтобы текст не «упирался» */
+  }
+
      .route-day-btn {
         font-size: 14px; /* Уменьшаем размер шрифта */
         padding: 8px 15px; /* Уменьшаем отступы */

@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 # ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
