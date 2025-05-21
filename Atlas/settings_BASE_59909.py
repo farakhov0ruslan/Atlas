@@ -22,16 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g(e5k*87x$q^qn12=++^dm6_12pvw^n_fqy*f2(a+#dzcn+5n^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+DEBUG = False
 
-# DEBUG = False
-DEBUG = True
-# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1', "jointly-confirmed-perch.cloudpub.ru"]
+# ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['goatlas.ru', 'www.goatlas.ru']
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://jointly-confirmed-perch.cloudpub.ru',
-    # если у вас ещё http-тесты — можно указать 'http://…'
-]
 
 AUTH_USER_MODEL = 'routes.CustomUser'
 
@@ -64,7 +59,6 @@ INSTALLED_APPS = [
     'survey',
     'routes',
     'places',
-    "payments"
 ]
 
 MIDDLEWARE = [
@@ -164,8 +158,6 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
 YANDEX_OAUTH_TOKEN = "y0_AgAAAAAsA27kAATuwQAAAAEcoGZNAAAZ2bVqhehPe67on8fEWv3T9Av5hw"
-YOOKASSA_SHOP_ID = "1073012"
-YOOKASSA_API_KEY = "live_sAssBZ75WUaXwzrqHCLmxNzYztNUvN3NSKQT9vG7WHQ"
 FOLDER_ID = "b1gspfv2o3g5um6ak5n5"
 
 CACHES = {
@@ -174,35 +166,3 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '[{asctime}] {levelname} {name}: {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'log.txt',
-            'formatter': 'verbose',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    },
-}
-

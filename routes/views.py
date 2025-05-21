@@ -87,8 +87,8 @@ def route_page(request):
             else:
                 activity["place"] = None
 
-    all_places = Place.objects.all()
-
+    current_city = request.session.get('city', '')
+    all_places = Place.objects.filter(city=current_city)
     context = {
         "title": "Ваш маршрут",
         "city": session_data['city'],

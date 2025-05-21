@@ -68,4 +68,5 @@ class PlaceAdmin(admin.ModelAdmin):
     form = PlaceForm
     prepopulated_fields = {"slug": ("name",)}
     inlines = [WorkingHoursInline]
+    list_filter = ("city",)
 
