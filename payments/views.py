@@ -42,6 +42,26 @@ def payment_view(request):
         Configuration.account_id = YOOKASSA_SHOP_ID
         Configuration.secret_key = YOOKASSA_API_KEY
 
+        receipt = {
+            "customer": {
+                "email": user.email,
+                # при наличии можно добавить:
+                # "full_name": user.get_full_name(),
+                # "phone": user.phone_number,
+                # "inn": user.tax_id,
+            },
+            "items": [
+                {
+                    "description": "Покупка маршрутов",
+                    "quantity": "1.00",
+                    "amount": {
+                        "value": price,
+                        "currency": "RUB"
+                    },
+                    "vat_code": 1,  # для 20% НДС; уточните в кабинете ЮKassa
+                }
+            ]
+        }
         idempotence_key = str(uuid.uuid4())
         return_url = request.build_absolute_uri(
             reverse('main:index')
@@ -51,14 +71,13 @@ def payment_view(request):
                 "value": price,
                 "currency": "RUB"
             },
-            "payment_method_data": {
-                "type": "bank_card"
-            },
+
             "confirmation": {
                 "type": "redirect",
                 "return_url": return_url
             },
             "description": description,
+            "receipt": receipt,
             "capture": True,
         }, idempotence_key)
 
@@ -85,8 +104,8 @@ def payment_view(request):
         })
     except json.JSONDecodeError:
         return JsonResponse({'success': False, 'error': 'Неверный формат JSON'}, status=400)
-    # except Exception as e:
-    #     return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
 
 @require_POST

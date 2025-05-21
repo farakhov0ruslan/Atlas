@@ -2054,3 +2054,15 @@ Watching for file changes with StatReloader
 [2025-05-20 00:21:00,483] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/Atlas/settings.py changed, reloading.
 [2025-05-20 00:21:00,646] INFO django.utils.autoreload: Watching for file changes with StatReloader
 [2025-05-20 00:21:00,706] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-21 11:30:19,896] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/payments/views.py changed, reloading.
+[2025-05-21 11:30:20,513] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-21 11:30:20,529] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/payments/views.py changed, reloading.
+[2025-05-21 11:30:21,008] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-21 11:30:52,986] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/payments/views.py changed, reloading.
+[2025-05-21 11:30:53,686] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/payments/views.py changed, reloading.
+[2025-05-21 11:30:54,018] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-21 11:30:54,101] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-21 11:33:48,925] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/payments/views.py changed, reloading.
+[2025-05-21 11:33:49,118] INFO django.utils.autoreload: /Users/ruslanfarahov/PycharmProjects/Atlas/payments/views.py changed, reloading.
+[2025-05-21 11:33:50,700] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-21 11:33:50,700] INFO django.utils.autoreload: Watching for file changes with StatReloader
