@@ -32,8 +32,9 @@
                     <div class="search-item">
                         <div class="d-flex align-items-center mb-3">
                             <select class="form-control" id="cityInput" name="city">
-                                <option value="Санкт-Петербург">Санкт-Петербург</option>
                                 <option value="Уфа">Уфа</option>
+                                <option value="Санкт-Петербург">Санкт-Петербург</option>
+                                <option value="Москва">Москва</option>
                                 <option value="Тур по Башкортостану">Тур по Башкортостану</option>
                             </select>
                         </div>
@@ -60,47 +61,35 @@
                                     name="person_count"
                             />
                         </div>
-                        {#						<button type="button" class="btn btn-outline-primary" id="personInputBtn">2#}
-                        {#							человека#}
-                        {#						</button>#}
                     </div>
-
-
-                    {#					<!-- Бюджет -->#}
-                    {#					<div class="search-item ">#}
-                    {#						<div class="d-flex align-items-center mb-3">#}
-                    {#							<div class="input-container" style="position: relative; width: 100%;">#}
-                    {#								<input#}
-                    {#										type="number"#}
-                    {#										class="form-control form-control-sm me-2"#}
-                    {#										id="budgetInput"#}
-                    {#										placeholder="Бюджет"#}
-                    {#										min="0"#}
-                    {#										max="9999999999999"#}
-                    {#										name="budget"#}
-                    {#								/>#}
-                    {#								<span class="currency-symbol"#}
-                    {#								      style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%);">₽</span>#}
-                    {#							</div>#}
-                    {#						</div>#}
-                    {#						<button type="button" class="btn btn-sm btn-outline-primary "#}
-                    {#						        id="budgetInputBtn">Не#}
-                    {#							указывать#}
-                    {#						</button>#}
-                    {#					</div>#}
                 </div>
                 <!-- Второй блок -->
-                <div class="search-block d-flex flex-wrap">
-                    <!-- Когда -->
+                <div class="search-block d-flex flex-wrap align-items-center mb-4">
                     <div class="search-item">
-                        <label class="form-label">Туда</label>
-                        <input type="date" class="form-control" name="departure_date" required>
-                    </div>
+                        <label class="form-label">Длительность поездки (1–5 дней):</label>
+                        <div class="d-flex align-items-center mb-3 duration-control">
+                            <button type="button" class="btn btn-outline-secondary btn-sm me-2"
+                                    onclick="changeDuration(-1)">–
+                            </button>
 
-                    <!-- Обратно -->
-                    <div class="search-item">
-                        <label class="form-label">Обратно</label>
-                        <input type="date" class="form-control" name="return_date" required>
+                            <input
+                                    type="range"
+                                    class="form-range flex-grow-1 mx-2"
+                                    id="durationRange"
+                                    name="duration"
+                                    min="1" max="5" value="1"
+                                    oninput="onDurationChange(this.value)"
+                            />
+
+                            <button type="button" class="btn btn-outline-secondary btn-sm ms-2"
+                                    onclick="changeDuration(1)">+
+                            </button>
+
+                            <!-- Скрытые поля остаются здесь -->
+                            <input type="hidden" id="departureDateInput" name="departure_date">
+                            <input type="hidden" id="returnDateInput" name="return_date">
+                        </div>
+                        <p><strong><span id="durationValue">1</span> дн.</strong></p>
                     </div>
                 </div>
 
@@ -253,8 +242,41 @@
     </div>
     <!--Скрипт для корректного изменения поля количества человек -->
     <script>
+        function changeDuration(delta) {
+            const slider = document.getElementById('durationRange');
+            let val = parseInt(slider.value) + delta;
+            if (val < parseInt(slider.min)) val = parseInt(slider.min);
+            if (val > parseInt(slider.max)) val = parseInt(slider.max);
+            slider.value = val;
+            onDurationChange(val);
+        }
+
+        // Форматируем Date в YYYY-MM-DD
+        function formatDate(d) {
+            const yy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yy}-${mm}-${dd}`;
+        }
+
+        function onDurationChange(days) {
+            // обновляем цифру у ползунка
+            document.getElementById('durationValue').innerText = days;
+
+            // сегодня
+            const today = new Date();
+            const dep = today;
+            const ret = new Date(today.getTime() + (days - 1) * 24 * 60 * 60 * 1000);
+
+            // проставляем в скрытые инпуты
+            document.getElementById('departureDateInput').value = formatDate(dep);
+            document.getElementById('returnDateInput').value = formatDate(ret);
+
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             // Создаём экземпляры модальных окон один раз после загрузки DOM
+            onDurationChange(document.getElementById('durationRange').value);
             const routeModalInstance = new bootstrap.Modal(document.getElementById('routeModal'));
             const surveyModalInstance = new bootstrap.Modal(document.getElementById('surveyModal'));
             const noCountModalInstance = new bootstrap.Modal(document.getElementById('noCountModal'));
@@ -263,20 +285,14 @@
             function validateFormFields() {
                 const city = document.getElementById("cityInput").value;
                 const personCount = document.getElementById("personInput").value;
-                const departureDate = document.querySelector("input[name='departure_date']").value;
-                const returnDate = document.querySelector("input[name='return_date']").value;
+                const depDate = document.getElementById("departureDateInput").value;
+                const retDate = document.getElementById("returnDateInput").value;
 
-                if (!city || !personCount || !departureDate || !returnDate) {
+                if (!city || !personCount || !depDate || !retDate) {
                     showCustomAlert("Пожалуйста, заполните все обязательные поля: Куда, Количество человек, Даты 'Туда' и 'Обратно'.");
                     return false;
                 }
 
-                const departureDateObj = new Date(departureDate);
-                const returnDateObj = new Date(returnDate);
-                if (returnDateObj < departureDateObj) {
-                    showCustomAlert("Дата 'Обратно' не может быть раньше даты 'Туда'. Пожалуйста, выберите корректную дату.");
-                    return false;
-                }
                 return true;
             }
 

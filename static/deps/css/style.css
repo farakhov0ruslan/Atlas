@@ -1,4 +1,6 @@
 /* Navbar Styles */
+
+
 .navbar {
     position: fixed;
     top: 0;
@@ -264,3 +266,83 @@ body {
     .custom-alert-content button:hover {
         background-color: #38007c;
     }
+
+    /* Шире сам ползунок */
+.duration-control .form-range {
+  height: 12px;       /* толщина дорожки */
+  width: 250px;       /* минимальная ширина */
+}
+
+/* Подтягиваем «ползунок» (thumb) чуть больше */
+.duration-control .form-range::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -4px;   /* чтобы выровнять по центру дорожки */
+}
+.duration-control .form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+}
+
+.duration-control .btn-sm {
+  /* фиксируем размер */
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  /* центрируем flex’ом */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  /* чуть поменьше строковая высота, чтобы не было сдвига */
+  line-height: 1 !important;
+}
+
+/* Сброс дефолтного внешнего вида */
+.duration-control .form-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 250px;    /* ваша желаемая ширина */
+  height: 12px;    /* высота дорожки */
+  margin: 0;       /* убираем внешние отступы */
+  padding: 0;      /* убираем внутренние отступы */
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+
+/* Стили дорожки */
+.duration-control .form-range::-webkit-slider-runnable-track {
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 6px;
+}
+.duration-control .form-range::-moz-range-track {
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 6px;
+}
+
+/* Стили «бегунка» (thumb) */
+.duration-control .form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #6200ea;      /* ваш синий цвет */
+  border-radius: 50%;
+  border: none;
+  margin-top: -4px;         /* смещение по вертикали: (thumb_height - track_height)/2 => (20-12)/2 = 4 */
+}
+.duration-control .form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #6200ea;
+  border-radius: 50%;
+  border: none;
+}
+
+/* Для контейнера уже есть display:flex; align-items:center; */
+/* Оставьте его, чтобы кнопки и ползунок всегда были в одну линию */

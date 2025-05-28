@@ -7441,3 +7441,720 @@ Traceback (most recent call last):
 yookassa.domain.exceptions.bad_request_error.BadRequestError: {'type': 'error', 'id': '0196ed87-ab2d-73f1-a56e-dbc199bcf79b', 'code': 'invalid_request', 'description': 'Receipt is missing or illegal', 'parameter': 'receipt'}
 [2025-05-20 11:52:30,211] WARNING django.request: Forbidden: /payments/call-back
 [2025-05-20 11:58:40,753] WARNING django.request: Forbidden: /payments/call-back
+[2025-05-28 16:59:19,868] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-28 16:59:52,139] INFO django.utils.autoreload: C:\Users\davrr\PycharmProjects\Atlas\Atlas\settings.py changed, reloading.
+[2025-05-28 16:59:52,929] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-28 16:59:55,303] INFO django.server: "GET / HTTP/1.1" 200 36349
+[2025-05-28 17:00:01,762] INFO django.server: "GET /routes/ HTTP/1.1" 200 830027
+[2025-05-28 17:00:01,902] WARNING django.request: Not Found: /media/places_images/XXXL_aSViDU4.jpg
+[2025-05-28 17:00:01,912] WARNING django.server: "GET /media/places_images/XXXL_aSViDU4.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:00:01,943] WARNING django.request: Not Found: /media/places_images/L.jpg
+[2025-05-28 17:00:01,944] WARNING django.server: "GET /media/places_images/L.jpg HTTP/1.1" 404 6302
+[2025-05-28 17:00:01,960] WARNING django.request: Not Found: /media/places_images/XXXL-_19_.jpg
+[2025-05-28 17:00:01,962] WARNING django.server: "GET /media/places_images/XXXL-_19_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:00:01,989] WARNING django.request: Not Found: /media/places_images/XXXL-_20_.jpg
+[2025-05-28 17:00:01,991] WARNING django.server: "GET /media/places_images/XXXL-_20_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:00:02,020] WARNING django.request: Not Found: /media/places_images/XXXL-_18_.jpg
+[2025-05-28 17:00:02,022] WARNING django.server: "GET /media/places_images/XXXL-_18_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:00:02,057] WARNING django.request: Not Found: /media/places_images/1628921769.67.jpg
+[2025-05-28 17:00:02,058] WARNING django.server: "GET /media/places_images/1628921769.67.jpg HTTP/1.1" 404 6350
+[2025-05-28 17:00:02,067] WARNING django.request: Not Found: /media/places_images/_normal.jpg
+[2025-05-28 17:00:02,070] WARNING django.server: "GET /media/places_images/_normal.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:00:02,092] WARNING django.request: Not Found: /media/places_images/1_nevskiy_centr_0.jpg
+[2025-05-28 17:00:02,093] WARNING django.server: "GET /media/places_images/1_nevskiy_centr_0.jpg HTTP/1.1" 404 6366
+[2025-05-28 17:00:02,100] WARNING django.request: Not Found: /media/places_images/XXXL-_22_.jpg
+[2025-05-28 17:00:02,109] WARNING django.server: "GET /media/places_images/XXXL-_22_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:00:02,131] WARNING django.request: Not Found: /media/places_images/XXXL_2_d4lBEns.jpg
+[2025-05-28 17:00:02,132] WARNING django.server: "GET /media/places_images/XXXL_2_d4lBEns.jpg HTTP/1.1" 404 6354
+[2025-05-28 17:00:02,157] WARNING django.request: Not Found: /media/places_images/XXXLjpg.webp
+[2025-05-28 17:00:02,163] WARNING django.server: "GET /media/places_images/XXXLjpg.webp HTTP/1.1" 404 6330
+[2025-05-28 17:00:02,181] WARNING django.request: Not Found: /media/places_images/XXL_F3Wnez7.jpg
+[2025-05-28 17:00:02,187] WARNING django.server: "GET /media/places_images/XXL_F3Wnez7.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:00:02,195] WARNING django.request: Not Found: /media/places_images/XXXL-_21_.jpg
+[2025-05-28 17:00:02,206] WARNING django.server: "GET /media/places_images/XXXL-_21_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:00:02,211] WARNING django.request: Not Found: /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg
+[2025-05-28 17:00:02,227] WARNING django.server: "GET /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:00:02,243] WARNING django.request: Not Found: /media/places_images/XXXL_KtmtsUO.jpg
+[2025-05-28 17:00:02,244] WARNING django.server: "GET /media/places_images/XXXL_KtmtsUO.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:00:02,274] WARNING django.request: Not Found: /media/places_images/fs.jpg
+[2025-05-28 17:00:02,276] WARNING django.server: "GET /media/places_images/fs.jpg HTTP/1.1" 404 6306
+[2025-05-28 17:00:02,301] WARNING django.request: Not Found: /media/places_images/1f1a059b-7f33-5b9a-9afe-8364a645bfd3.jpeg
+[2025-05-28 17:00:02,303] WARNING django.server: "GET /media/places_images/1f1a059b-7f33-5b9a-9afe-8364a645bfd3.jpeg HTTP/1.1" 404 6446
+[2025-05-28 17:00:02,322] WARNING django.request: Not Found: /media/places_images/XXXL_EvUWnuA.jpg
+[2025-05-28 17:00:02,324] WARNING django.server: "GET /media/places_images/XXXL_EvUWnuA.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:00:02,335] WARNING django.request: Not Found: /media/places_images/caption.jpg
+[2025-05-28 17:00:02,336] WARNING django.server: "GET /media/places_images/caption.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:00:02,350] WARNING django.request: Not Found: /media/places_images/0d4bcda3-6812-4b49-826a-d2fb07a94ffa.jpg
+[2025-05-28 17:00:02,352] WARNING django.server: "GET /media/places_images/0d4bcda3-6812-4b49-826a-d2fb07a94ffa.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:00:02,366] WARNING django.request: Not Found: /media/places_images/galaktorium.jpg
+[2025-05-28 17:00:02,368] WARNING django.server: "GET /media/places_images/galaktorium.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:00:06,409] INFO django.server: "GET / HTTP/1.1" 200 36349
+[2025-05-28 17:04:36,492] INFO django.server: "GET / HTTP/1.1" 200 37438
+[2025-05-28 17:05:02,233] INFO django.server: "GET / HTTP/1.1" 200 37064
+[2025-05-28 17:05:40,143] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-28 17:07:19,367] INFO django.server: "GET / HTTP/1.1" 200 37064
+[2025-05-28 17:08:50,972] INFO django.server: "GET / HTTP/1.1" 200 36570
+[2025-05-28 17:09:04,200] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-28 17:09:06,218] INFO django.server: "GET / HTTP/1.1" 200 36570
+[2025-05-28 17:10:39,941] INFO django.server: "GET / HTTP/1.1" 200 36756
+[2025-05-28 17:10:46,469] INFO django.server: "POST /survey/ HTTP/1.1" 200 11299
+[2025-05-28 17:10:47,637] INFO django.server: "POST /survey/?page=2 HTTP/1.1" 200 10003
+[2025-05-28 17:10:48,591] INFO django.server: "POST /survey/?page=3 HTTP/1.1" 200 8275
+[2025-05-28 17:10:49,699] INFO django.server: "POST /survey/?page=3 HTTP/1.1" 200 8275
+[2025-05-28 17:10:50,234] INFO django.server: "GET /routes/start-route/ HTTP/1.1" 200 21
+[2025-05-28 17:10:53,274] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:10:56,260] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:10:59,268] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:02,280] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:05,281] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:08,279] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:11,280] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:14,277] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:17,407] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:20,278] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:24,018] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:26,267] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:29,273] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:32,270] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:35,278] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:39,021] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:42,019] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:44,256] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:47,269] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:51,025] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:55,925] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-28 17:11:57,022] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:11:59,160] INFO django.server: "GET / HTTP/1.1" 200 37191
+[2025-05-28 17:12:00,009] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:06,439] INFO django.server: "POST /survey/ HTTP/1.1" 200 11299
+[2025-05-28 17:12:07,282] INFO django.server: "POST /survey/?page=2 HTTP/1.1" 200 10003
+[2025-05-28 17:12:08,063] INFO django.server: "POST /survey/?page=3 HTTP/1.1" 200 8275
+[2025-05-28 17:12:09,110] INFO django.server: "POST /survey/?page=3 HTTP/1.1" 200 8275
+[2025-05-28 17:12:09,635] INFO django.server: "GET /routes/start-route/ HTTP/1.1" 200 21
+[2025-05-28 17:12:12,673] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:15,690] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:18,680] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:21,671] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:24,671] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:27,676] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:12:31,023] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 2668
+[2025-05-28 17:12:31,787] INFO django.server: "GET /routes/ HTTP/1.1" 200 848085
+[2025-05-28 17:12:31,902] WARNING django.request: Not Found: /media/places_images/XXXL_aSViDU4.jpg
+[2025-05-28 17:12:31,905] WARNING django.server: "GET /media/places_images/XXXL_aSViDU4.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:32,026] WARNING django.request: Not Found: /media/places_images/XXL-_1_.jpg
+[2025-05-28 17:12:32,027] WARNING django.server: "GET /media/places_images/XXL-_1_.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:32,042] WARNING django.request: Not Found: /media/places_images/1628921769.67.jpg
+[2025-05-28 17:12:32,043] WARNING django.server: "GET /media/places_images/1628921769.67.jpg HTTP/1.1" 404 6350
+[2025-05-28 17:12:32,059] WARNING django.request: Not Found: /media/places_images/L.jpg
+[2025-05-28 17:12:32,061] WARNING django.server: "GET /media/places_images/L.jpg HTTP/1.1" 404 6302
+[2025-05-28 17:12:32,082] WARNING django.request: Not Found: /media/places_images/XXXL-_17_.jpg
+[2025-05-28 17:12:32,083] WARNING django.server: "GET /media/places_images/XXXL-_17_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:32,106] WARNING django.request: Not Found: /media/places_images/XXXL-_18_.jpg
+[2025-05-28 17:12:32,107] WARNING django.server: "GET /media/places_images/XXXL-_18_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:32,113] WARNING django.request: Not Found: /media/places_images/XXXL-_19_.jpg
+[2025-05-28 17:12:32,122] WARNING django.server: "GET /media/places_images/XXXL-_19_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:32,139] WARNING django.request: Not Found: /media/places_images/XXXL-_20_.jpg
+[2025-05-28 17:12:32,140] WARNING django.server: "GET /media/places_images/XXXL-_20_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:32,155] WARNING django.request: Not Found: /media/places_images/XXXL-_21_.jpg
+[2025-05-28 17:12:32,157] WARNING django.server: "GET /media/places_images/XXXL-_21_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:32,176] WARNING django.request: Not Found: /media/places_images/XXXL-_22_.jpg
+[2025-05-28 17:12:32,177] WARNING django.server: "GET /media/places_images/XXXL-_22_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:32,193] WARNING django.request: Not Found: /media/places_images/1_nevskiy_centr_0.jpg
+[2025-05-28 17:12:32,194] WARNING django.server: "GET /media/places_images/1_nevskiy_centr_0.jpg HTTP/1.1" 404 6366
+[2025-05-28 17:12:32,206] WARNING django.request: Not Found: /media/places_images/XXXL_2_d4lBEns.jpg
+[2025-05-28 17:12:32,207] WARNING django.server: "GET /media/places_images/XXXL_2_d4lBEns.jpg HTTP/1.1" 404 6354
+[2025-05-28 17:12:32,272] WARNING django.request: Not Found: /media/places_images/_normal.jpg
+[2025-05-28 17:12:32,274] WARNING django.server: "GET /media/places_images/_normal.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:32,288] WARNING django.request: Not Found: /media/places_images/XXL_F3Wnez7.jpg
+[2025-05-28 17:12:32,300] WARNING django.server: "GET /media/places_images/XXL_F3Wnez7.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:12:32,321] WARNING django.request: Not Found: /media/places_images/XXXL_EvUWnuA.jpg
+[2025-05-28 17:12:32,322] WARNING django.server: "GET /media/places_images/XXXL_EvUWnuA.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:32,332] WARNING django.request: Not Found: /media/places_images/XXXL_KtmtsUO.jpg
+[2025-05-28 17:12:32,333] WARNING django.server: "GET /media/places_images/XXXL_KtmtsUO.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:32,375] WARNING django.request: Not Found: /media/places_images/XXXLjpg.webp
+[2025-05-28 17:12:32,378] WARNING django.server: "GET /media/places_images/XXXLjpg.webp HTTP/1.1" 404 6330
+[2025-05-28 17:12:32,407] WARNING django.request: Not Found: /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg
+[2025-05-28 17:12:32,408] WARNING django.server: "GET /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:12:32,427] WARNING django.request: Not Found: /media/places_images/caption.jpg
+[2025-05-28 17:12:32,429] WARNING django.server: "GET /media/places_images/caption.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:32,451] WARNING django.request: Not Found: /media/places_images/fs.jpg
+[2025-05-28 17:12:32,453] WARNING django.server: "GET /media/places_images/fs.jpg HTTP/1.1" 404 6306
+[2025-05-28 17:12:32,476] WARNING django.request: Not Found: /media/places_images/galaktorium.jpg
+[2025-05-28 17:12:32,477] WARNING django.server: "GET /media/places_images/galaktorium.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:12:32,511] WARNING django.request: Not Found: /media/places_images/XXL.jpg
+[2025-05-28 17:12:32,513] WARNING django.server: "GET /media/places_images/XXL.jpg HTTP/1.1" 404 6310
+[2025-05-28 17:12:32,749] INFO django.server: "GET /media/places_images/b959b0b173556d3a0584d220ac04d014.jpg HTTP/1.1" 200 198911
+[2025-05-28 17:12:32,799] INFO django.server: "GET /media/places_images/e2b8f35a-a6ac-4b65-94d4-0405898ae0bd.jpg HTTP/1.1" 200 100942
+[2025-05-28 17:12:32,815] INFO django.server: "GET /media/places_images/92f13974-7a0a-45c1-9520-722a6c32465a.jpg HTTP/1.1" 200 72342
+[2025-05-28 17:12:36,895] INFO django.server: "GET /routes/?day=2 HTTP/1.1" 200 1024167
+[2025-05-28 17:12:37,018] WARNING django.request: Not Found: /media/places_images/1628921769.67.jpg
+[2025-05-28 17:12:37,023] WARNING django.server: "GET /media/places_images/1628921769.67.jpg HTTP/1.1" 404 6350
+[2025-05-28 17:12:37,061] WARNING django.request: Not Found: /media/places_images/XXXL_aSViDU4.jpg
+[2025-05-28 17:12:37,063] WARNING django.server: "GET /media/places_images/XXXL_aSViDU4.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:37,077] WARNING django.request: Not Found: /media/places_images/L.jpg
+[2025-05-28 17:12:37,079] WARNING django.server: "GET /media/places_images/L.jpg HTTP/1.1" 404 6302
+[2025-05-28 17:12:37,102] WARNING django.request: Not Found: /media/places_images/XXXL-_22_.jpg
+[2025-05-28 17:12:37,104] WARNING django.server: "GET /media/places_images/XXXL-_22_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:37,134] WARNING django.request: Not Found: /media/places_images/XXXL-_19_.jpg
+[2025-05-28 17:12:37,136] WARNING django.server: "GET /media/places_images/XXXL-_19_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:37,167] WARNING django.request: Not Found: /media/places_images/XXXL-_20_.jpg
+[2025-05-28 17:12:37,169] WARNING django.server: "GET /media/places_images/XXXL-_20_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:37,198] WARNING django.request: Not Found: /media/places_images/XXXL_2_d4lBEns.jpg
+[2025-05-28 17:12:37,200] WARNING django.server: "GET /media/places_images/XXXL_2_d4lBEns.jpg HTTP/1.1" 404 6354
+[2025-05-28 17:12:37,229] WARNING django.request: Not Found: /media/places_images/XXXL-_21_.jpg
+[2025-05-28 17:12:37,231] WARNING django.server: "GET /media/places_images/XXXL-_21_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:37,261] WARNING django.request: Not Found: /media/places_images/1_nevskiy_centr_0.jpg
+[2025-05-28 17:12:37,263] WARNING django.server: "GET /media/places_images/1_nevskiy_centr_0.jpg HTTP/1.1" 404 6366
+[2025-05-28 17:12:37,290] WARNING django.request: Not Found: /media/places_images/XXXL_EvUWnuA.jpg
+[2025-05-28 17:12:37,292] WARNING django.server: "GET /media/places_images/XXXL_EvUWnuA.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:37,312] WARNING django.request: Not Found: /media/places_images/XXXL-_18_.jpg
+[2025-05-28 17:12:37,314] WARNING django.server: "GET /media/places_images/XXXL-_18_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:37,333] INFO django.server: "GET /media/places_images/XXXL_89PEYTa.jpg HTTP/1.1" 200 229878
+[2025-05-28 17:12:37,334] WARNING django.request: Not Found: /media/places_images/XXXL_KtmtsUO.jpg
+[2025-05-28 17:12:37,338] WARNING django.server: "GET /media/places_images/XXXL_KtmtsUO.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:37,356] WARNING django.request: Not Found: /media/places_images/_normal.jpg
+[2025-05-28 17:12:37,367] WARNING django.server: "GET /media/places_images/_normal.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:37,387] WARNING django.request: Not Found: /media/places_images/XXL_F3Wnez7.jpg
+[2025-05-28 17:12:37,389] WARNING django.server: "GET /media/places_images/XXL_F3Wnez7.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:12:37,407] WARNING django.request: Not Found: /media/places_images/dostoprimechatelnosti-sankt-peterburga.jpg
+[2025-05-28 17:12:37,409] WARNING django.server: "GET /media/places_images/dostoprimechatelnosti-sankt-peterburga.jpg HTTP/1.1" 404 6450
+[2025-05-28 17:12:37,432] WARNING django.request: Not Found: /media/places_images/XXXLjpg.webp
+[2025-05-28 17:12:37,434] WARNING django.server: "GET /media/places_images/XXXLjpg.webp HTTP/1.1" 404 6330
+[2025-05-28 17:12:37,464] WARNING django.request: Not Found: /media/places_images/__6.jpg
+[2025-05-28 17:12:37,466] WARNING django.server: "GET /media/places_images/__6.jpg HTTP/1.1" 404 6310
+[2025-05-28 17:12:37,496] WARNING django.request: Not Found: /media/places_images/1660771.jpg
+[2025-05-28 17:12:37,497] WARNING django.server: "GET /media/places_images/1660771.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:37,528] WARNING django.request: Not Found: /media/places_images/__4.jpg
+[2025-05-28 17:12:37,529] WARNING django.server: "GET /media/places_images/__4.jpg HTTP/1.1" 404 6310
+[2025-05-28 17:12:37,558] WARNING django.request: Not Found: /media/places_images/caption.jpg
+[2025-05-28 17:12:37,561] WARNING django.server: "GET /media/places_images/caption.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:37,589] WARNING django.request: Not Found: /media/places_images/fs.jpg
+[2025-05-28 17:12:37,591] WARNING django.server: "GET /media/places_images/fs.jpg HTTP/1.1" 404 6306
+[2025-05-28 17:12:37,619] WARNING django.request: Not Found: /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg
+[2025-05-28 17:12:37,620] WARNING django.server: "GET /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:12:37,634] INFO django.server: "GET /media/places_images/aerodream.jpg HTTP/1.1" 200 33626
+[2025-05-28 17:12:37,666] WARNING django.request: Not Found: /media/places_images/XXXL_PQNB8Fu.jpg
+[2025-05-28 17:12:37,668] WARNING django.server: "GET /media/places_images/XXXL_PQNB8Fu.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:37,695] WARNING django.request: Not Found: /media/places_images/galaktorium.jpg
+[2025-05-28 17:12:37,698] WARNING django.server: "GET /media/places_images/galaktorium.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:12:37,730] INFO django.server: "GET /media/places_images/7ade00a8626c645974856a989b0ffa05.jpg HTTP/1.1" 200 132443
+[2025-05-28 17:12:37,763] INFO django.server: "GET /media/places_images/M_height.png HTTP/1.1" 200 194087
+[2025-05-28 17:12:37,778] WARNING django.request: Not Found: /media/places_images/orig.jpeg
+[2025-05-28 17:12:37,780] WARNING django.server: "GET /media/places_images/orig.jpeg HTTP/1.1" 404 6318
+[2025-05-28 17:12:37,805] WARNING django.request: Not Found: /media/places_images/XXL-_1_.jpg
+[2025-05-28 17:12:37,807] WARNING django.server: "GET /media/places_images/XXL-_1_.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:37,837] WARNING django.request: Not Found: /media/places_images/final-14.jpg
+[2025-05-28 17:12:37,839] WARNING django.server: "GET /media/places_images/final-14.jpg HTTP/1.1" 404 6330
+[2025-05-28 17:12:38,413] INFO django.server: "GET /routes/?day=3 HTTP/1.1" 200 813430
+[2025-05-28 17:12:38,599] WARNING django.request: Not Found: /media/places_images/XXXL_aSViDU4.jpg
+[2025-05-28 17:12:38,600] WARNING django.server: "GET /media/places_images/XXXL_aSViDU4.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:38,625] WARNING django.request: Not Found: /media/places_images/XXXL-_19_.jpg
+[2025-05-28 17:12:38,627] WARNING django.server: "GET /media/places_images/XXXL-_19_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:38,650] WARNING django.request: Not Found: /media/places_images/L.jpg
+[2025-05-28 17:12:38,652] WARNING django.server: "GET /media/places_images/L.jpg HTTP/1.1" 404 6302
+[2025-05-28 17:12:38,670] WARNING django.request: Not Found: /media/places_images/XXXL-_21_.jpg
+[2025-05-28 17:12:38,673] WARNING django.server: "GET /media/places_images/XXXL-_21_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:38,692] WARNING django.request: Not Found: /media/places_images/XXXL-_20_.jpg
+[2025-05-28 17:12:38,694] WARNING django.server: "GET /media/places_images/XXXL-_20_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:38,721] WARNING django.request: Not Found: /media/places_images/XXXL-_18_.jpg
+[2025-05-28 17:12:38,724] WARNING django.server: "GET /media/places_images/XXXL-_18_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:38,740] WARNING django.request: Not Found: /media/places_images/1_nevskiy_centr_0.jpg
+[2025-05-28 17:12:38,741] WARNING django.server: "GET /media/places_images/1_nevskiy_centr_0.jpg HTTP/1.1" 404 6366
+[2025-05-28 17:12:38,769] WARNING django.request: Not Found: /media/places_images/_normal.jpg
+[2025-05-28 17:12:38,771] WARNING django.server: "GET /media/places_images/_normal.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:38,788] WARNING django.request: Not Found: /media/places_images/1628921769.67.jpg
+[2025-05-28 17:12:38,789] WARNING django.server: "GET /media/places_images/1628921769.67.jpg HTTP/1.1" 404 6350
+[2025-05-28 17:12:38,816] WARNING django.request: Not Found: /media/places_images/XXL.jpg
+[2025-05-28 17:12:38,818] WARNING django.server: "GET /media/places_images/XXL.jpg HTTP/1.1" 404 6310
+[2025-05-28 17:12:38,847] WARNING django.request: Not Found: /media/places_images/XXL_F3Wnez7.jpg
+[2025-05-28 17:12:38,849] WARNING django.server: "GET /media/places_images/XXL_F3Wnez7.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:12:38,869] WARNING django.request: Not Found: /media/places_images/XXXL_2_d4lBEns.jpg
+[2025-05-28 17:12:38,871] WARNING django.server: "GET /media/places_images/XXXL_2_d4lBEns.jpg HTTP/1.1" 404 6354
+[2025-05-28 17:12:38,878] WARNING django.request: Not Found: /media/places_images/XXXLjpg.webp
+[2025-05-28 17:12:38,880] WARNING django.server: "GET /media/places_images/XXXLjpg.webp HTTP/1.1" 404 6330
+[2025-05-28 17:12:38,901] WARNING django.request: Not Found: /media/places_images/XXXL_KtmtsUO.jpg
+[2025-05-28 17:12:38,902] WARNING django.server: "GET /media/places_images/XXXL_KtmtsUO.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:38,919] INFO django.server: "GET /media/places_images/Group_71_3_.png HTTP/1.1" 200 73386
+[2025-05-28 17:12:38,937] WARNING django.request: Not Found: /media/places_images/final-14.jpg
+[2025-05-28 17:12:38,938] WARNING django.server: "GET /media/places_images/final-14.jpg HTTP/1.1" 404 6330
+[2025-05-28 17:12:38,943] WARNING django.request: Not Found: /media/places_images/XXXL_EvUWnuA.jpg
+[2025-05-28 17:12:38,952] WARNING django.server: "GET /media/places_images/XXXL_EvUWnuA.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:12:38,972] WARNING django.request: Not Found: /media/places_images/XXXL-_22_.jpg
+[2025-05-28 17:12:38,974] WARNING django.server: "GET /media/places_images/XXXL-_22_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:12:39,004] WARNING django.request: Not Found: /media/places_images/caption.jpg
+[2025-05-28 17:12:39,006] WARNING django.server: "GET /media/places_images/caption.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:39,022] WARNING django.request: Not Found: /media/places_images/fs.jpg
+[2025-05-28 17:12:39,023] WARNING django.server: "GET /media/places_images/fs.jpg HTTP/1.1" 404 6306
+[2025-05-28 17:12:39,037] WARNING django.request: Not Found: /media/places_images/XXL-_1_.jpg
+[2025-05-28 17:12:39,039] WARNING django.server: "GET /media/places_images/XXL-_1_.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:12:39,052] WARNING django.request: Not Found: /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg
+[2025-05-28 17:12:39,053] WARNING django.server: "GET /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:12:39,068] WARNING django.request: Not Found: /media/places_images/galaktorium.jpg
+[2025-05-28 17:12:39,069] WARNING django.server: "GET /media/places_images/galaktorium.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:12:39,085] WARNING django.request: Not Found: /media/places_images/0d4bcda3-6812-4b49-826a-d2fb07a94ffa.jpg
+[2025-05-28 17:12:39,086] WARNING django.server: "GET /media/places_images/0d4bcda3-6812-4b49-826a-d2fb07a94ffa.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:12:50,211] INFO django.server: "GET / HTTP/1.1" 200 36756
+[2025-05-28 17:15:52,414] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-28 17:15:54,345] INFO django.server: "GET / HTTP/1.1" 200 37237
+[2025-05-28 17:17:28,315] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:17:29,031] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:17:29,076] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:17:29,094] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:17:29,105] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 6306
+[2025-05-28 17:17:29,108] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:17:29,114] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:17:29,221] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:17:33,593] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:18:03,541] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:18:03,589] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 5536
+[2025-05-28 17:18:13,931] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:18:13,971] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 6306
+[2025-05-28 17:19:25,974] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:19:26,017] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 304 0
+[2025-05-28 17:19:26,022] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 304 0
+[2025-05-28 17:19:26,022] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-28 17:19:26,025] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 304 0
+[2025-05-28 17:19:26,025] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 6553
+[2025-05-28 17:19:26,026] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-28 17:19:26,042] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 304 0
+[2025-05-28 17:20:02,091] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:20:02,135] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 6557
+[2025-05-28 17:20:02,174] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 304 0
+[2025-05-28 17:20:03,888] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:20:03,924] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 304 0
+[2025-05-28 17:20:57,538] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:20:57,595] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 6557
+[2025-05-28 17:20:57,597] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:20:57,600] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:20:57,602] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:20:57,612] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:20:57,613] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:20:57,873] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:20:58,045] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:22:16,837] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:22:16,892] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:22:16,892] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:22:16,892] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:22:16,898] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:22:16,898] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:22:16,898] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:22:17,148] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:22:17,288] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:23:42,962] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:23:43,005] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:24:49,367] INFO django.server: "POST /survey/ HTTP/1.1" 200 11299
+[2025-05-28 17:24:49,407] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 304 0
+[2025-05-28 17:24:50,176] INFO django.server: "POST /survey/?page=2 HTTP/1.1" 200 10003
+[2025-05-28 17:24:51,905] INFO django.server: "POST /survey/?page=3 HTTP/1.1" 200 8275
+[2025-05-28 17:24:52,831] INFO django.server: "POST /survey/?page=3 HTTP/1.1" 200 8275
+[2025-05-28 17:24:53,362] INFO django.server: "GET /routes/start-route/ HTTP/1.1" 200 21
+[2025-05-28 17:24:57,020] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:25:00,024] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:25:03,015] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:25:06,013] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:25:09,015] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:25:12,020] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 39
+[2025-05-28 17:25:15,013] INFO django.server: "GET /routes/check-route/ HTTP/1.1" 200 2661
+[2025-05-28 17:25:15,399] INFO django.server: "GET /routes/ HTTP/1.1" 200 951844
+[2025-05-28 17:25:15,464] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 304 0
+[2025-05-28 17:25:15,464] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 304 0
+[2025-05-28 17:25:15,510] WARNING django.request: Not Found: /media/places_images/XXXL_aSViDU4.jpg
+[2025-05-28 17:25:15,510] WARNING django.server: "GET /media/places_images/XXXL_aSViDU4.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:25:15,653] WARNING django.request: Not Found: /media/places_images/XXL-_1_.jpg
+[2025-05-28 17:25:15,657] WARNING django.server: "GET /media/places_images/XXL-_1_.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:25:15,677] WARNING django.request: Not Found: /media/places_images/1628921769.67.jpg
+[2025-05-28 17:25:15,677] WARNING django.server: "GET /media/places_images/1628921769.67.jpg HTTP/1.1" 404 6350
+[2025-05-28 17:25:15,698] WARNING django.request: Not Found: /media/places_images/L.jpg
+[2025-05-28 17:25:15,698] WARNING django.server: "GET /media/places_images/L.jpg HTTP/1.1" 404 6302
+[2025-05-28 17:25:15,722] WARNING django.request: Not Found: /media/places_images/XXXL-_17_.jpg
+[2025-05-28 17:25:15,724] WARNING django.server: "GET /media/places_images/XXXL-_17_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:25:15,748] WARNING django.request: Not Found: /media/places_images/XXXL-_18_.jpg
+[2025-05-28 17:25:15,748] WARNING django.server: "GET /media/places_images/XXXL-_18_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:25:15,773] WARNING django.request: Not Found: /media/places_images/XXXL-_19_.jpg
+[2025-05-28 17:25:15,773] WARNING django.server: "GET /media/places_images/XXXL-_19_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:25:15,808] WARNING django.request: Not Found: /media/places_images/XXXL-_20_.jpg
+[2025-05-28 17:25:15,808] WARNING django.server: "GET /media/places_images/XXXL-_20_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:25:15,836] WARNING django.request: Not Found: /media/places_images/XXXL-_21_.jpg
+[2025-05-28 17:25:15,836] WARNING django.server: "GET /media/places_images/XXXL-_21_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:25:15,861] WARNING django.request: Not Found: /media/places_images/XXXL-_22_.jpg
+[2025-05-28 17:25:15,861] WARNING django.server: "GET /media/places_images/XXXL-_22_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:25:15,885] WARNING django.request: Not Found: /media/places_images/1_nevskiy_centr_0.jpg
+[2025-05-28 17:25:15,885] WARNING django.server: "GET /media/places_images/1_nevskiy_centr_0.jpg HTTP/1.1" 404 6366
+[2025-05-28 17:25:15,911] WARNING django.request: Not Found: /media/places_images/XXXL_2_d4lBEns.jpg
+[2025-05-28 17:25:15,911] WARNING django.server: "GET /media/places_images/XXXL_2_d4lBEns.jpg HTTP/1.1" 404 6354
+[2025-05-28 17:25:16,039] WARNING django.request: Not Found: /media/places_images/_normal.jpg
+[2025-05-28 17:25:16,039] WARNING django.server: "GET /media/places_images/_normal.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:25:16,093] WARNING django.request: Not Found: /media/places_images/XXL_F3Wnez7.jpg
+[2025-05-28 17:25:16,095] WARNING django.server: "GET /media/places_images/XXL_F3Wnez7.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:25:16,118] WARNING django.request: Not Found: /media/places_images/XXXL_EvUWnuA.jpg
+[2025-05-28 17:25:16,118] WARNING django.server: "GET /media/places_images/XXXL_EvUWnuA.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:25:16,157] WARNING django.request: Not Found: /media/places_images/XXXL_KtmtsUO.jpg
+[2025-05-28 17:25:16,159] WARNING django.server: "GET /media/places_images/XXXL_KtmtsUO.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:25:16,206] WARNING django.request: Not Found: /media/places_images/XXXLjpg.webp
+[2025-05-28 17:25:16,210] WARNING django.server: "GET /media/places_images/XXXLjpg.webp HTTP/1.1" 404 6330
+[2025-05-28 17:25:16,257] WARNING django.request: Not Found: /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg
+[2025-05-28 17:25:16,257] WARNING django.server: "GET /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:25:16,274] WARNING django.request: Not Found: /media/places_images/caption.jpg
+[2025-05-28 17:25:16,274] WARNING django.server: "GET /media/places_images/caption.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:25:16,303] WARNING django.request: Not Found: /media/places_images/fs.jpg
+[2025-05-28 17:25:16,303] WARNING django.server: "GET /media/places_images/fs.jpg HTTP/1.1" 404 6306
+[2025-05-28 17:25:16,328] WARNING django.request: Not Found: /media/places_images/galaktorium.jpg
+[2025-05-28 17:25:16,328] WARNING django.server: "GET /media/places_images/galaktorium.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:25:16,343] INFO django.server: "GET /media/places_images/Group_71_3_.png HTTP/1.1" 304 0
+[2025-05-28 17:25:16,387] INFO django.server: "GET /media/places_images/priority-promotion.png HTTP/1.1" 200 917929
+[2025-05-28 17:25:16,403] INFO django.server: "GET /media/places_images/b959b0b173556d3a0584d220ac04d014.jpg HTTP/1.1" 304 0
+[2025-05-28 17:25:16,431] WARNING django.request: Not Found: /media/places_images/XXL.jpg
+[2025-05-28 17:25:16,431] WARNING django.server: "GET /media/places_images/XXL.jpg HTTP/1.1" 404 6310
+[2025-05-28 17:25:16,451] INFO django.server: "GET /media/places_images/e2b8f35a-a6ac-4b65-94d4-0405898ae0bd.jpg HTTP/1.1" 304 0
+[2025-05-28 17:25:16,466] INFO django.server: "GET /media/places_images/92f13974-7a0a-45c1-9520-722a6c32465a.jpg HTTP/1.1" 304 0
+[2025-05-28 17:25:32,562] INFO django.server: "GET / HTTP/1.1" 200 37692
+[2025-05-28 17:25:32,601] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 304 0
+[2025-05-28 17:25:32,605] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-28 17:25:32,605] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 304 0
+[2025-05-28 17:25:32,606] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-28 17:25:32,613] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 304 0
+[2025-05-28 17:29:23,958] INFO django.server: "GET / HTTP/1.1" 200 37881
+[2025-05-28 17:29:24,030] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 304 0
+[2025-05-28 17:29:24,047] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 304 0
+[2025-05-28 17:29:24,047] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 304 0
+[2025-05-28 17:29:24,047] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-28 17:29:24,047] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 304 0
+[2025-05-28 17:29:24,047] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-28 17:29:24,061] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 304 0
+[2025-05-28 17:29:24,477] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 304 0
+[2025-05-28 17:29:32,324] INFO django.server: "GET / HTTP/1.1" 200 37881
+[2025-05-28 17:29:32,412] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:29:32,413] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:29:32,413] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:29:32,430] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:29:32,434] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:29:32,442] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:29:33,075] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:29:33,101] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:31:52,579] INFO django.server: "GET / HTTP/1.1" 200 37877
+[2025-05-28 17:31:52,619] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 304 0
+[2025-05-28 17:31:55,625] INFO django.server: "GET / HTTP/1.1" 200 37877
+[2025-05-28 17:31:55,668] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:31:55,676] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:31:55,685] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:31:55,689] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:31:55,690] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:31:55,690] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:31:55,960] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:31:57,285] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:32:11,581] INFO django.server: "GET / HTTP/1.1" 200 37869
+[2025-05-28 17:32:11,641] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:32:11,642] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:32:11,642] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:32:11,647] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:32:11,648] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:32:11,649] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:32:11,825] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:32:12,178] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:32:35,557] INFO django.server: "GET / HTTP/1.1" 200 37869
+[2025-05-28 17:32:35,596] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:32:35,603] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:32:35,603] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:32:35,606] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:32:35,608] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:32:35,608] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:32:35,865] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:32:36,020] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:32:37,762] INFO django.server: "GET / HTTP/1.1" 200 37881
+[2025-05-28 17:32:37,806] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:32:37,806] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:32:37,806] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:32:37,810] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:32:37,810] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:32:37,810] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:32:38,159] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:32:38,196] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:33:01,848] INFO django.server: "GET / HTTP/1.1" 200 37881
+[2025-05-28 17:33:01,966] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:33:01,966] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:33:01,966] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:33:01,971] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:33:01,971] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:33:01,973] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:33:02,311] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:33:02,339] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:33:03,766] INFO django.server: "GET / HTTP/1.1" 200 37896
+[2025-05-28 17:33:03,846] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 200 8105
+[2025-05-28 17:33:03,851] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 200 4988
+[2025-05-28 17:33:03,855] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 200 9974
+[2025-05-28 17:33:03,855] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 200 146095
+[2025-05-28 17:33:03,855] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 200 130384
+[2025-05-28 17:33:03,855] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 200 149825
+[2025-05-28 17:33:04,187] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 200 10718478
+[2025-05-28 17:33:04,301] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 200 4094
+[2025-05-28 17:33:09,221] ERROR django.request: Internal Server Error: /prices/
+Traceback (most recent call last):
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: main_subscriptionplan
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\main\views.py", line 182, in prices
+    return render(request, 'main/prices.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\defaulttags.py", line 199, in render
+    len_values = len(values)
+                 ^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: main_subscriptionplan
+[2025-05-28 17:33:09,238] ERROR django.server: "GET /prices/ HTTP/1.1" 500 227869
+[2025-05-28 17:33:09,442] WARNING django.request: Not Found: /favicon.ico
+[2025-05-28 17:33:09,443] WARNING django.server: "GET /favicon.ico HTTP/1.1" 404 6195
+[2025-05-28 17:33:29,380] INFO django.server: "GET /routes/ HTTP/1.1" 200 951965
+[2025-05-28 17:33:29,525] WARNING django.request: Not Found: /media/places_images/XXL-_1_.jpg
+[2025-05-28 17:33:29,526] WARNING django.server: "GET /media/places_images/XXL-_1_.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:33:29,543] WARNING django.request: Not Found: /media/places_images/XXXL_aSViDU4.jpg
+[2025-05-28 17:33:29,544] WARNING django.server: "GET /media/places_images/XXXL_aSViDU4.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:33:29,561] INFO django.server: "GET /media/places_images/Group_71_3_.png HTTP/1.1" 304 0
+[2025-05-28 17:33:29,575] INFO django.server: "GET /media/places_images/priority-promotion.png HTTP/1.1" 304 0
+[2025-05-28 17:33:29,604] WARNING django.request: Not Found: /media/places_images/1628921769.67.jpg
+[2025-05-28 17:33:29,605] WARNING django.server: "GET /media/places_images/1628921769.67.jpg HTTP/1.1" 404 6350
+[2025-05-28 17:33:29,621] WARNING django.request: Not Found: /media/places_images/XXXL-_18_.jpg
+[2025-05-28 17:33:29,623] WARNING django.server: "GET /media/places_images/XXXL-_18_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:33:29,644] INFO django.server: "GET /media/places_images/92f13974-7a0a-45c1-9520-722a6c32465a.jpg HTTP/1.1" 304 0
+[2025-05-28 17:33:29,664] INFO django.server: "GET /media/places_images/e2b8f35a-a6ac-4b65-94d4-0405898ae0bd.jpg HTTP/1.1" 304 0
+[2025-05-28 17:33:29,682] WARNING django.request: Not Found: /media/places_images/L.jpg
+[2025-05-28 17:33:29,683] WARNING django.server: "GET /media/places_images/L.jpg HTTP/1.1" 404 6302
+[2025-05-28 17:33:29,711] WARNING django.request: Not Found: /media/places_images/XXXL-_20_.jpg
+[2025-05-28 17:33:29,713] WARNING django.server: "GET /media/places_images/XXXL-_20_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:33:29,741] WARNING django.request: Not Found: /media/places_images/XXXL-_21_.jpg
+[2025-05-28 17:33:29,743] WARNING django.server: "GET /media/places_images/XXXL-_21_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:33:29,772] WARNING django.request: Not Found: /media/places_images/XXXL-_19_.jpg
+[2025-05-28 17:33:29,774] WARNING django.server: "GET /media/places_images/XXXL-_19_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:33:29,803] WARNING django.request: Not Found: /media/places_images/XXXL-_22_.jpg
+[2025-05-28 17:33:29,804] WARNING django.server: "GET /media/places_images/XXXL-_22_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:33:29,837] INFO django.server: "GET /media/places_images/b959b0b173556d3a0584d220ac04d014.jpg HTTP/1.1" 304 0
+[2025-05-28 17:33:29,868] WARNING django.request: Not Found: /media/places_images/XXXL-_17_.jpg
+[2025-05-28 17:33:29,869] WARNING django.server: "GET /media/places_images/XXXL-_17_.jpg HTTP/1.1" 404 6334
+[2025-05-28 17:33:29,901] WARNING django.request: Not Found: /media/places_images/XXXL_2_d4lBEns.jpg
+[2025-05-28 17:33:29,902] WARNING django.server: "GET /media/places_images/XXXL_2_d4lBEns.jpg HTTP/1.1" 404 6354
+[2025-05-28 17:33:29,931] WARNING django.request: Not Found: /media/places_images/XXL_F3Wnez7.jpg
+[2025-05-28 17:33:29,933] WARNING django.server: "GET /media/places_images/XXL_F3Wnez7.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:33:29,953] WARNING django.request: Not Found: /media/places_images/1_nevskiy_centr_0.jpg
+[2025-05-28 17:33:29,955] WARNING django.server: "GET /media/places_images/1_nevskiy_centr_0.jpg HTTP/1.1" 404 6366
+[2025-05-28 17:33:29,974] WARNING django.request: Not Found: /media/places_images/XXXL_EvUWnuA.jpg
+[2025-05-28 17:33:29,977] WARNING django.server: "GET /media/places_images/XXXL_EvUWnuA.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:33:29,979] WARNING django.request: Not Found: /media/places_images/XXXLjpg.webp
+[2025-05-28 17:33:29,981] WARNING django.server: "GET /media/places_images/XXXLjpg.webp HTTP/1.1" 404 6330
+[2025-05-28 17:33:30,028] WARNING django.request: Not Found: /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg
+[2025-05-28 17:33:30,030] WARNING django.server: "GET /media/places_images/1c9b26ea-9133-4ef9-b10c-a2a91433d4a6.jpg HTTP/1.1" 404 6442
+[2025-05-28 17:33:30,056] WARNING django.request: Not Found: /media/places_images/caption.jpg
+[2025-05-28 17:33:30,057] WARNING django.server: "GET /media/places_images/caption.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:33:30,074] WARNING django.request: Not Found: /media/places_images/_normal.jpg
+[2025-05-28 17:33:30,076] WARNING django.server: "GET /media/places_images/_normal.jpg HTTP/1.1" 404 6326
+[2025-05-28 17:33:30,088] WARNING django.request: Not Found: /media/places_images/galaktorium.jpg
+[2025-05-28 17:33:30,090] WARNING django.server: "GET /media/places_images/galaktorium.jpg HTTP/1.1" 404 6342
+[2025-05-28 17:33:30,103] WARNING django.request: Not Found: /media/places_images/XXL.jpg
+[2025-05-28 17:33:30,104] WARNING django.server: "GET /media/places_images/XXL.jpg HTTP/1.1" 404 6310
+[2025-05-28 17:33:30,118] WARNING django.request: Not Found: /media/places_images/fs.jpg
+[2025-05-28 17:33:30,120] WARNING django.server: "GET /media/places_images/fs.jpg HTTP/1.1" 404 6306
+[2025-05-28 17:33:30,136] WARNING django.request: Not Found: /media/places_images/XXXL_KtmtsUO.jpg
+[2025-05-28 17:33:30,138] WARNING django.server: "GET /media/places_images/XXXL_KtmtsUO.jpg HTTP/1.1" 404 6346
+[2025-05-28 17:33:32,246] INFO django.server: "GET / HTTP/1.1" 200 37896
+[2025-05-28 17:33:33,563] INFO django.server: "GET /profile/ HTTP/1.1" 200 15604
+[2025-05-28 17:33:35,047] INFO django.server: "GET / HTTP/1.1" 200 37896
+[2025-05-28 17:33:38,854] INFO django.server: "GET /oferta/ HTTP/1.1" 200 33499
+[2025-05-28 17:33:43,149] INFO django.server: "GET / HTTP/1.1" 200 37896
+[2025-05-28 17:33:44,666] ERROR django.request: Internal Server Error: /prices/
+Traceback (most recent call last):
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: main_subscriptionplan
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\main\views.py", line 182, in prices
+    return render(request, 'main/prices.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\template\defaulttags.py", line 199, in render
+    len_values = len(values)
+                 ^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\davrr\PycharmProjects\Atlas\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: main_subscriptionplan
+[2025-05-28 17:33:44,674] ERROR django.server: "GET /prices/ HTTP/1.1" 500 227869
