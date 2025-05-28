@@ -167,7 +167,8 @@ YANDEX_OAUTH_TOKEN = "y0_AgAAAAAsA27kAATuwQAAAAEcoGZNAAAZ2bVqhehPe67on8fEWv3T9Av
 YOOKASSA_SHOP_ID = "1073012"
 YOOKASSA_API_KEY = "live_sAssBZ75WUaXwzrqHCLmxNzYztNUvN3NSKQT9vG7WHQ"
 FOLDER_ID = "b1gspfv2o3g5um6ak5n5"
-
+YOOKASSA_SHOP_ID = "1073012"
+YOOKASSA_API_KEY = "live_sAssBZ75WUaXwzrqHCLmxNzYztNUvN3NSKQT9vG7WHQ"
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',

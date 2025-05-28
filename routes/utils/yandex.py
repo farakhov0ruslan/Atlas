@@ -34,7 +34,7 @@ def query_yandex_gpt(iam_token, folder_id, user_text) -> dict:
     URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
     data = {
         "modelUri": f"gpt://{folder_id}/llama",
-        "completionOptions": {"temperature": 0.3, "maxTokens": 3000},
+        "completionOptions": {"temperature": 0.3, "maxTokens": 5000},
         "messages": [
             {"role": "system", "text": """Я планирую путешествие и хочу получить расписание тайм-менеджмента на основе моих предпочтений. 
 ### Требования:
