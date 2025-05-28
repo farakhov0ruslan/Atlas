@@ -7291,9 +7291,24 @@ Traceback (most recent call last):
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
     return view_func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/Atlas/payments/views.py", line 115, in payment_cb
+    from django.conf import settings
+            ^^^^^^^^
+NameError: name 'settings' is not defined
+[2025-05-22 13:48:17,749] ERROR django.request: Internal Server Error: /payments/call-back
+Traceback (most recent call last):
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
     return func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7332,9 +7347,23 @@ Traceback (most recent call last):
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
     return view_func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/Atlas/payments/views.py", line 116, in payment_cb
+    open(f"{settings.BASE_DIR}/log2.txt").write(f"User ip = {ip}")
+io.UnsupportedOperation: not writable
+[2025-05-22 19:48:17,813] ERROR django.request: Internal Server Error: /payments/call-back
+Traceback (most recent call last):
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
     return func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7374,9 +7403,28 @@ Traceback (most recent call last):
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
     return view_func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/Atlas/payments/views.py", line 116, in payment_cb
+    open(f"{settings.BASE_DIR}/log2.txt").write(f"User ip = {ip}")
+io.UnsupportedOperation: not writable
+[2025-05-22 21:37:54,207] WARNING django.request: Not Found: /robots.txt
+[2025-05-22 21:52:33,213] WARNING django.request: Not Found: /robots.txt
+[2025-05-22 22:02:34,873] WARNING django.request: Not Found: /robots.txt
+[2025-05-22 22:41:39,962] WARNING django.request: Not Found: /bitrix/admin/
+[2025-05-22 22:46:08,846] WARNING django.request: Not Found: /robots.txt
+[2025-05-22 22:47:56,810] ERROR django.request: Internal Server Error: /payments/call-back
+Traceback (most recent call last):
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/d/davrr5cr/atlas/venv_django/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
     return func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

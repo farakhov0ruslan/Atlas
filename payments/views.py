@@ -112,7 +112,17 @@ def payment_view(request):
 @csrf_exempt
 def payment_cb(request):
     ip = client_ip(request)
+    import sys
+    sys.dont_write_bytecode = True
+    from django.conf import settings
+    import os
+    log_path = os.path.join(settings.BASE_DIR, "log2.txt")
+    # открываем в режиме дозаписи, чтобы просто добавлять новые строки
+    with open(log_path, "a") as log:
+        log.write(f"User ip = {ip}\n")
+    
     if not is_allowed_yookassa_ip(ip):
+        open(f"{settings.BASE_DIR}/log2.txt").write(f"Не получается определить user")
         print(f"Forbidden: unexpected IP {ip}")
         return HttpResponseForbidden(f"Forbidden: unexpected IP {ip}")
     payload = json.loads(request.body)
