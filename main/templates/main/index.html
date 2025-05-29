@@ -285,11 +285,10 @@
             // Функция для валидации полей формы
             function validateFormFields() {
                 const city = document.getElementById("cityInput").value;
-                const personCount = document.getElementById("personInput").value;
                 const depDate = document.getElementById("departureDateInput").value;
                 const retDate = document.getElementById("returnDateInput").value;
 
-                if (!city || !personCount || !depDate || !retDate) {
+                if (!city || !depDate || !retDate) {
                     showCustomAlert("Пожалуйста, заполните все обязательные поля: Куда, Количество человек, Даты 'Туда' и 'Обратно'.");
                     return false;
                 }
