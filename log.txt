@@ -8158,3 +8158,18 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 django.db.utils.OperationalError: no such table: main_subscriptionplan
 [2025-05-28 17:33:44,674] ERROR django.server: "GET /prices/ HTTP/1.1" 500 227869
+[2025-05-29 13:46:43,630] INFO django.utils.autoreload: Watching for file changes with StatReloader
+[2025-05-29 13:46:50,753] INFO django.server: "GET / HTTP/1.1" 200 37896
+[2025-05-29 13:46:51,097] INFO django.server: "GET /static/deps/css/main/nav-bar.css HTTP/1.1" 304 0
+[2025-05-29 13:46:51,097] INFO django.server: "GET /static/deps/images/icon/left%20icon.jpg HTTP/1.1" 304 0
+[2025-05-29 13:46:51,109] INFO django.server: "GET /static/deps/css/style.css HTTP/1.1" 304 0
+[2025-05-29 13:46:51,110] INFO django.server: "GET /static/deps/images/%D0%BF%D0%B8%D1%82%D0%B5%D1%80.jpg HTTP/1.1" 304 0
+[2025-05-29 13:46:51,110] INFO django.server: "GET /static/deps/images/%D0%B0%D1%80%D1%85%D0%B0%D0%BD%D0%B3%D0%B5%D0%BB%D1%8C%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-29 13:46:51,110] INFO django.server: "GET /static/deps/images/%D0%BC%D1%83%D1%80%D0%BC%D0%B0%D0%BD%D1%81%D0%BA.jpg HTTP/1.1" 304 0
+[2025-05-29 13:46:51,248] INFO django.server: "GET /static/deps/images/%D1%84%D0%BE%D0%BD_6.jpg HTTP/1.1" 304 0
+[2025-05-29 13:46:56,022] WARNING django.request: Not Found: /t.me/itsgoatlas
+[2025-05-29 13:46:56,024] WARNING django.server: "GET /t.me/itsgoatlas HTTP/1.1" 404 6207
+[2025-05-29 13:46:56,128] WARNING django.request: Not Found: /favicon.ico
+[2025-05-29 13:46:56,129] WARNING django.server: "GET /favicon.ico HTTP/1.1" 404 6195
+[2025-05-29 13:48:35,544] INFO django.server: "GET / HTTP/1.1" 200 39995
+[2025-05-29 13:48:35,616] INFO django.server: "GET /static/deps/images/icon/icon_32.png HTTP/1.1" 304 0

@@ -3,50 +3,50 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="icon" href="{% static 'deps/images/icon/icon_32.png' %}" sizes="32x32"
-	      type="image/png">
+    <link rel="icon" href="{% static 'deps/images/icon/icon_32.png' %}" sizes="32x32"
+          type="image/png">
 
-	<title>{% block title %}Атлас – Путешествия{% endblock %}</title>
-	<!-- Bootstrap CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-	      rel="stylesheet">
-	<!-- Bootstrap Icons -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
-	      rel="stylesheet">
-	<!-- Custom CSS -->
-	{% block css %}
+    <title>{% block title %}Атлас – Путешествия{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+          rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+    <!-- Custom CSS -->
+    {% block css %}
 
-	{% endblock %}
-	<link rel="stylesheet" href="{% static "deps/css/style.css" %}">
-	<link rel="stylesheet" href="{% static "deps/css/main/nav-bar.css" %}">
-	<link
-			href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
-			rel="stylesheet"
-	>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static "deps/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/main/nav-bar.css" %}">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+    >
 
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-	<nav class="navbar navbar-expand-md navbar-light bg-green">
-		<div class="container">
-			<!-- Логотип -->
-			<a href="/" class="logo-link d-flex align-items-center">
-				<img src="{% static 'deps/images/icon/left icon.jpg' %}" alt="Atlas Logo"
-				     class="logo">
-			</a>
-			<!-- Гамбургер -->
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			        data-bs-target="#navbarMenu" aria-controls="navbarMenu"
-			        aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+<nav class="navbar navbar-expand-md navbar-light bg-green">
+    <div class="container">
+        <!-- Логотип -->
+        <a href="/" class="logo-link d-flex align-items-center">
+            <img src="{% static 'deps/images/icon/left icon.jpg' %}" alt="Atlas Logo"
+                 class="logo">
+        </a>
+        <!-- Гамбургер -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu" aria-controls="navbarMenu"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-			<div class="collapse navbar-collapse" id="navbarMenu">
-				<div class="navbar-nav ms-auto d-flex align-items-center">
-						<a class="nav-item nav-link">
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <div class="navbar-nav ms-auto d-flex align-items-center">
+                <a class="nav-item nav-link">
 							<span class="countRouteText">
 							  {% if user.is_authenticated %}
                                   Количество маршрутов: {{ user.max_routes }}
@@ -54,306 +54,306 @@
                                   Количество маршрутов: {{ request.session.routes_left }}
                               {% endif %}
 							</span>
-						</a>
+                </a>
 
-					{#					<!-- 1. ГОРОД -->#}
-					{#					<a href="#" class="nav-item nav-link" aria-expanded="false">#}
-					{#						<span id="cityButtonText">ГОРОД</span> <!-- Место для отображения города -->#}
-					{#					</a>#}
+                {#					<!-- 1. ГОРОД -->#}
+                {#					<a href="#" class="nav-item nav-link" aria-expanded="false">#}
+                {#						<span id="cityButtonText">ГОРОД</span> <!-- Место для отображения города -->#}
+                {#					</a>#}
 
-					<!-- 2. ЦЕНЫ -->
-					<a href="{% url 'main:prices' %}" class="nav-item nav-link">ЦЕНЫ</a>
+                <!-- 2. ЦЕНЫ -->
+                <a href="{% url 'main:prices' %}" class="nav-item nav-link">ЦЕНЫ</a>
 
-					<!-- 3. АККАУНТ / профиль -->
-					{% if user.is_authenticated %}
-						<a href="{% url 'main:profile' %}" class="nav-item nav-link">
-							{{ user.username }}
-						</a>
-						<form method="post" action="{% url 'main:logout' %}"
-						      style="display:inline;">
-							{% csrf_token %}
-							<button type="submit"
-							        class="nav-item nav-link btn btn-link"
-							        style="border:none; background:none;">
-								ВЫЙТИ
-							</button>
-						</form>
-					{% else %}
-						<a href="#" class="nav-item nav-link"
-						   data-bs-toggle="modal" data-bs-target="#accountModal">
-							АККАУНТ
-						</a>
-					{% endif %}
+                <!-- 3. АККАУНТ / профиль -->
+                {% if user.is_authenticated %}
+                    <a href="{% url 'main:profile' %}" class="nav-item nav-link">
+                        {{ user.username }}
+                    </a>
+                    <form method="post" action="{% url 'main:logout' %}"
+                          style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit"
+                                class="nav-item nav-link btn btn-link"
+                                style="border:none; background:none;">
+                            ВЫЙТИ
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="#" class="nav-item nav-link"
+                       data-bs-toggle="modal" data-bs-target="#accountModal">
+                        АККАУНТ
+                    </a>
+                {% endif %}
 
-					<!-- 4. ЧЕМОДАН -->
-					{% if request.session.route %}
-						<a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
-							ЧЕМОДАН
-						</a>
-					{% else %}
-						<span class="nav-item d-inline-block"
-						      data-bs-toggle="tooltip"
-						      data-bs-placement="bottom"
-						      title="Здесь вы можете перейти к своему маршруту, но для начала его необходимо сгенерировать. Заполните данные и нажмите «Поехали».">
+                <!-- 4. ЧЕМОДАН -->
+                {% if request.session.route %}
+                    <a href="{% url 'routes:route_page' %}" class="nav-item nav-link">
+                        ЧЕМОДАН
+                    </a>
+                {% else %}
+                    <span class="nav-item d-inline-block"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="bottom"
+                          title="Здесь вы можете перейти к своему маршруту, но для начала его необходимо сгенерировать. Заполните данные и нажмите «Поехали».">
 					    <span class="nav-link disabled" style="pointer-events: none;">
 					      ЧЕМОДАН
 					    </span>
   </span>
-					{% endif %}
+                {% endif %}
 
-					<!-- 5. ПОМОЩЬ -->
-					<a href="#pageFooter" class="nav-item nav-link">ПОМОЩЬ</a>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<!-- Модальное окно для аккаунта -->
-	<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel"
-	     aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header d-flex justify-content-between">
-					<ul class="nav nav-tabs" id="accountTab" role="tablist">
-						<li class="nav-item" role="presentation">
-							<button class="nav-link active" id="login-tab" data-bs-toggle="tab"
-							        data-bs-target="#login"
-							        type="button" role="tab" aria-controls="login"
-							        aria-selected="true">Вход
-							</button>
-						</li>
-						<li class="nav-item" role="presentation">
-							<button class="nav-link" id="register-tab" data-bs-toggle="tab"
-							        data-bs-target="#register"
-							        type="button" role="tab" aria-controls="register"
-							        aria-selected="false">Регистрация
-							</button>
-						</li>
-					</ul>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-					        aria-label="Закрыть"></button>
-				</div>
-				<div class="modal-body">
-					<div class="tab-content pt-3" id="accountTabContent">
-						<div class="tab-pane fade show active" id="login" role="tabpanel"
-						     aria-labelledby="login-tab">
-							<form id="loginForm" method="post" action="{% url 'main:login' %}">
-								{% csrf_token %}
-								<div class="mb-3">
-									<label for="loginEmail" class="form-label">Email адрес</label>
-									<input type="email" class="form-control" name="email"
-									       placeholder="Введите email"
-									       required>
-									<div id="emailError1" style="color:red;"></div>
-								</div>
-								<div class="mb-3">
-									<label for="loginPassword" class="form-label">Пароль</label>
-									<input type="password" class="form-control" name="password"
-									       placeholder="Введите пароль"
-									       required>
-									<div id="passwordError" style="color:red;"></div>
-								</div>
-								<div class="text-end">
-									<button type="submit" class="btn btn-success">Войти</button>
-								</div>
-							</form>
-							<div id="formErrors" style="color:red;"></div>
-							<!-- Сообщения об ошибках на уровне формы -->
-						</div>
-						<div class="tab-pane fade" id="register" role="tabpanel"
-						     aria-labelledby="register-tab">
-							<form id="registerForm" method="post" action="{% url 'main:register' %}"
-							      enctype="multipart/form-data">
-								{% csrf_token %}
-								<div class="mb-3">
-									<label for="registerUsername" class="form-label">Имя
-										пользователя</label>
-									<input type="text" class="form-control" name="username"
-									       placeholder="Введите имя пользователя" required>
-									<div id="usernameError" style="color:red;"></div>
-								</div>
+                <!-- 5. ПОМОЩЬ -->
+                <a href="#pageFooter" class="nav-item nav-link">ПОМОЩЬ</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Модальное окно для аккаунта -->
+<div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between">
+                <ul class="nav nav-tabs" id="accountTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                                data-bs-target="#login"
+                                type="button" role="tab" aria-controls="login"
+                                aria-selected="true">Вход
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="register-tab" data-bs-toggle="tab"
+                                data-bs-target="#register"
+                                type="button" role="tab" aria-controls="register"
+                                aria-selected="false">Регистрация
+                        </button>
+                    </li>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content pt-3" id="accountTabContent">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel"
+                         aria-labelledby="login-tab">
+                        <form id="loginForm" method="post" action="{% url 'main:login' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">Email адрес</label>
+                                <input type="email" class="form-control" name="email"
+                                       placeholder="Введите email"
+                                       required>
+                                <div id="emailError1" style="color:red;"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Пароль</label>
+                                <input type="password" class="form-control" name="password"
+                                       placeholder="Введите пароль"
+                                       required>
+                                <div id="passwordError" style="color:red;"></div>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-success">Войти</button>
+                            </div>
+                        </form>
+                        <div id="formErrors" style="color:red;"></div>
+                        <!-- Сообщения об ошибках на уровне формы -->
+                    </div>
+                    <div class="tab-pane fade" id="register" role="tabpanel"
+                         aria-labelledby="register-tab">
+                        <form id="registerForm" method="post" action="{% url 'main:register' %}"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="registerUsername" class="form-label">Имя
+                                    пользователя</label>
+                                <input type="text" class="form-control" name="username"
+                                       placeholder="Введите имя пользователя" required>
+                                <div id="usernameError" style="color:red;"></div>
+                            </div>
 
-								<div class="mb-3">
-									<label for="registerEmail" class="form-label">Email
-										адрес</label>
-									<input id="registerEmail" type="email" class="form-control"
-									       name="email"
-									       placeholder="Введите email"
-									       required>
-									<div id="emailError" style="color:red;"></div>
-								</div>
+                            <div class="mb-3">
+                                <label for="registerEmail" class="form-label">Email
+                                    адрес</label>
+                                <input id="registerEmail" type="email" class="form-control"
+                                       name="email"
+                                       placeholder="Введите email"
+                                       required>
+                                <div id="emailError" style="color:red;"></div>
+                            </div>
 
-								<div class="mb-3">
-									<label for="registerPassword" class="form-label">Пароль</label>
-									<input type="password" class="form-control" name="password1"
-									       placeholder="Введите пароль" required>
-									<div id="password1Error" style="color:red;"></div>
-								</div>
+                            <div class="mb-3">
+                                <label for="registerPassword" class="form-label">Пароль</label>
+                                <input type="password" class="form-control" name="password1"
+                                       placeholder="Введите пароль" required>
+                                <div id="password1Error" style="color:red;"></div>
+                            </div>
 
-								<div class="mb-3">
-									<label for="registerPassword2" class="form-label">Повторите
-										пароль</label>
-									<input type="password" class="form-control" name="password2"
-									       placeholder="Повторите пароль" required>
-									<div id="password2Error" style="color:red;"></div>
-								</div>
+                            <div class="mb-3">
+                                <label for="registerPassword2" class="form-label">Повторите
+                                    пароль</label>
+                                <input type="password" class="form-control" name="password2"
+                                       placeholder="Повторите пароль" required>
+                                <div id="password2Error" style="color:red;"></div>
+                            </div>
 
-								<div class="text-end">
-									<button type="submit" class="btn btn-success">
-										Зарегистрироваться
-									</button>
-								</div>
-							</form>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-success">
+                                    Зарегистрироваться
+                                </button>
+                            </div>
+                        </form>
 
-							<div id="formErrors" style="color:red;"></div>
-							<!-- Сообщения об ошибках на уровне формы -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<main class="flex-grow-1">
-		{% block content %}
+                        <div id="formErrors" style="color:red;"></div>
+                        <!-- Сообщения об ошибках на уровне формы -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<main class="flex-grow-1">
+    {% block content %}
 
-		{% endblock %}
-	</main>
-	<!-- Bootstrap Bundle with Popper -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% endblock %}
+</main>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<script>
-        $(document).ready(function () {
-            // Получаем CSRF токен из cookie
-            function getCSRFToken() {
-                var name = 'csrftoken';
-                var cookieValue = null;
-                if (document.cookie && document.cookie != '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
+<script>
+    $(document).ready(function () {
+        // Получаем CSRF токен из cookie
+        function getCSRFToken() {
+            var name = 'csrftoken';
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
                     }
                 }
-                return cookieValue;
             }
+            return cookieValue;
+        }
 
-            // При отправке формы
-            $("#registerForm").on("submit", function (event) {
-                event.preventDefault(); // Останавливаем стандартную отправку формы
+        // При отправке формы
+        $("#registerForm").on("submit", function (event) {
+            event.preventDefault(); // Останавливаем стандартную отправку формы
 
-                // Очищаем предыдущие ошибки
-                $("#usernameError").html("");
-                $("#emailError").html("");
-                $("#password1Error").html("");
-                $("#password2Error").html("");
-                $("#formErrors").html("");
+            // Очищаем предыдущие ошибки
+            $("#usernameError").html("");
+            $("#emailError").html("");
+            $("#password1Error").html("");
+            $("#password2Error").html("");
+            $("#formErrors").html("");
 
-                // Отправляем форму через AJAX
-                $.ajax({
-                    url: $(this).attr('action'),  // URL, на который будет отправлена форма
-                    type: 'POST',
-                    data: $(this).serialize(),  // Сериализуем все данные формы
-                    beforeSend: function (xhr, settings) {
-                        // Добавляем CSRF токен в заголовок
-                        xhr.setRequestHeader("X-CSRFToken", getCSRFToken());
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            // Если регистрация успешна, можно перенаправить или отобразить успех
-                            window.location.href = response.redirect_url; // Пример редиректа
-                        } else {
-                            // Если есть ошибки валидации, показываем их
-                            if (response.errors) {
-                                for (const [field, messages] of Object.entries(response.errors)) {
-                                    $("#" + field + "Error").html(messages.join("<br>"));
-                                }
+            // Отправляем форму через AJAX
+            $.ajax({
+                url: $(this).attr('action'),  // URL, на который будет отправлена форма
+                type: 'POST',
+                data: $(this).serialize(),  // Сериализуем все данные формы
+                beforeSend: function (xhr, settings) {
+                    // Добавляем CSRF токен в заголовок
+                    xhr.setRequestHeader("X-CSRFToken", getCSRFToken());
+                },
+                success: function (response) {
+                    if (response.success) {
+                        // Если регистрация успешна, можно перенаправить или отобразить успех
+                        window.location.href = response.redirect_url; // Пример редиректа
+                    } else {
+                        // Если есть ошибки валидации, показываем их
+                        if (response.errors) {
+                            for (const [field, messages] of Object.entries(response.errors)) {
+                                $("#" + field + "Error").html(messages.join("<br>"));
                             }
                         }
-                    },
-                    error: function (xhr, status, error) {
-                        // В случае ошибки (например, сервер не доступен)
-                        $("#formErrors").html("Произошла ошибка. Попробуйте позже.");
                     }
-                });
+                },
+                error: function (xhr, status, error) {
+                    // В случае ошибки (например, сервер не доступен)
+                    $("#formErrors").html("Произошла ошибка. Попробуйте позже.");
+                }
             });
         });
-	</script>
-	<script>
-        $(document).ready(function () {
-            $("#loginForm").on("submit", function (event) {
-                event.preventDefault();  // Отменяем стандартную отправку формы
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#loginForm").on("submit", function (event) {
+            event.preventDefault();  // Отменяем стандартную отправку формы
 
-                // Очищаем предыдущие ошибки
-                $("#emailError").html("");
-                $("#passwordError").html("");
-                $("#formErrors").html("");  // Очищаем сообщения о глобальных ошибках
+            // Очищаем предыдущие ошибки
+            $("#emailError").html("");
+            $("#passwordError").html("");
+            $("#formErrors").html("");  // Очищаем сообщения о глобальных ошибках
 
-                // Отправляем форму через AJAX
-                $.ajax({
-                    url: $(this).attr('action'),  // URL для отправки
-                    type: 'POST',
-                    data: $(this).serialize(),  // Сериализуем форму
-                    beforeSend: function (xhr, settings) {
-                        xhr.setRequestHeader("X-CSRFToken", getCSRFToken());  // Добавляем CSRF токен
-                    },
-                    success: function (response) {
-                        console.log("Ошибки:", response.errors);  // Для отладки
-                        if (response.success) {
-                            window.location.href = response.redirect_url;  // Редирект на главную страницу
-                        } else {
-                            // Показать ошибки, если есть
+            // Отправляем форму через AJAX
+            $.ajax({
+                url: $(this).attr('action'),  // URL для отправки
+                type: 'POST',
+                data: $(this).serialize(),  // Сериализуем форму
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", getCSRFToken());  // Добавляем CSRF токен
+                },
+                success: function (response) {
+                    console.log("Ошибки:", response.errors);  // Для отладки
+                    if (response.success) {
+                        window.location.href = response.redirect_url;  // Редирект на главную страницу
+                    } else {
+                        // Показать ошибки, если есть
 
-                            if (response.errors) {
-                                console.log(response.errors)
-                                for (const [field, message] of Object.entries(response.errors)) {
-                                    if (field === "email") {
-                                        $("#" + field + "Error1").html(message).show();  // Показываем ошибки на уровне формы
-                                    } else {
-                                        $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
-                                    }
-
+                        if (response.errors) {
+                            console.log(response.errors)
+                            for (const [field, message] of Object.entries(response.errors)) {
+                                if (field === "email") {
+                                    $("#" + field + "Error1").html(message).show();  // Показываем ошибки на уровне формы
+                                } else {
+                                    $("#" + field + "Error").html(message).show();  // Показываем ошибки на уровне формы
                                 }
+
                             }
                         }
-                    },
-                    error: function (xhr, status, error) {
-
-                        $("#formErrors").html("Произошла ошибка. Попробуйте снова.").show();  // Общая ошибка
                     }
-                });
-            });
+                },
+                error: function (xhr, status, error) {
 
-            // Получаем CSRF токен из cookie
-            function getCSRFToken() {
-                var name = 'csrftoken';
-                var cookieValue = null;
-                if (document.cookie && document.cookie != '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
+                    $("#formErrors").html("Произошла ошибка. Попробуйте снова.").show();  // Общая ошибка
+                }
+            });
+        });
+
+        // Получаем CSRF токен из cookie
+        function getCSRFToken() {
+            var name = 'csrftoken';
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
                     }
                 }
-                return cookieValue;
             }
+            return cookieValue;
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(
+            document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.forEach(function (el) {
+            new bootstrap.Tooltip(el);
         });
-	</script>
-	<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var tooltipTriggerList = [].slice.call(
-                document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            );
-            tooltipTriggerList.forEach(function (el) {
-                new bootstrap.Tooltip(el);
-            });
-        });
-    </script>
+    });
+</script>
 {#            const cityButtonText = document.getElementById("cityButtonText");#}
 {##}
 {#            function updateCityText(cityName) {#}
@@ -482,26 +482,31 @@
 {#                .catch(err => console.error("Ошибка проверки сессии или БД:", err));#}
 {#        });#}
 {#	</script>#}
-	{% block footer %}
-		<footer id="pageFooter" class="bg-light py-3 border-top">
-			<div class="container d-flex justify-content-start align-items-center gap-3">
-				<!-- Логотип или иконка -->
-				<img src="{% static 'deps/images/icon/left icon.jpg' %}"
-				     alt="Atlas Logo"
-				     style="height: 25px; margin-top: -30px;">
+{% block footer %}
+    <footer id="pageFooter" class="bg-light py-3 border-top">
+        <div class="container d-flex justify-content-start align-items-center gap-3">
+            <!-- Логотип или иконка -->
+            <img src="{% static 'deps/images/icon/left icon.jpg' %}"
+                 alt="Atlas Logo"
+                 style="height: 25px; margin-top: -30px;">
 
-				<!-- Контакты -->
-				<div class="text-muted small">
-					<a href="mailto:goatlas.ru@yandex.ru"
-					   class="text-muted text-decoration-none">goatlas.ru@yandex.ru</a><br>
-					<a href="tel:+79120444288" class="text-muted text-decoration-none">+7 (912)
-						044-42-88</a><br>
-                    <a href="t.me/itsgoatlas" class="text-muted text-decoration-none">@itsgoatlas</a><br>
-                    <a href="{% url 'main:offer' %}"
-					   class="text-muted text-decoration-none">Оферта</a>
-				</div>
-			</div>
-		</footer>
-	{% endblock %}
+            <!-- Контакты -->
+            <div class="text-muted small">
+                <a href="mailto:goatlas.ru@yandex.ru"
+                   class="text-muted text-decoration-none">goatlas.ru@yandex.ru</a><br>
+                <a href="tel:+79120444288" class="text-muted text-decoration-none">+7 (912)
+                    044-42-88</a><br>
+                <a href="https://t.me/itsgoatlas"
+                   class="text-muted text-decoration-none"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    @itsgoatlas
+                </a><br>
+                <a href="{% url 'main:offer' %}"
+                   class="text-muted text-decoration-none">Оферта</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
 </body>
 </html>
